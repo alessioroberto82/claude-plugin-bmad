@@ -1,0 +1,17 @@
+{
+  "name": "bmad-corporate",
+  "owner": {
+    "name": "Alessio Roberto"
+  },
+  "metadata": {
+    "description": "BMAD Corporate: Multi-agent development workflow plugin with named holacracy roles"
+  },
+  "plugins": [
+    {
+      "name": "bmad-corporate",
+      "version": "0.1.0",
+      "source": "./plugin",
+      "description": "8 named AI agents (Mary, Winston, Amelia, Murat, Sally, John, Bob, Doris) for structured development workflows"
+    }
+  ]
+}
