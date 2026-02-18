@@ -1,6 +1,6 @@
 # BMAD Corporate
 
-Multi-agent development workflow plugin for Claude Code. 8 named AI agents with holacracy roles, structured workflows, quality gates, and full customization.
+Multi-agent development workflow plugin for Claude Code. 9 named AI agents with holacracy roles, structured workflows, quality gates, and full customization.
 
 ## Quick Start
 
@@ -34,6 +34,12 @@ Then in any project:
 | `/bmad-corporate:bmad-bob` | Bob | Scrum Master — sprint planning, coordination |
 | `/bmad-corporate:bmad-doris` | Doris | Documentation Specialist — doc generation from templates |
 
+## Review
+
+| Command | Purpose |
+|---|---|
+| `/bmad-corporate:bmad-code-review` | Multi-agent PR code review with CLAUDE.md compliance (5 parallel reviewers, confidence scoring) |
+
 ## Orchestrators
 
 | Command | Purpose |
@@ -61,6 +67,7 @@ All BMAD outputs are stored externally — nothing is added to the project repos
 │   ├── mary/          # Requirements
 │   ├── winston/       # Architecture, ADRs
 │   ├── amelia/        # Implementation notes
+│   ├── code-review/   # PR review reports
 │   ├── murat/         # Test plans, reports
 │   ├── sally/         # UX designs
 │   ├── john/          # PRDs
@@ -147,7 +154,7 @@ Amelia (analyze) → Winston (review) → Amelia (fix) → Murat (verify)
 
 ### Code Review
 ```
-Amelia (review) → Winston (architecture) → Murat (coverage) → [Sally (UX)]
+Amelia (implement) → Murat (test) → Code Review (multi-agent PR review with CLAUDE.md compliance) → merge
 ```
 
 ## Soul

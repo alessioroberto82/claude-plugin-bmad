@@ -24,7 +24,7 @@ Initialize the BMAD-METHOD framework for the current project. All outputs are st
    PROJECT_NAME=$(basename "$PWD" | tr '[:upper:]' '[:lower:]')
    BASE=~/.claude/bmad/projects/$PROJECT_NAME
 
-   mkdir -p $BASE/output/{mary,winston,amelia,murat,sally,john,bob,doris}
+   mkdir -p $BASE/output/{mary,winston,amelia,murat,sally,john,bob,doris,code-review}
    mkdir -p $BASE/shards/{requirements,architecture,stories}
    mkdir -p $BASE/workspace
    ```
@@ -67,6 +67,9 @@ Initialize the BMAD-METHOD framework for the current project. All outputs are st
      /bmad-john      - Product Manager (prioritization, roadmap)
      /bmad-bob       - Scrum Master (sprint planning, coordination)
      /bmad-doris     - Documentation Specialist (doc generation)
+
+   Review:
+     /bmad-code-review - Multi-agent PR code review with CLAUDE.md compliance
 
    Orchestrators:
      /bmad-greenfield - Full workflow (analysis → QA)

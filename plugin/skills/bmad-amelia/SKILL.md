@@ -89,18 +89,20 @@ If directory `~/.claude/bmad/projects/{project}/shards/stories/` exists:
    - Tests pass
    - No obvious issues or regressions
 
-6. **Save implementation notes** to: `~/.claude/bmad/projects/$PROJECT_NAME/output/amelia/implementation-notes-{date}.md`
+6. **Code Review**: If changes are on a PR branch, recommend running `/bmad-code-review` for multi-agent review with CLAUDE.md compliance checks. If a `CLAUDE.md` exists in the repo root, verify your implementation follows its standards before handoff.
 
-7. **MCP Integration** (if available):
+7. **Save implementation notes** to: `~/.claude/bmad/projects/$PROJECT_NAME/output/amelia/implementation-notes-{date}.md`
+
+8. **MCP Integration** (if available):
    - **Cupertino**: Look up Apple APIs and framework documentation during implementation
    - **SwiftUI Expert**: Reference SwiftUI patterns and best practices
    - **Linear**: Update issue status, comment on implementation progress
    - **claude-mem**: Search for past implementation patterns. Save key decisions at completion.
 
-8. **Handoff**:
+9. **Handoff**:
    > **Amelia (Developer) — Complete.**
    > Output saved to: `~/.claude/bmad/projects/{project}/output/amelia/`
-   > Next suggested agent: `/bmad-murat` for testing and validation.
+   > Next suggested agent: `/bmad-murat` for testing and validation, or `/bmad-code-review` for multi-agent PR review with CLAUDE.md compliance.
 
 ## BMAD Principles
 - Follow the design: don't invent solutions different from those architected

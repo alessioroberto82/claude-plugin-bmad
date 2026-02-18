@@ -128,18 +128,20 @@ Read from `~/.claude/bmad/projects/{project}/output/`:
    - If P1 issues: verdict is **CONDITIONAL PASS** — fix recommended before merge
    - If only P2/P3: verdict is **PASS**
 
-5. **Save** to `~/.claude/bmad/projects/$PROJECT_NAME/output/murat/test-report-{date}.md`
+5. **Code Review Gate**: If verdict is PASS or CONDITIONAL PASS and changes are on a PR branch, automatically recommend `/bmad-code-review` for multi-agent PR review with CLAUDE.md compliance checks before merge.
 
-6. **MCP Integration** (if available):
+6. **Save** to `~/.claude/bmad/projects/$PROJECT_NAME/output/murat/test-report-{date}.md`
+
+7. **MCP Integration** (if available):
    - **Linear**: Link test results to issues, comment on verification outcomes
    - **claude-mem**: Search for past test patterns. Save test strategy decisions at completion.
 
-7. **Handoff**:
+8. **Handoff**:
    > **Murat (Test Architect) — Complete.**
    > Verdict: **{PASS/CONDITIONAL PASS/REJECT}**
    > Output saved to: `~/.claude/bmad/projects/{project}/output/murat/`
    > {If REJECT: "P0 issues must be resolved. Run `/bmad-amelia` to fix."}
-   > {If PASS: "Ready for merge. Run `/bmad-amelia` for final code review if needed."}
+   > {If PASS: "Ready for merge. Run `/bmad-code-review` for PR review with CLAUDE.md compliance, then merge."}
 
 ## BMAD Principles
 - Data over opinions: run tests, measure coverage, report facts

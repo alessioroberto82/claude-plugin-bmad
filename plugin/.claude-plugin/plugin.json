@@ -1,7 +1,7 @@
 {
   "name": "bmad-corporate",
-  "version": "0.1.0",
-  "description": "BMAD Corporate: 8 named AI agents for structured development workflows with Linear, Cupertino, and cross-session memory integration",
+  "version": "0.2.0",
+  "description": "BMAD Corporate: 9 named AI agents for structured development workflows with Linear, Cupertino, and cross-session memory integration",
   "author": {
     "name": "Alessio Roberto"
   },

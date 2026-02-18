@@ -1,6 +1,6 @@
 # BMAD Corporate Plugin
 
-Multi-agent development workflow plugin for Claude Code. 8 named AI agents with holacracy roles, structured workflows, quality gates, and full customization.
+Multi-agent development workflow plugin for Claude Code. 9 named AI agents with holacracy roles, structured workflows, quality gates, and full customization.
 
 ## Project Structure
 
@@ -25,6 +25,7 @@ plugin/
     ├── bmad-john/SKILL.md              # Product Manager
     ├── bmad-bob/SKILL.md               # Scrum Master
     ├── bmad-doris/SKILL.md             # Documentation Specialist
+    ├── bmad-code-review/SKILL.md        # Multi-agent PR code review
     ├── bmad-greenfield/SKILL.md        # Full workflow orchestrator
     ├── bmad-sprint/SKILL.md            # Sprint planning orchestrator
     └── bmad-shard/SKILL.md             # Context sharding utility

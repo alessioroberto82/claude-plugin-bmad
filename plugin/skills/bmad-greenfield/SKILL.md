@@ -77,7 +77,7 @@ BASE=~/.claude/bmad/projects/$PROJECT_NAME
 
 **Initialize structure**:
 ```bash
-mkdir -p $BASE/output/{mary,winston,amelia,murat,sally,john,bob,doris}
+mkdir -p $BASE/output/{mary,winston,amelia,murat,sally,john,bob,doris,code-review}
 mkdir -p $BASE/shards/{requirements,architecture,stories}
 mkdir -p $BASE/workspace
 ```
@@ -167,6 +167,7 @@ After completion, type one of:
 | 6* | **Bob** | Sprint planning | PRD + Architecture | `bob/sprint-plan.md` |
 | 7 | **Amelia** | Implement | Architecture + PRD | Code in repo |
 | 8 | **Murat** | Test & validate | Requirements + Code | `murat/test-report.md` |
+| 9 | **Code Review** | PR review with CLAUDE.md compliance | PR branch + CLAUDE.md | `code-review/pr-{n}.md` |
 
 *Optional steps
 
@@ -303,7 +304,7 @@ When all steps are completed:
    ~/.claude/bmad/projects/{project}/output/
 
    ## Next Steps
-   - [ ] Final code review
+   - [ ] Run `/bmad-code-review` for PR review with CLAUDE.md compliance
    - [ ] Merge to main branch
    - [ ] Update Linear issues
    ```

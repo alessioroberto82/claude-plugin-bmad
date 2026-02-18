@@ -11,6 +11,7 @@ This guide explains how to customize every aspect of BMAD Corporate for your tea
 | **Agent behavior** | Role definitions | `plugin/skills/bmad-<name>/SKILL.md` | Edit SKILL.md |
 | **Templates** | Document templates | `plugin/resources/templates/` | Drop .md file |
 | **New agent** | Add a team member | `plugin/skills/bmad-<name>/SKILL.md` | Create directory + file |
+| **Code review** | PR review with CLAUDE.md compliance | `/bmad-code-review <PR>` | Invoke on any open PR |
 
 ---
 

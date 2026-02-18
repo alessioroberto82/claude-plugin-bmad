@@ -58,6 +58,9 @@ Available agents:
     /bmad-greenfield - Full workflow (analysis → QA, 6-9 steps)
     /bmad-sprint     - Sprint planning ceremony (6 steps)
 
+  Review:
+    /bmad-code-review - Multi-agent PR code review with CLAUDE.md compliance
+
   Utilities:
     /bmad-init       - Initialize BMAD for this project
     /bmad-shard      - Context sharding for large documents
