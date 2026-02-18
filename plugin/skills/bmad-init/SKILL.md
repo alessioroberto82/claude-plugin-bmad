@@ -1,6 +1,6 @@
 ---
 name: bmad-init
-description: Initialize BMAD framework for the current project. Creates output directories in home folder (zero project footprint). Run once per project.
+description: Initialize BMAD framework for the current project. Creates output directories in home folder (zero project footprint). Checks and installs optional dependencies. Run once per project.
 context: same
 ---
 
@@ -10,70 +10,190 @@ Initialize the BMAD-METHOD framework for the current project. All outputs are st
 
 ## Process
 
-1. **Detect project name**:
-   - Derive from current directory: `basename "$PWD" | tr '[:upper:]' '[:lower:]'`
+### 0. Check dependencies
 
-2. **Detect domain** by analyzing files in the current directory:
-   - **software**: if `Package.swift`, `*.xcodeproj`, `package.json`, `pom.xml`, `requirements.txt`, `go.mod`, `Cargo.toml` exists
-   - **business**: if `business-plan.md`, `market-analysis.md`, `strategy.md` exists
-   - **personal**: if `goals.md`, `journal.md`, or `habits/` folder exists
-   - **general**: default if no indicator found
+Read the dependency manifest at `${CLAUDE_PLUGIN_ROOT}/resources/deps-manifest.yaml`.
 
-3. **Create output structure** (zero footprint — all in home directory):
-   ```bash
-   PROJECT_NAME=$(basename "$PWD" | tr '[:upper:]' '[:lower:]')
-   BASE=~/.claude/bmad/projects/$PROJECT_NAME
+For each dependency, run the appropriate check:
+- **plugin** type: `claude plugin list 2>/dev/null | grep -q <name>`
+- **npm** type: `npm list -g <name> 2>/dev/null | grep -q <name>`
+- **mcp-brew** type: `command -v <binary>`
+- **mcp-cloud** type: no automated check (mark as "manual")
 
-   mkdir -p $BASE/output/{mary,winston,amelia,murat,sally,john,bob,doris,code-review}
-   mkdir -p $BASE/shards/{requirements,architecture,stories}
-   mkdir -p $BASE/workspace
-   ```
+Auto-detect relevant groups:
+- `core` — always relevant
+- `ios` — relevant if domain is software AND (`Package.swift` or `*.xcodeproj` exists)
+- `extras` — always shown, marked as optional
 
-4. **Create session state**:
-   Write to `~/.claude/bmad/projects/$PROJECT_NAME/output/session-state.json`:
-   ```json
-   {
-     "project": "<project-name>",
-     "domain": "<detected-domain>",
-     "phase": "analysis",
-     "created": "<ISO-8601 timestamp>",
-     "updated": "<ISO-8601 timestamp>",
-     "artifacts": [],
-     "workflow": {
-       "type": "none",
-       "current_step": null,
-       "completed_steps": [],
-       "checkpoints": []
-     }
-   }
-   ```
+Check for project-level overrides in `~/.claude/bmad/projects/$PROJECT_NAME/config.yaml` under the `dependencies:` key. If a dep is marked `skip`, exclude it. If marked `include`, add it.
 
-5. **Check for project config**:
-   - If `~/.claude/bmad/projects/$PROJECT_NAME/config.yaml` exists, report it
-   - If not, suggest: "Create `~/.claude/bmad/projects/$PROJECT_NAME/config.yaml` for project-specific customization."
+**Display dependency status table:**
+```
+BMAD Dependencies
+==================
 
-6. **Confirm**:
-   ```
-   BMAD initialized for: <project-name>
-   Domain: <detected-domain>
-   Output: ~/.claude/bmad/projects/<project-name>/output/
+  Core (recommended for all teams):
+    [ok]      claude-mem      Cross-session semantic memory
+    [manual]  Linear          Enable in Claude Code settings
 
-   Available agents:
-     /bmad-mary      - Business Analyst (requirements, user stories)
-     /bmad-winston   - System Architect (design, ADRs, trade-offs)
-     /bmad-amelia    - Developer (implementation, code review)
-     /bmad-murat     - Test Architect (test strategy, QA)
-     /bmad-sally     - UX Expert (UI/UX design)
-     /bmad-john      - Product Manager (prioritization, roadmap)
-     /bmad-bob       - Scrum Master (sprint planning, coordination)
-     /bmad-doris     - Documentation Specialist (doc generation)
+  iOS / Swift development:
+    [--]      Cupertino       Apple documentation MCP server
+    [ok]      SwiftUI Expert  SwiftUI design patterns
+    [--]      Swift LSP       Swift language server
 
-   Review:
-     /bmad-code-review - Multi-agent PR code review with CLAUDE.md compliance
+  Additional tools:
+    [--]      Notion          Notion workspace integration
+    [--]      bmad-mcp        BMAD MCP server
 
-   Orchestrators:
-     /bmad-greenfield - Full workflow (analysis → QA)
-     /bmad-sprint     - Sprint planning ceremony
+  2 installed, 4 missing, 1 manual
+```
 
-   Start with: /bmad-mary to gather requirements, or /bmad-greenfield for the full workflow.
-   ```
+If dependencies are missing, offer the user these choices:
+
+```
+How would you like to proceed?
+
+  1) Auto-install all missing dependencies
+     Runs the install script automatically.
+
+  2) Guided setup (choose one by one)
+     For each missing dependency, shows what it does,
+     which agents use it, and asks whether to install.
+
+  3) Skip dependency setup
+     Continue without installing. Agents degrade gracefully.
+     Run later: bash ${CLAUDE_PLUGIN_ROOT}/resources/scripts/install-deps.sh
+
+  4) Customize dependency choices
+     Toggle individual dependencies on/off.
+     Saves preferences to your project config.
+```
+
+**Option 1 (Auto-install)**:
+Run:
+```bash
+bash "${CLAUDE_PLUGIN_ROOT}/resources/scripts/install-deps.sh" --all
+```
+
+**Option 2 (Guided setup)**:
+For each missing dependency, show:
+```
+--- <name> (<description>) ---
+Used by: <agent list>
+Command: <install_command>
+
+Install? [y/N]:
+```
+Run install_command if user confirms. For cloud MCP deps, show the manual instructions.
+
+**Option 3 (Skip)**:
+Print the install script path for later use and continue.
+
+**Option 4 (Customize)**:
+Show all dependencies across all groups. Let the user toggle each on/off:
+```
+Toggle dependencies (enter numbers, comma-separated):
+
+  Core:
+    [1] claude-mem      — Cross-session memory              [INSTALL]
+    [2] Linear          — Issue tracking                    [MANUAL]
+
+  iOS / Swift:
+    [3] Cupertino       — Apple docs MCP                    [INSTALL]
+    [4] SwiftUI Expert  — SwiftUI patterns                  [INSTALL]
+    [5] Swift LSP       — Swift language server             [SKIP]
+
+  Extras:
+    [6] Notion          — Notion integration                [SKIP]
+    [7] bmad-mcp        — BMAD MCP server                   [SKIP]
+
+Enter numbers to toggle, or 'done':
+```
+
+After selection, save preferences to `~/.claude/bmad/projects/$PROJECT_NAME/config.yaml` under the `dependencies:` key. Then install selected deps.
+
+If all dependencies are already installed, skip the choice prompt and show:
+```
+All dependencies installed. Proceeding with initialization.
+```
+
+### 1. Detect project name
+
+Derive from current directory: `basename "$PWD" | tr '[:upper:]' '[:lower:]'`
+
+### 2. Detect domain
+
+Analyze files in the current directory:
+- **software**: if `Package.swift`, `*.xcodeproj`, `package.json`, `pom.xml`, `requirements.txt`, `go.mod`, `Cargo.toml` exists
+- **business**: if `business-plan.md`, `market-analysis.md`, `strategy.md` exists
+- **personal**: if `goals.md`, `journal.md`, or `habits/` folder exists
+- **general**: default if no indicator found
+
+### 3. Create output structure
+
+Zero footprint — all in home directory:
+```bash
+PROJECT_NAME=$(basename "$PWD" | tr '[:upper:]' '[:lower:]')
+BASE=~/.claude/bmad/projects/$PROJECT_NAME
+
+mkdir -p $BASE/output/{mary,winston,amelia,murat,sally,john,bob,doris,code-review}
+mkdir -p $BASE/shards/{requirements,architecture,stories}
+mkdir -p $BASE/workspace
+```
+
+### 4. Create session state
+
+Write to `~/.claude/bmad/projects/$PROJECT_NAME/output/session-state.json`:
+```json
+{
+  "project": "<project-name>",
+  "domain": "<detected-domain>",
+  "phase": "analysis",
+  "created": "<ISO-8601 timestamp>",
+  "updated": "<ISO-8601 timestamp>",
+  "artifacts": [],
+  "workflow": {
+    "type": "none",
+    "current_step": null,
+    "completed_steps": [],
+    "checkpoints": []
+  }
+}
+```
+
+### 5. Check for project config
+
+- If `~/.claude/bmad/projects/$PROJECT_NAME/config.yaml` exists, report it
+- If not, suggest: "Create `~/.claude/bmad/projects/$PROJECT_NAME/config.yaml` for project-specific customization."
+
+### 6. Confirm
+
+```
+BMAD initialized for: <project-name>
+Domain: <detected-domain>
+Output: ~/.claude/bmad/projects/<project-name>/output/
+
+Dependencies:
+  [ok] claude-mem  [ok] Linear  [--] Cupertino  [ok] SwiftUI Expert
+  Install missing: bash <plugin-root>/resources/scripts/install-deps.sh
+  Update all:      bash <plugin-root>/resources/scripts/update-deps.sh
+
+Available agents:
+  /bmad-mary      - Business Analyst (requirements, user stories)
+  /bmad-winston   - System Architect (design, ADRs, trade-offs)
+  /bmad-amelia    - Developer (implementation, code review)
+  /bmad-murat     - Test Architect (test strategy, QA)
+  /bmad-sally     - UX Expert (UI/UX design)
+  /bmad-john      - Product Manager (prioritization, roadmap)
+  /bmad-bob       - Scrum Master (sprint planning, coordination)
+  /bmad-doris     - Documentation Specialist (doc generation)
+
+Review:
+  /bmad-code-review - Multi-agent PR code review with CLAUDE.md compliance
+
+Orchestrators:
+  /bmad-greenfield - Full workflow (analysis → QA)
+  /bmad-sprint     - Sprint planning ceremony
+
+Start with: /bmad-mary to gather requirements, or /bmad-greenfield for the full workflow.
+```

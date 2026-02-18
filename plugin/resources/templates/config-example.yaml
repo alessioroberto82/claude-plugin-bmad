@@ -52,3 +52,17 @@ agents:
 
 # claude-mem project name (for memory search scoping)
 # memory_project: "my-project"
+
+# Dependency overrides (optional)
+# Override which dependencies are installed for this project.
+# See deps-manifest.yaml for the full list of available dependencies.
+# dependencies:
+#   cupertino: skip          # Don't install this dependency
+#   notion: include          # Include an extra that's off by default
+#   claude-mem:              # Replace a default with an alternative
+#     skip: true
+#     alternative:
+#       name: "my-custom-memory"
+#       type: plugin
+#       marketplace: my-marketplace
+#       install: "claude plugin install my-custom-memory@my-marketplace"

@@ -1,0 +1,87 @@
+# BMAD Corporate — Dependency Manifest
+# Single source of truth for all optional dependencies.
+# Read by: install-deps.sh, update-deps.sh, bmad-init agent.
+#
+# Override per-project in ~/.claude/bmad/projects/<project>/config.yaml
+# under the "dependencies:" key.
+#
+# All dependencies are OPTIONAL. Agents degrade gracefully when missing.
+
+groups:
+  core:
+    label: "Core (recommended for all teams)"
+    deps:
+      - id: linear
+        type: mcp-cloud
+        name: Linear
+        description: "Issue tracking and project management"
+        check_command: ""
+        install_command: ""
+        install_note: "Enable in Claude Code settings → MCP Servers → Linear"
+        used_by: "mary, winston, amelia, murat, sally, john, bob, doris, code-review, sprint"
+
+      - id: claude-mem
+        type: plugin
+        name: claude-mem
+        marketplace: thedotmack
+        description: "Cross-session semantic memory"
+        check_command: "grep -q claude-mem ~/.claude/plugins/installed_plugins.json 2>/dev/null"
+        install_command: "claude plugin marketplace add thedotmack && claude plugin install claude-mem@thedotmack"
+        update_command: "claude plugin marketplace update thedotmack && claude plugin update claude-mem@thedotmack"
+        used_by: "all agents"
+
+  ios:
+    label: "iOS / Swift development"
+    condition: "test -f Package.swift || ls *.xcodeproj 1>/dev/null 2>&1"
+    deps:
+      - id: cupertino
+        type: mcp-brew
+        name: Cupertino
+        description: "Apple documentation MCP server (frameworks, HIG, APIs)"
+        requires: brew
+        check_command: "command -v cupertino"
+        install_command: "brew tap mihaelamj/tap && brew install cupertino"
+        update_command: "brew upgrade cupertino"
+        used_by: "winston, amelia, sally"
+
+      - id: swiftui-expert
+        type: plugin
+        name: SwiftUI Expert
+        marketplace: swiftui-expert-skill
+        description: "SwiftUI design patterns and best practices"
+        check_command: "grep -q swiftui-expert ~/.claude/plugins/installed_plugins.json 2>/dev/null"
+        install_command: "claude plugin marketplace add swiftui-expert-skill && claude plugin install swiftui-expert@swiftui-expert-skill"
+        update_command: "claude plugin marketplace update swiftui-expert-skill && claude plugin update swiftui-expert@swiftui-expert-skill"
+        used_by: "winston, amelia, sally"
+
+      - id: swift-lsp
+        type: plugin
+        name: Swift LSP
+        marketplace: claude-plugins-official
+        description: "Swift language server integration"
+        check_command: "grep -q swift-lsp ~/.claude/plugins/installed_plugins.json 2>/dev/null"
+        install_command: "claude plugin marketplace add claude-plugins-official && claude plugin install swift-lsp@claude-plugins-official"
+        update_command: "claude plugin marketplace update claude-plugins-official && claude plugin update swift-lsp@claude-plugins-official"
+        used_by: "amelia"
+
+  extras:
+    label: "Additional tools"
+    deps:
+      - id: notion
+        type: plugin
+        name: Notion
+        marketplace: claude-plugins-official
+        description: "Notion workspace integration"
+        check_command: "grep -q Notion ~/.claude/plugins/installed_plugins.json 2>/dev/null"
+        install_command: "claude plugin marketplace add claude-plugins-official && claude plugin install Notion@claude-plugins-official"
+        update_command: "claude plugin marketplace update claude-plugins-official && claude plugin update Notion@claude-plugins-official"
+        used_by: "doris"
+
+      - id: bmad-mcp
+        type: npm
+        name: bmad-mcp
+        description: "BMAD MCP server for structured workflow orchestration"
+        check_command: "npm list -g bmad-mcp 2>/dev/null | grep -q bmad-mcp"
+        install_command: "npm install -g bmad-mcp"
+        update_command: "npm install -g bmad-mcp"
+        used_by: "greenfield (optional)"

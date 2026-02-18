@@ -89,5 +89,6 @@ Dependencies:
   Local:
     bmad-corporate  <version from plugin.json>
 
+  Setup:  bash ~/Documents/claude-plugin-bmad-corporate/plugin/resources/scripts/install-deps.sh
   Update: bash ~/Documents/claude-plugin-bmad-corporate/plugin/resources/scripts/update-deps.sh
 ```

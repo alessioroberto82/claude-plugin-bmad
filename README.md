@@ -51,9 +51,36 @@ Then in any project:
 
 | Command | Purpose |
 |---|---|
-| `/bmad-corporate:bmad-init` | Initialize BMAD for current project |
+| `/bmad-corporate:bmad-init` | Initialize BMAD for current project (includes dependency setup) |
 | `/bmad-corporate:bmad-shard` | Split large documents into atomic shards (90% token reduction) |
 | `/bmad-corporate:bmad` | Status dashboard |
+
+## Dependencies
+
+All dependencies are **optional** — agents degrade gracefully when missing. `/bmad-init` detects what's installed and offers setup options.
+
+| Dependency | Type | Group | Used By |
+|---|---|---|---|
+| Linear | Cloud MCP | Core | All agents |
+| claude-mem | Plugin | Core | All agents |
+| Cupertino | Brew MCP | iOS | Winston, Amelia, Sally |
+| SwiftUI Expert | Plugin | iOS | Winston, Amelia, Sally |
+| Swift LSP | Plugin | iOS | Amelia |
+| Notion | Plugin | Extras | Doris |
+| bmad-mcp | npm | Extras | Greenfield |
+
+```bash
+# First-time setup (interactive)
+bash plugin/resources/scripts/install-deps.sh
+
+# Check status only
+bash plugin/resources/scripts/install-deps.sh --check-only
+
+# Update all
+bash plugin/resources/scripts/update-deps.sh
+```
+
+The dependency manifest is at `plugin/resources/deps-manifest.yaml`. Per-project overrides go in `config.yaml` under the `dependencies:` key.
 
 ## Architecture
 
