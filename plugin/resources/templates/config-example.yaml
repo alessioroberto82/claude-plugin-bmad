@@ -1,0 +1,54 @@
+# BMAD Corporate — Per-Project Configuration
+# Copy this file to: ~/.claude/bmad/projects/<project-name>/config.yaml
+#
+# All fields are optional. Only include what you need to override.
+
+# Custom template directory (in addition to bundled templates)
+# templates_dir: /path/to/your/templates/
+
+# Domain override (skip auto-detection)
+# domain: software
+
+# Optional phases enabled by default for greenfield workflow
+greenfield_defaults:
+  sally: true
+  security: true
+  bob: false
+
+# Agent overrides — add extra context or instructions per agent
+agents:
+  bmad-winston:
+    # Additional files to read for architectural context
+    context_files:
+      - docs/ARCHITECTURE.md
+      - docs/ADR/
+    # Extra instructions appended to the agent's prompt
+    extra_instructions: |
+      This project uses MVVM+C architecture with Combine.
+      All new modules must follow the existing pattern.
+
+  bmad-amelia:
+    context_files:
+      - Sources/
+    extra_instructions: |
+      Use Swift 6 strict concurrency.
+      All public APIs must have documentation comments.
+      Follow existing code style and conventions.
+
+  bmad-murat:
+    extra_instructions: |
+      Minimum test coverage target: 80%.
+      Focus on integration tests for data flows.
+
+  bmad-sally:
+    extra_instructions: |
+      Follow Apple HIG for iOS.
+      Support Dynamic Type and VoiceOver.
+
+# Linear project mapping (for MCP integration)
+# linear:
+#   team: "iOS"
+#   project: "My Project"
+
+# claude-mem project name (for memory search scoping)
+# memory_project: "my-project"
