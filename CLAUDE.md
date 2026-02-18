@@ -84,4 +84,5 @@ allowed-tools: Read, Grep, Glob, Bash
 - **Zero project footprint**: All BMAD outputs go to `~/.claude/bmad/projects/<project>/`. Nothing is committed to the repo
 - **MCP tools are optional**: Agents check for Linear, Cupertino, claude-mem availability but degrade gracefully if absent
 - **Soul is mandatory**: Every agent must reference and follow `plugin/resources/soul.md`
+- **Dependencies are optional**: All dependencies are declared in `deps-manifest.yaml`. `bmad-init` detects missing deps and offers installation. Agents degrade gracefully when dependencies are missing
 - **Templates live in resources**: Document templates go in `plugin/resources/templates/docs/` or `plugin/resources/templates/software/`
