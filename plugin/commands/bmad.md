@@ -64,3 +64,27 @@ Available agents:
 
 Quick start: /bmad-init to initialize, then /bmad-mary to begin.
 ```
+
+6. **Check dependency versions**: Read `~/.claude/plugins/installed_plugins.json` and check system binaries to show current versions.
+
+```
+Dependencies:
+  Plugins:
+    code-review     <version/hash>  (auto-update)
+    feature-dev     <version/hash>  (auto-update)
+    github          <version/hash>  (auto-update)
+    swift-lsp       <version>
+    swiftui-expert  <version>
+    claude-mem      <version>
+    Notion          <version>
+
+  MCP Servers:
+    bmad-mcp        <version from npm list -g bmad-mcp>
+    cupertino       <version> (brew tap mihaelamj/tap)
+    Linear          cloud (managed by Claude)
+
+  Local:
+    bmad-corporate  <version from plugin.json>
+
+  Update: bash ~/Documents/claude-plugin-bmad-corporate/plugin/resources/scripts/update-deps.sh
+```
