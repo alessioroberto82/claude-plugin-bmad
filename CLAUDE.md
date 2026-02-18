@@ -30,6 +30,7 @@ plugin/
     ├── bmad-bob/SKILL.md               # Scrum Master
     ├── bmad-doris/SKILL.md             # Documentation Specialist
     ├── bmad-code-review/SKILL.md        # Multi-agent PR code review
+    ├── bmad-triage/SKILL.md            # PR review comment triage
     ├── bmad-greenfield/SKILL.md        # Full workflow orchestrator
     ├── bmad-sprint/SKILL.md            # Sprint planning orchestrator
     └── bmad-shard/SKILL.md             # Context sharding utility

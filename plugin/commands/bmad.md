@@ -60,6 +60,7 @@ Available agents:
 
   Review:
     /bmad-code-review - Multi-agent PR code review with CLAUDE.md compliance
+    /bmad-triage      - Triage incoming PR review comments (accept/reject/unclear)
 
   Utilities:
     /bmad-init       - Initialize BMAD for this project

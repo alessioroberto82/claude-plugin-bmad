@@ -39,6 +39,7 @@ Then in any project:
 | Command | Purpose |
 |---|---|
 | `/bmad-corporate:bmad-code-review` | Multi-agent PR code review with CLAUDE.md compliance (5 parallel reviewers, confidence scoring) |
+| `/bmad-corporate:bmad-triage` | Triage incoming PR review comments — accept, reject, or clarify, then implement fixes |
 
 ## Orchestrators
 
@@ -95,6 +96,7 @@ All BMAD outputs are stored externally — nothing is added to the project repos
 │   ├── winston/       # Architecture, ADRs
 │   ├── amelia/        # Implementation notes
 │   ├── code-review/   # PR review reports
+│   ├── triage/        # Triage learnings
 │   ├── murat/         # Test plans, reports
 │   ├── sally/         # UX designs
 │   ├── john/          # PRDs
@@ -181,7 +183,7 @@ Amelia (analyze) → Winston (review) → Amelia (fix) → Murat (verify)
 
 ### Code Review
 ```
-Amelia (implement) → Murat (test) → Code Review (multi-agent PR review with CLAUDE.md compliance) → merge
+Amelia (implement) → Murat (test) → Code Review (multi-agent PR review) → Triage (handle feedback) → merge
 ```
 
 ## Soul
