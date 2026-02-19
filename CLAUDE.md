@@ -1,4 +1,4 @@
-# BMAD Corporate Plugin
+# BMAD Plugin
 
 Multi-agent development workflow plugin for Claude Code. 9 named AI agents with holacracy roles, structured workflows, quality gates, and full customization.
 

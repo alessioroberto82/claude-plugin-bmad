@@ -36,9 +36,9 @@ init → mary → john → sally → winston → security → bob → amelia →
 
 ## Commands
 
-- `/bmad-corporate:bmad-greenfield` — Start new greenfield workflow
-- `/bmad-corporate:bmad-greenfield resume` — Resume from checkpoint
-- `/bmad-corporate:bmad-greenfield status` — Show current progress
+- `/bmad:bmad-greenfield` — Start new greenfield workflow
+- `/bmad:bmad-greenfield resume` — Resume from checkpoint
+- `/bmad:bmad-greenfield status` — Show current progress
 
 ## Domain Detection
 
@@ -144,7 +144,7 @@ Input: {What artifacts from previous steps are available}
 Output: {What artifact this agent will produce}
 
 Please invoke the agent:
-→ /bmad-corporate:bmad-{name}
+→ /bmad:bmad-{name}
 
 After completion, type one of:
   next  — proceed to next step
@@ -175,7 +175,7 @@ After completion, type one of:
 
 **`next`**:
 1. Verify the expected output file exists in `$BASE/output/{agent}/`
-2. If file missing: "Output not found. Did you run `/bmad-corporate:bmad-{name}`? Type 'next' again to skip verification, or run the agent first."
+2. If file missing: "Output not found. Did you run `/bmad:bmad-{name}`? Type 'next' again to skip verification, or run the agent first."
 3. If file exists: update session-state.json checkpoint, advance to next step
 
 **`skip`**:
@@ -185,21 +185,21 @@ After completion, type one of:
 
 **`pause`**:
 1. Save current state to session-state.json
-2. Display: "Workflow paused at step {N} ({agent}). Resume with `/bmad-corporate:bmad-greenfield resume`"
+2. Display: "Workflow paused at step {N} ({agent}). Resume with `/bmad:bmad-greenfield resume`"
 
 **`back`**:
 - Return to previous step display
 - Does NOT undo any agent outputs (files remain)
 
 **`exit`**:
-- Confirm: "Exit workflow? Progress is saved. You can resume later with `/bmad-corporate:bmad-greenfield resume`"
+- Confirm: "Exit workflow? Progress is saved. You can resume later with `/bmad:bmad-greenfield resume`"
 - Save state and exit
 
 ### Resume Logic
 
 When `$ARGUMENTS` contains "resume":
 1. Read `$BASE/output/session-state.json`
-2. If no active workflow: "No active workflow found. Start with `/bmad-corporate:bmad-greenfield`"
+2. If no active workflow: "No active workflow found. Start with `/bmad:bmad-greenfield`"
 3. If active: display current step and continue from there
 4. Show summary of completed steps and their artifacts
 
@@ -261,7 +261,7 @@ After Murat's final verification:
 
    Review: ~/.claude/bmad/projects/{project}/output/murat/test-report.md
 
-   Fix the issues with /bmad-corporate:bmad-amelia, then re-run QA.
+   Fix the issues with /bmad:bmad-amelia, then re-run QA.
    ```
 3. Loop back to Amelia step
 
@@ -333,13 +333,13 @@ The PRD is quite large ({token_estimate} tokens).
 Context sharding can split it into atomic stories for focused implementation.
 
 Run sharding? [y/n]
-→ /bmad-corporate:bmad-shard
+→ /bmad:bmad-shard
 ```
 
 If sharding is enabled, Amelia's step will prompt:
 ```
 Shards available. Which story should Amelia implement?
-→ /bmad-corporate:bmad-amelia STORY-001
+→ /bmad:bmad-amelia STORY-001
 ```
 
 ---

@@ -38,7 +38,7 @@ The easiest way to start is by talking to **Mary**. She'll ask you questions abo
 2. Type this and press Enter:
 
 ```
-/bmad-corporate:bmad-mary
+/bmad:bmad-mary
 ```
 
 3. Mary will ask you about your project. Just answer in plain language — describe what you want to build, who it's for, and what problem it solves.
@@ -54,11 +54,11 @@ That's it. Each agent works the same way: type the command, have a conversation,
 Start with Mary to gather requirements, then talk to John to create a product requirements document (PRD) and prioritize features:
 
 ```
-/bmad-corporate:bmad-mary
+/bmad:bmad-mary
 ```
 then
 ```
-/bmad-corporate:bmad-john
+/bmad:bmad-john
 ```
 
 ### If you're a Designer
@@ -66,7 +66,7 @@ then
 After requirements are gathered, talk to Sally about the user experience:
 
 ```
-/bmad-corporate:bmad-sally
+/bmad:bmad-sally
 ```
 
 ### If you're a Scrum Master
@@ -74,11 +74,11 @@ After requirements are gathered, talk to Sally about the user experience:
 Use Bob to run sprint planning, or use the sprint ceremony workflow:
 
 ```
-/bmad-corporate:bmad-bob
+/bmad:bmad-bob
 ```
 or
 ```
-/bmad-corporate:bmad-sprint
+/bmad:bmad-sprint
 ```
 
 ### If you're a Developer
@@ -86,7 +86,7 @@ or
 After the architecture is designed, talk to Amelia to start implementing:
 
 ```
-/bmad-corporate:bmad-amelia
+/bmad:bmad-amelia
 ```
 
 ### If you want the full workflow
@@ -94,32 +94,32 @@ After the architecture is designed, talk to Amelia to start implementing:
 The greenfield command runs the entire process from start to finish, with you making decisions at each step:
 
 ```
-/bmad-corporate:bmad-greenfield
+/bmad:bmad-greenfield
 ```
 
 This walks through: Mary (requirements) → John (product plan) → Sally (design) → Winston (architecture) → Bob (sprint planning) → Amelia (implementation) → Murat (testing). You can skip steps that don't apply.
 
 ## Available commands
 
-Every command starts with `/bmad-corporate:`. Just type it and press Enter.
+Every command starts with `/bmad:`. Just type it and press Enter.
 
 | Command | What it does |
 |---------|-------------|
-| `/bmad-corporate:bmad-mary` | Talk to Mary about requirements |
-| `/bmad-corporate:bmad-john` | Talk to John about product planning |
-| `/bmad-corporate:bmad-sally` | Talk to Sally about design |
-| `/bmad-corporate:bmad-winston` | Talk to Winston about architecture |
-| `/bmad-corporate:bmad-amelia` | Talk to Amelia about implementation |
-| `/bmad-corporate:bmad-murat` | Talk to Murat about testing |
-| `/bmad-corporate:bmad-bob` | Talk to Bob about sprint planning |
-| `/bmad-corporate:bmad-doris` | Talk to Doris about documentation |
-| `/bmad-corporate:bmad-greenfield` | Run the full workflow start to finish |
-| `/bmad-corporate:bmad-sprint` | Run a sprint planning session |
-| `/bmad-corporate:bmad-code-review` | Review a pull request |
-| `/bmad-corporate:bmad-triage` | Handle review feedback on a pull request |
-| `/bmad-corporate:bmad-shard` | Split large documents into smaller pieces (saves time and cost) |
-| `/bmad-corporate:bmad-init` | Set up BMAD for your current project (run once) |
-| `/bmad-corporate:bmad` | See project status and what's been done |
+| `/bmad:bmad-mary` | Talk to Mary about requirements |
+| `/bmad:bmad-john` | Talk to John about product planning |
+| `/bmad:bmad-sally` | Talk to Sally about design |
+| `/bmad:bmad-winston` | Talk to Winston about architecture |
+| `/bmad:bmad-amelia` | Talk to Amelia about implementation |
+| `/bmad:bmad-murat` | Talk to Murat about testing |
+| `/bmad:bmad-bob` | Talk to Bob about sprint planning |
+| `/bmad:bmad-doris` | Talk to Doris about documentation |
+| `/bmad:bmad-greenfield` | Run the full workflow start to finish |
+| `/bmad:bmad-sprint` | Run a sprint planning session |
+| `/bmad:bmad-code-review` | Review a pull request |
+| `/bmad:bmad-triage` | Handle review feedback on a pull request |
+| `/bmad:bmad-shard` | Split large documents into smaller pieces (saves time and cost) |
+| `/bmad:bmad-init` | Set up BMAD for your current project (run once) |
+| `/bmad:bmad` | See project status and what's been done |
 
 ## Where does everything go?
 
@@ -138,7 +138,7 @@ Each agent saves their work in their own subfolder (e.g., `mary/`, `winston/`, `
 
 ## Next steps
 
-- Run `/bmad-corporate:bmad-init` to set up BMAD for your project
-- Start with `/bmad-corporate:bmad-mary` to define what you're building
-- Check status anytime with `/bmad-corporate:bmad`
+- Run `/bmad:bmad-init` to set up BMAD for your project
+- Start with `/bmad:bmad-mary` to define what you're building
+- Check status anytime with `/bmad:bmad`
 - Read the [Customization Guide](CUSTOMIZATION.md) when you want to tailor the workflow

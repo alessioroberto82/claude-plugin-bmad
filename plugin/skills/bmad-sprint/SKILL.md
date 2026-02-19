@@ -23,9 +23,9 @@ backlog_review → capacity_planning → story_selection → task_breakdown → 
 
 ## Commands
 
-- `/bmad-corporate:bmad-sprint` — Start new sprint ceremony
-- `/bmad-corporate:bmad-sprint resume` — Resume interrupted ceremony
-- `/bmad-corporate:bmad-sprint status` — Show ceremony progress
+- `/bmad:bmad-sprint` — Start new sprint ceremony
+- `/bmad:bmad-sprint resume` — Resume interrupted ceremony
+- `/bmad:bmad-sprint status` — Show ceremony progress
 
 ## Prerequisites
 
@@ -34,7 +34,7 @@ Read from `~/.claude/bmad/projects/{project}/output/`:
 - Architecture: `winston/architecture.md` (for technical context)
 - Previous sprint: `bob/sprint-plan-*.md` (for velocity reference)
 
-If no PRD found: "No PRD found. Run `/bmad-corporate:bmad-john` to create one, or provide backlog items manually."
+If no PRD found: "No PRD found. Run `/bmad:bmad-john` to create one, or provide backlog items manually."
 
 ## State Management
 
@@ -224,7 +224,7 @@ If `y`:
    Sprint plan saved to:
    ~/.claude/bmad/projects/{project}/output/bob/sprint-plan-{date}.md
 
-   Start implementation: /bmad-corporate:bmad-amelia STORY-001
+   Start implementation: /bmad:bmad-amelia STORY-001
    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
    ```
 

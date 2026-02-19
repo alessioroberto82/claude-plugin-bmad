@@ -1,4 +1,4 @@
-# BMAD Corporate — Per-Project Configuration
+# BMAD — Per-Project Configuration
 # Copy this file to: ~/.claude/bmad/projects/<project-name>/config.yaml
 #
 # All fields are optional. Only include what you need to override.

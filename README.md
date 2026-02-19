@@ -1,4 +1,4 @@
-# BMAD Corporate
+# BMAD
 
 A team of AI agents that helps you build software — from initial idea through to working code. Each agent has a name, a role, and a specialty. You talk to them in plain language, and they handle the rest.
 
@@ -12,14 +12,14 @@ BMAD works for everyone on the team: product managers, designers, analysts, scru
 
 | Command | Agent | Role |
 |---|---|---|
-| `/bmad-corporate:bmad-mary` | Mary | Business Analyst — gathers requirements, writes user stories, clarifies what you're building |
-| `/bmad-corporate:bmad-winston` | Winston | System Architect — plans how software is structured, documents design decisions (ADRs) |
-| `/bmad-corporate:bmad-amelia` | Amelia | Developer — writes code, reviews implementations |
-| `/bmad-corporate:bmad-murat` | Murat | Test Architect — plans testing strategy, validates quality |
-| `/bmad-corporate:bmad-sally` | Sally | UX Expert — designs user interfaces and user journeys |
-| `/bmad-corporate:bmad-john` | John | Product Manager — prioritizes features, creates product plans (PRDs) |
-| `/bmad-corporate:bmad-bob` | Bob | Scrum Master — plans sprints, coordinates the team |
-| `/bmad-corporate:bmad-doris` | Doris | Documentation Specialist — generates docs from templates |
+| `/bmad:bmad-mary` | Mary | Business Analyst — gathers requirements, writes user stories, clarifies what you're building |
+| `/bmad:bmad-winston` | Winston | System Architect — plans how software is structured, documents design decisions (ADRs) |
+| `/bmad:bmad-amelia` | Amelia | Developer — writes code, reviews implementations |
+| `/bmad:bmad-murat` | Murat | Test Architect — plans testing strategy, validates quality |
+| `/bmad:bmad-sally` | Sally | UX Expert — designs user interfaces and user journeys |
+| `/bmad:bmad-john` | John | Product Manager — prioritizes features, creates product plans (PRDs) |
+| `/bmad:bmad-bob` | Bob | Scrum Master — plans sprints, coordinates the team |
+| `/bmad:bmad-doris` | Doris | Documentation Specialist — generates docs from templates |
 
 > **ADR** = Architecture Decision Record — a short document explaining why a technical decision was made.
 > **PRD** = Product Requirements Document — describes what a product should do and why.
@@ -28,8 +28,8 @@ BMAD works for everyone on the team: product managers, designers, analysts, scru
 
 | Command | What it does |
 |---|---|
-| `/bmad-corporate:bmad-code-review` | Reviews a pull request using 5 parallel reviewers with confidence scoring, checking against your project's CLAUDE.md conventions |
-| `/bmad-corporate:bmad-triage` | Triages incoming PR review comments — decides which to accept, reject, or clarify, then implements fixes |
+| `/bmad:bmad-code-review` | Reviews a pull request using 5 parallel reviewers with confidence scoring, checking against your project's CLAUDE.md conventions |
+| `/bmad:bmad-triage` | Triages incoming PR review comments — decides which to accept, reject, or clarify, then implements fixes |
 
 ## Orchestrators
 
@@ -37,16 +37,16 @@ These run multi-step workflows, guiding you through each phase with decision poi
 
 | Command | What it does |
 |---|---|
-| `/bmad-corporate:bmad-greenfield` | Runs the full workflow: Mary (requirements) → John (product plan) → Sally (design) → Winston (architecture) → Security review → Bob (sprint plan) → Amelia (code) → Murat (tests). You can skip optional steps. |
-| `/bmad-corporate:bmad-sprint` | Interactive sprint planning ceremony — 6 steps from backlog review to sprint commitment |
+| `/bmad:bmad-greenfield` | Runs the full workflow: Mary (requirements) → John (product plan) → Sally (design) → Winston (architecture) → Security review → Bob (sprint plan) → Amelia (code) → Murat (tests). You can skip optional steps. |
+| `/bmad:bmad-sprint` | Interactive sprint planning ceremony — 6 steps from backlog review to sprint commitment |
 
 ## Utilities
 
 | Command | What it does |
 |---|---|
-| `/bmad-corporate:bmad-init` | Sets up BMAD for your current project. Run this once per project. Checks for optional tools and offers to install them. |
-| `/bmad-corporate:bmad-shard` | Splits large documents into smaller pieces (called "shards") so agents can work with just the part they need — reduces token usage by ~90% |
-| `/bmad-corporate:bmad` | Shows project status: what phase you're in, what's been done, and what agents are available |
+| `/bmad:bmad-init` | Sets up BMAD for your current project. Run this once per project. Checks for optional tools and offers to install them. |
+| `/bmad:bmad-shard` | Splits large documents into smaller pieces (called "shards") so agents can work with just the part they need — reduces token usage by ~90% |
+| `/bmad:bmad` | Shows project status: what phase you're in, what's been done, and what agents are available |
 
 > **Token** = the unit of text that AI models process. Fewer tokens means faster responses and lower cost.
 > **Context sharding** = breaking a large document into focused pieces so each agent loads only what it needs.
@@ -55,19 +55,19 @@ These run multi-step workflows, guiding you through each phase with decision poi
 
 ```bash
 # Load BMAD for the current session (development/testing)
-claude --plugin-dir /path/to/claude-plugin-bmad-corporate/plugin
+claude --plugin-dir /path/to/claude-plugin-bmad/plugin
 
 # Or install permanently via the marketplace
-claude plugin marketplace add /path/to/claude-plugin-bmad-corporate
-claude plugin install bmad-corporate@bmad-corporate
+claude plugin marketplace add /path/to/claude-plugin-bmad
+claude plugin install bmad@bmad
 ```
 
 Then in any project:
 
 ```bash
-/bmad-corporate:bmad-init          # Set up BMAD for this project
-/bmad-corporate:bmad-mary          # Start by defining requirements
-/bmad-corporate:bmad-greenfield    # Or run the full workflow
+/bmad:bmad-init          # Set up BMAD for this project
+/bmad:bmad-mary          # Start by defining requirements
+/bmad:bmad-greenfield    # Or run the full workflow
 ```
 
 ## Dependencies
@@ -142,8 +142,8 @@ Built-in safety checks prevent the workflow from advancing when something isn't 
 Large documents (like a PRD or architecture spec) can be split into small, focused pieces called "shards":
 
 ```bash
-/bmad-corporate:bmad-shard                    # Split documents into shards
-/bmad-corporate:bmad-amelia STORY-001         # Implement one story at a time
+/bmad:bmad-shard                    # Split documents into shards
+/bmad:bmad-amelia STORY-001         # Implement one story at a time
 ```
 
 Each invocation loads only the relevant shard (~300 tokens instead of ~5,000), making agents faster and cheaper to run.

@@ -29,7 +29,7 @@ Automatically detect documents to shard in `~/.claude/bmad/projects/{project}/ou
 | Requirements | `mary/requirements.md` |
 | Business Requirements | `mary/business-requirements.md` |
 
-If no documents found: "No documents to shard. Run `/bmad-corporate:bmad-john` or `/bmad-corporate:bmad-mary` first."
+If no documents found: "No documents to shard. Run `/bmad:bmad-john` or `/bmad:bmad-mary` first."
 
 ## Process
 
@@ -137,8 +137,8 @@ If no documents found: "No documents to shard. Run `/bmad-corporate:bmad-john` o
    Stories:      6 shards → ~/.claude/bmad/projects/{project}/shards/stories/
 
    Usage:
-   /bmad-corporate:bmad-amelia STORY-001    ← Implements only STORY-001
-   /bmad-corporate:bmad-amelia STORY-002    ← Implements only STORY-002
+   /bmad:bmad-amelia STORY-001    ← Implements only STORY-001
+   /bmad:bmad-amelia STORY-002    ← Implements only STORY-002
 
    Each invocation loads only the relevant shard (~300 tokens instead of ~5000).
    ```
@@ -147,7 +147,7 @@ If no documents found: "No documents to shard. Run `/bmad-corporate:bmad-john` o
 
 ```bash
 # Developer implements only STORY-001
-/bmad-corporate:bmad-amelia STORY-001
+/bmad:bmad-amelia STORY-001
 
 # Amelia will read ONLY:
 # - ~/.claude/bmad/projects/{project}/shards/stories/STORY-001.md

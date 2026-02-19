@@ -1,14 +1,14 @@
-# Migration from BMAD-Setup to BMAD Corporate Plugin
+# Migration from BMAD-Setup to BMAD Plugin
 
-This guide covers migrating from the original BMAD-Setup (global slash commands + shell script injection) to the BMAD Corporate plugin.
+This guide covers migrating from the original BMAD-Setup (global slash commands + shell script injection) to the BMAD plugin.
 
 ## What Changes
 
 | Before (BMAD-Setup) | After (Plugin) |
 |---|---|
-| `~/.claude/commands/bmad.md` | Plugin skill: `/bmad-corporate:bmad-greenfield` |
-| `~/.claude/commands/generate-docs.md` | Plugin skill: `/bmad-corporate:bmad-doris` |
-| `~/.claude/commands/bmad-init.md` | Plugin skill: `/bmad-corporate:bmad-init` |
+| `~/.claude/commands/bmad.md` | Plugin skill: `/bmad:bmad-greenfield` |
+| `~/.claude/commands/generate-docs.md` | Plugin skill: `/bmad:bmad-doris` |
+| `~/.claude/commands/bmad-init.md` | Plugin skill: `/bmad:bmad-init` |
 | `~/.claude/commands/bmad-remove.md` | Not needed (zero footprint by default) |
 | `~/Documents/BMAD-Setup/soul.md` | `plugin/resources/soul.md` |
 | `~/Documents/BMAD-Setup/bmad-section-template.md` | Distributed across 12 SKILL.md files |
@@ -16,7 +16,7 @@ This guide covers migrating from the original BMAD-Setup (global slash commands 
 | Single conversation role-playing | Real agent isolation (`context: fork`) |
 | No state persistence | `session-state.json` with pause/resume |
 | No quality gates | P0 blocks + QA reject gates |
-| No token management | Context sharding via `/bmad-corporate:bmad-shard` |
+| No token management | Context sharding via `/bmad:bmad-shard` |
 
 ## What Stays the Same
 
@@ -32,11 +32,11 @@ This guide covers migrating from the original BMAD-Setup (global slash commands 
 
 ```bash
 # For development/testing
-claude --plugin-dir /path/to/claude-plugin-bmad-corporate/plugin
+claude --plugin-dir /path/to/claude-plugin-bmad/plugin
 
 # For permanent installation
-claude plugin marketplace add /path/to/claude-plugin-bmad-corporate
-claude plugin install bmad-corporate@bmad-corporate
+claude plugin marketplace add /path/to/claude-plugin-bmad
+claude plugin install bmad@bmad
 ```
 
 ### Step 2: Remove Old Slash Commands
@@ -87,15 +87,15 @@ mv ~/Documents/BMAD-Setup ~/Documents/BMAD-Setup-archived
 
 | Old Command | New Command |
 |---|---|
-| `/bmad <task>` | `/bmad-corporate:bmad-greenfield` (full workflow) or invoke agents directly |
-| `/bmad-init` | `/bmad-corporate:bmad-init` |
+| `/bmad <task>` | `/bmad:bmad-greenfield` (full workflow) or invoke agents directly |
+| `/bmad-init` | `/bmad:bmad-init` |
 | `/bmad-remove` | Not needed |
-| `/generate-docs` | `/bmad-corporate:bmad-doris` |
-| N/A | `/bmad-corporate:bmad-mary` (standalone requirements) |
-| N/A | `/bmad-corporate:bmad-winston` (standalone architecture) |
-| N/A | `/bmad-corporate:bmad-sprint` (sprint ceremony) |
-| N/A | `/bmad-corporate:bmad-shard` (context sharding) |
-| N/A | `/bmad-corporate:bmad` (status dashboard) |
+| `/generate-docs` | `/bmad:bmad-doris` |
+| N/A | `/bmad:bmad-mary` (standalone requirements) |
+| N/A | `/bmad:bmad-winston` (standalone architecture) |
+| N/A | `/bmad:bmad-sprint` (sprint ceremony) |
+| N/A | `/bmad:bmad-shard` (context sharding) |
+| N/A | `/bmad:bmad` (status dashboard) |
 
 ## Key Improvements After Migration
 

@@ -1,5 +1,5 @@
 #!/bin/bash
-# BMAD Corporate — Dependency Update Script
+# BMAD — Dependency Update Script
 # Updates all BMAD ecosystem components in one shot.
 #
 # Usage: bash update-deps.sh
@@ -8,7 +8,7 @@
 #   - Claude plugins (marketplace + installed)
 #   - npm global packages (bmad-mcp)
 #   - cupertino binary (via homebrew tap mihaelamj/tap)
-#   - bmad-corporate plugin (git pull if remote exists)
+#   - bmad plugin (git pull if remote exists)
 
 set -euo pipefail
 
@@ -53,18 +53,18 @@ else
 fi
 echo ""
 
-# 5. bmad-corporate plugin (if it has a remote)
-BMAD_CORP=~/Documents/claude-plugin-bmad-corporate
-if [ -d "$BMAD_CORP/.git" ]; then
-    REMOTE=$(cd "$BMAD_CORP" && git remote -v 2>/dev/null | head -1)
+# 5. bmad plugin (if it has a remote)
+BMAD_DIR=~/Documents/claude-plugin-bmad
+if [ -d "$BMAD_DIR/.git" ]; then
+    REMOTE=$(cd "$BMAD_DIR" && git remote -v 2>/dev/null | head -1)
     if [ -n "$REMOTE" ]; then
-        echo "→ Updating bmad-corporate plugin..."
-        (cd "$BMAD_CORP" && git pull)
+        echo "→ Updating bmad plugin..."
+        (cd "$BMAD_DIR" && git pull)
     else
-        echo "→ bmad-corporate: local only (no remote configured)"
+        echo "→ bmad: local only (no remote configured)"
     fi
 else
-    echo "→ bmad-corporate: not a git repository"
+    echo "→ bmad: not a git repository"
 fi
 
 echo ""

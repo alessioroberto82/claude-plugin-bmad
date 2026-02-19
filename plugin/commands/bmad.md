@@ -1,4 +1,4 @@
-# BMAD Corporate — Status Dashboard
+# BMAD — Status Dashboard
 
 Show the status of the BMAD framework for the current project.
 
@@ -21,7 +21,7 @@ Show the status of the BMAD framework for the current project.
 5. **Show simple view** (default):
 
 ```
-BMAD Corporate — <project-name>
+BMAD — <project-name>
 ================================
 Domain:  <detected>
 Status:  <initialized/not initialized>
@@ -102,8 +102,8 @@ Dependencies:
     Linear          cloud (managed by Claude)
 
   Local:
-    bmad-corporate  <version from plugin.json>
+    bmad  <version from plugin.json>
 
-  Setup:  bash ~/Documents/claude-plugin-bmad-corporate/plugin/resources/scripts/install-deps.sh
-  Update: bash ~/Documents/claude-plugin-bmad-corporate/plugin/resources/scripts/update-deps.sh
+  Setup:  bash ~/Documents/claude-plugin-bmad/plugin/resources/scripts/install-deps.sh
+  Update: bash ~/Documents/claude-plugin-bmad/plugin/resources/scripts/update-deps.sh
 ```

@@ -1,5 +1,5 @@
 #!/bin/bash
-# BMAD Corporate — Dependency Installer
+# BMAD — Dependency Installer
 # First-time setup for BMAD ecosystem dependencies.
 #
 # Usage:
@@ -58,7 +58,7 @@ for arg in "$@"; do
     --group=*)      MODE="auto"; GROUPS="${arg#--group=}" ;;
     --dep=*)        MODE="auto"; SINGLE_DEP="${arg#--dep=}" ;;
     -h|--help)
-      echo "BMAD Corporate — Dependency Installer"
+      echo "BMAD — Dependency Installer"
       echo ""
       echo "Usage:"
       echo "  bash install-deps.sh                    # Interactive mode"
@@ -360,7 +360,7 @@ interactive_guided() {
 # ── Interactive mode ───────────────────────────────────────────────────────
 
 interactive_mode() {
-  echo -e "${BOLD}BMAD Corporate — First-Time Setup${NC}"
+  echo -e "${BOLD}BMAD — First-Time Setup${NC}"
   echo "=================================="
   echo ""
 

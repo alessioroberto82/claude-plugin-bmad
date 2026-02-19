@@ -1,4 +1,4 @@
-# BMAD Corporate — Dependency Manifest
+# BMAD — Dependency Manifest
 # Single source of truth for all optional dependencies.
 # Read by: install-deps.sh, update-deps.sh, bmad-init agent.
 #

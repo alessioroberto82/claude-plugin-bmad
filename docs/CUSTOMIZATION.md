@@ -1,4 +1,4 @@
-# BMAD Corporate — Customization Guide
+# BMAD — Customization Guide
 
 This guide explains how to customize BMAD for your team and projects. You can change everything from team principles to individual agent behavior.
 
