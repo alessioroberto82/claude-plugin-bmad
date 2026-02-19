@@ -54,7 +54,7 @@ fi
 echo ""
 
 # 5. bmad plugin (if it has a remote)
-BMAD_DIR=~/Documents/claude-plugin-bmad
+BMAD_DIR="${BMAD_DIR:-"$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"}"
 if [ -d "$BMAD_DIR/.git" ]; then
     REMOTE=$(cd "$BMAD_DIR" && git remote -v 2>/dev/null | head -1)
     if [ -n "$REMOTE" ]; then

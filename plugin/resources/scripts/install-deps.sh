@@ -33,10 +33,10 @@ PLUGINS_JSON="$HOME/.claude/plugins/installed_plugins.json"
 DEPS=(
   "linear|core|mcp-cloud|Linear|Issue tracking and project management|||all agents||Enable in Claude Code settings > MCP Servers > Linear"
   "claude-mem|core|plugin|claude-mem|Cross-session semantic memory|grep -q claude-mem $PLUGINS_JSON 2>/dev/null|claude plugin marketplace add thedotmack && claude plugin install claude-mem@thedotmack|all agents||"
-  "cupertino|ios|mcp-brew|Cupertino|Apple documentation MCP server|command -v cupertino|brew tap mihaelamj/tap && brew install cupertino|winston amelia sally|brew|"
-  "swiftui-expert|ios|plugin|SwiftUI Expert|SwiftUI design patterns and best practices|grep -q swiftui-expert $PLUGINS_JSON 2>/dev/null|claude plugin marketplace add swiftui-expert-skill && claude plugin install swiftui-expert@swiftui-expert-skill|winston amelia sally||"
-  "swift-lsp|ios|plugin|Swift LSP|Swift language server integration|grep -q swift-lsp $PLUGINS_JSON 2>/dev/null|claude plugin marketplace add claude-plugins-official && claude plugin install swift-lsp@claude-plugins-official|amelia||"
-  "notion|extras|plugin|Notion|Notion workspace integration|grep -q Notion $PLUGINS_JSON 2>/dev/null|claude plugin marketplace add claude-plugins-official && claude plugin install Notion@claude-plugins-official|doris||"
+  "cupertino|ios|mcp-brew|Cupertino|Apple documentation MCP server|command -v cupertino|brew tap mihaelamj/tap && brew install cupertino|arch impl ux|brew|"
+  "swiftui-expert|ios|plugin|SwiftUI Expert|SwiftUI design patterns and best practices|grep -q swiftui-expert $PLUGINS_JSON 2>/dev/null|claude plugin marketplace add swiftui-expert-skill && claude plugin install swiftui-expert@swiftui-expert-skill|arch impl ux||"
+  "swift-lsp|ios|plugin|Swift LSP|Swift language server integration|grep -q swift-lsp $PLUGINS_JSON 2>/dev/null|claude plugin marketplace add claude-plugins-official && claude plugin install swift-lsp@claude-plugins-official|impl||"
+  "notion|extras|plugin|Notion|Notion workspace integration|grep -q Notion $PLUGINS_JSON 2>/dev/null|claude plugin marketplace add claude-plugins-official && claude plugin install Notion@claude-plugins-official|docs||"
   "bmad-mcp|extras|npm|bmad-mcp|BMAD MCP server for workflow orchestration|npm list -g bmad-mcp 2>/dev/null \| grep -q bmad-mcp|npm install -g bmad-mcp|greenfield||"
 )
 

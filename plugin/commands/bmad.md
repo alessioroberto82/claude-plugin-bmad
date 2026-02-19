@@ -104,6 +104,6 @@ Dependencies:
   Local:
     bmad  <version from plugin.json>
 
-  Setup:  bash ~/Documents/claude-plugin-bmad/plugin/resources/scripts/install-deps.sh
-  Update: bash ~/Documents/claude-plugin-bmad/plugin/resources/scripts/update-deps.sh
+  Setup:  bash ${CLAUDE_PLUGIN_ROOT}/resources/scripts/install-deps.sh
+  Update: bash ${CLAUDE_PLUGIN_ROOT}/resources/scripts/update-deps.sh
 ```
