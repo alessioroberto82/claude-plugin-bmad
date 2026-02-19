@@ -58,10 +58,10 @@ How would you like to proceed?
 
   2) Guided setup (choose one by one)
      For each missing dependency, shows what it does,
-     which agents use it, and asks whether to install.
+     which roles use it, and asks whether to install.
 
   3) Skip dependency setup
-     Continue without installing. Agents degrade gracefully.
+     Continue without installing. Roles degrade gracefully.
      Run later: bash ${CLAUDE_PLUGIN_ROOT}/resources/scripts/install-deps.sh
 
   4) Customize dependency choices
@@ -79,7 +79,7 @@ bash "${CLAUDE_PLUGIN_ROOT}/resources/scripts/install-deps.sh" --all
 For each missing dependency, show:
 ```
 --- <name> (<description>) ---
-Used by: <agent list>
+Used by: <role list>
 Command: <install_command>
 
 Install? [y/N]:
@@ -136,7 +136,7 @@ Zero footprint — all in home directory:
 PROJECT_NAME=$(basename "$PWD" | tr '[:upper:]' '[:lower:]')
 BASE=~/.claude/bmad/projects/$PROJECT_NAME
 
-mkdir -p $BASE/output/{mary,winston,amelia,murat,sally,john,bob,doris,code-review}
+mkdir -p $BASE/output/{scope,arch,impl,qa,ux,prioritize,facilitate,docs,code-review}
 mkdir -p $BASE/shards/{requirements,architecture,stories}
 mkdir -p $BASE/workspace
 ```
@@ -178,15 +178,15 @@ Dependencies:
   Install missing: bash <plugin-root>/resources/scripts/install-deps.sh
   Update all:      bash <plugin-root>/resources/scripts/update-deps.sh
 
-Available agents:
-  /bmad-mary      - Business Analyst (requirements, user stories)
-  /bmad-winston   - System Architect (design, ADRs, trade-offs)
-  /bmad-amelia    - Developer (implementation, code review)
-  /bmad-murat     - Test Architect (test strategy, QA)
-  /bmad-sally     - UX Expert (UI/UX design)
-  /bmad-john      - Product Manager (prioritization, roadmap)
-  /bmad-bob       - Scrum Master (sprint planning, coordination)
-  /bmad-doris     - Documentation Specialist (doc generation)
+Available roles:
+  /bmad-scope       - Scope Clarifier (requirements, user stories)
+  /bmad-arch        - Architecture Owner (design, ADRs, trade-offs)
+  /bmad-impl        - Implementer (implementation, code review)
+  /bmad-qa          - Quality Guardian (test strategy, QA)
+  /bmad-ux          - Experience Designer (UI/UX design)
+  /bmad-prioritize  - Prioritizer (prioritization, roadmap)
+  /bmad-facilitate  - Facilitator (sprint planning, coordination)
+  /bmad-docs        - Documentation Steward (doc generation)
 
 Review:
   /bmad-code-review - Multi-agent PR code review with CLAUDE.md compliance
@@ -195,5 +195,5 @@ Orchestrators:
   /bmad-greenfield - Full workflow (analysis → QA)
   /bmad-sprint     - Sprint planning ceremony
 
-Start with: /bmad-mary to gather requirements, or /bmad-greenfield for the full workflow.
+Start with: /bmad-scope to gather requirements, or /bmad-greenfield for the full workflow.
 ```

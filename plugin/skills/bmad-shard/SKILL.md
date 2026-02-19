@@ -8,15 +8,15 @@ allowed-tools: Read, Write, Grep, Glob, Bash
 
 # BMAD Document Sharding
 
-Implements BMAD context sharding: splits large documents into atomic story files that agents can load individually, dramatically reducing token usage.
+Implements BMAD context sharding: splits large documents into atomic story files that roles can load individually, dramatically reducing token usage.
 
 ## Why Sharding Matters
 
-When Amelia (Developer) works on STORY-001, she doesn't need to load the entire PRD. Sharding splits documents into focused atomic files so each agent invocation loads only what's relevant.
+When the Implementer works on STORY-001, it doesn't need to load the entire PRD. Sharding splits documents into focused atomic files so each role invocation loads only what's relevant.
 
-- **Without sharding**: Amelia loads full PRD (~5000+ tokens) every time
-- **With sharding**: Amelia loads one shard (~200-400 tokens) per story
-- **Result**: ~90% token reduction per agent invocation
+- **Without sharding**: The Implementer loads full PRD (~5000+ tokens) every time
+- **With sharding**: The Implementer loads one shard (~200-400 tokens) per story
+- **Result**: ~90% token reduction per role invocation
 
 ## Input
 
@@ -24,12 +24,12 @@ Automatically detect documents to shard in `~/.claude/bmad/projects/{project}/ou
 
 | Source | Path |
 |---|---|
-| PRD | `john/PRD-*.md` |
-| Architecture | `winston/architecture.md` |
-| Requirements | `mary/requirements.md` |
-| Business Requirements | `mary/business-requirements.md` |
+| PRD | `prioritize/PRD-*.md` |
+| Architecture | `arch/architecture.md` |
+| Requirements | `scope/requirements.md` |
+| Business Requirements | `scope/business-requirements.md` |
 
-If no documents found: "No documents to shard. Run `/bmad:bmad-john` or `/bmad:bmad-mary` first."
+If no documents found: "No documents to shard. Run `/bmad:bmad-prioritize` or `/bmad:bmad-scope` first."
 
 ## Process
 
@@ -123,7 +123,7 @@ If no documents found: "No documents to shard. Run `/bmad:bmad-john` or `/bmad:b
        "enabled": true,
        "shards_count": 15,
        "last_shard_date": "{ISO-8601}",
-       "sources": ["john/PRD.md", "winston/architecture.md"]
+       "sources": ["prioritize/PRD.md", "arch/architecture.md"]
      }
    }
    ```
@@ -137,8 +137,8 @@ If no documents found: "No documents to shard. Run `/bmad:bmad-john` or `/bmad:b
    Stories:      6 shards → ~/.claude/bmad/projects/{project}/shards/stories/
 
    Usage:
-   /bmad:bmad-amelia STORY-001    ← Implements only STORY-001
-   /bmad:bmad-amelia STORY-002    ← Implements only STORY-002
+   /bmad:bmad-impl STORY-001    ← Implements only STORY-001
+   /bmad:bmad-impl STORY-002    ← Implements only STORY-002
 
    Each invocation loads only the relevant shard (~300 tokens instead of ~5000).
    ```
@@ -146,10 +146,10 @@ If no documents found: "No documents to shard. Run `/bmad:bmad-john` or `/bmad:b
 ## Post-Sharding Usage
 
 ```bash
-# Developer implements only STORY-001
-/bmad:bmad-amelia STORY-001
+# The Implementer works on only STORY-001
+/bmad:bmad-impl STORY-001
 
-# Amelia will read ONLY:
+# It will read ONLY:
 # - ~/.claude/bmad/projects/{project}/shards/stories/STORY-001.md
 # - Any dependencies referenced in the shard (loaded on demand)
 # - NOT: other stories, full PRD, future tasks

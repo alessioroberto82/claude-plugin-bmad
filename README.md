@@ -1,25 +1,27 @@
 # BMAD
 
-A team of AI agents that helps you build software — from initial idea through to working code. Each agent has a name, a role, and a specialty. You talk to them in plain language, and they handle the rest.
+A circle of AI roles that helps you build software — from initial idea through to working code. Each role has a clear purpose, domain, and accountability. You talk to them in plain language, and they handle the rest.
 
-Every agent on this team operates under the same set of principles — written by our founder Joris to capture the Luscii soul. Growth over ego. Iteration over perfection. Impact over activity. No gold-plating. No fear-driven engineering. These aren't slogans — they shape how every agent thinks, prioritizes, and communicates with you.
+Every role in this circle operates under the same set of principles — written by our founder Joris to capture the Luscii soul. Growth over ego. Iteration over perfection. Impact over activity. No gold-plating. No fear-driven engineering. These aren't slogans — they shape how every role thinks, prioritizes, and communicates with you.
+
+BMAD follows holacracy: roles have purposes and accountabilities, not job titles or personas. Authority is distributed — each role acts within its domain without asking permission.
 
 BMAD works for everyone on the team: product managers, designers, analysts, scrum masters, developers, and documentation writers. No programming knowledge required to get started.
 
 **New to BMAD?** Start with the [Getting Started Guide](docs/GETTING-STARTED.md) — it walks you through your first conversation with no technical setup.
 
-## The Team
+## The Circle
 
-| Command | Agent | Role |
+| Command | Role | Accountability |
 |---|---|---|
-| `/bmad:bmad-mary` | Mary | Business Analyst — gathers requirements, writes user stories, clarifies what you're building |
-| `/bmad:bmad-winston` | Winston | System Architect — plans how software is structured, documents design decisions (ADRs) |
-| `/bmad:bmad-amelia` | Amelia | Developer — writes code, reviews implementations |
-| `/bmad:bmad-murat` | Murat | Test Architect — plans testing strategy, validates quality |
-| `/bmad:bmad-sally` | Sally | UX Expert — designs user interfaces and user journeys |
-| `/bmad:bmad-john` | John | Product Manager — prioritizes features, creates product plans (PRDs) |
-| `/bmad:bmad-bob` | Bob | Scrum Master — plans sprints, coordinates the team |
-| `/bmad:bmad-doris` | Doris | Documentation Specialist — generates docs from templates |
+| `/bmad:bmad-scope` | Scope Clarifier | Gathers requirements, writes user stories, clarifies what you're building |
+| `/bmad:bmad-arch` | Architecture Owner | Plans how software is structured, documents design decisions (ADRs) |
+| `/bmad:bmad-impl` | Implementer | Writes code, reviews implementations |
+| `/bmad:bmad-qa` | Quality Guardian | Plans testing strategy, validates quality |
+| `/bmad:bmad-ux` | Experience Designer | Designs user interfaces and user journeys |
+| `/bmad:bmad-prioritize` | Prioritizer | Prioritizes features, creates product plans (PRDs) |
+| `/bmad:bmad-facilitate` | Facilitator | Plans sprints, coordinates the team |
+| `/bmad:bmad-docs` | Documentation Steward | Generates docs from templates |
 
 > **ADR** = Architecture Decision Record — a short document explaining why a technical decision was made.
 > **PRD** = Product Requirements Document — describes what a product should do and why.
@@ -37,7 +39,7 @@ These run multi-step workflows, guiding you through each phase with decision poi
 
 | Command | What it does |
 |---|---|
-| `/bmad:bmad-greenfield` | Runs the full workflow: Mary (requirements) → John (product plan) → Sally (design) → Winston (architecture) → Security review → Bob (sprint plan) → Amelia (code) → Murat (tests). You can skip optional steps. |
+| `/bmad:bmad-greenfield` | Runs the full workflow: Scope Clarifier (requirements) → Prioritizer (product plan) → Experience Designer (design) → Architecture Owner (architecture) → Security review → Facilitator (sprint plan) → Implementer (code) → Quality Guardian (tests). You can skip optional steps. |
 | `/bmad:bmad-sprint` | Interactive sprint planning ceremony — 6 steps from backlog review to sprint commitment |
 
 ## Utilities
@@ -45,11 +47,11 @@ These run multi-step workflows, guiding you through each phase with decision poi
 | Command | What it does |
 |---|---|
 | `/bmad:bmad-init` | Sets up BMAD for your current project. Run this once per project. Checks for optional tools and offers to install them. |
-| `/bmad:bmad-shard` | Splits large documents into smaller pieces (called "shards") so agents can work with just the part they need — reduces token usage by ~90% |
-| `/bmad:bmad` | Shows project status: what phase you're in, what's been done, and what agents are available |
+| `/bmad:bmad-shard` | Splits large documents into smaller pieces (called "shards") so roles can work with just the part they need — reduces token usage by ~90% |
+| `/bmad:bmad` | Shows project status: what phase you're in, what's been done, and what roles are available |
 
 > **Token** = the unit of text that AI models process. Fewer tokens means faster responses and lower cost.
-> **Context sharding** = breaking a large document into focused pieces so each agent loads only what it needs.
+> **Context sharding** = breaking a large document into focused pieces so each role loads only what it needs.
 
 ## Setup
 
@@ -66,22 +68,22 @@ Then in any project:
 
 ```bash
 /bmad:bmad-init          # Set up BMAD for this project
-/bmad:bmad-mary          # Start by defining requirements
+/bmad:bmad-scope         # Start by defining requirements
 /bmad:bmad-greenfield    # Or run the full workflow
 ```
 
 ## Dependencies
 
-All dependencies are **optional** — agents work without them and adapt when tools aren't available. `/bmad-init` detects what's installed and offers setup options.
+All dependencies are **optional** — roles work without them and adapt when tools aren't available. `/bmad-init` detects what's installed and offers setup options.
 
 | Dependency | Type | Group | What it adds |
 |---|---|---|---|
-| Linear | Cloud MCP | Core | Issue tracking and sprint management for all agents |
-| claude-mem | Plugin | Core | Memory that persists across sessions for all agents |
+| Linear | Cloud MCP | Core | Issue tracking and sprint management for all roles |
+| claude-mem | Plugin | Core | Memory that persists across sessions for all roles |
 | Cupertino | Brew MCP | iOS | Apple documentation and Human Interface Guidelines for iOS projects |
 | SwiftUI Expert | Plugin | iOS | SwiftUI best practices and patterns |
 | Swift LSP | Plugin | iOS | Code intelligence for Swift files |
-| Notion | Plugin | Extras | Doris can publish docs to Notion |
+| Notion | Plugin | Extras | The Documentation Steward can publish docs to Notion |
 | bmad-mcp | npm | Extras | Additional workflow tools for Greenfield orchestrator |
 
 > **MCP** = Model Context Protocol — a way for Claude to connect to external services (like Linear or Apple docs). Think of it as a plugin for the plugin.
@@ -108,33 +110,33 @@ BMAD never adds files to your project repository. All outputs are stored in a se
 ```
 ~/.claude/bmad/projects/<project>/
 ├── output/
-│   ├── mary/          # Requirements
-│   ├── winston/       # Architecture, ADRs
-│   ├── amelia/        # Implementation notes
-│   ├── code-review/   # PR review reports
-│   ├── triage/        # Triage learnings
-│   ├── murat/         # Test plans, reports
-│   ├── sally/         # UX designs
-│   ├── john/          # PRDs
-│   ├── bob/           # Sprint plans
-│   └── doris/         # Generated docs
-├── shards/            # Context shards
+│   ├── scope/        # Requirements
+│   ├── arch/         # Architecture, ADRs
+│   ├── impl/         # Implementation notes
+│   ├── code-review/  # PR review reports
+│   ├── triage/       # Triage learnings
+│   ├── qa/           # Test plans, reports, security audits
+│   ├── ux/           # UX designs
+│   ├── prioritize/   # PRDs
+│   ├── facilitate/   # Sprint plans
+│   └── docs/         # Generated docs
+├── shards/           # Context shards
 │   ├── requirements/
 │   ├── architecture/
 │   └── stories/
-└── config.yaml        # Per-project overrides
+└── config.yaml       # Per-project overrides
 ```
 
-### Agent Isolation
+### Role Isolation
 
-Each work agent runs in its own isolated context — it starts fresh every time with no leftover state from previous runs. This prevents confusion between phases. Orchestrators and interactive workflows run in your main conversation so they can have multi-turn discussions with you.
+Each work role runs in its own isolated context — it starts fresh every time with no leftover state from previous runs. This prevents confusion between phases. Orchestrators and interactive workflows run in your main conversation so they can have multi-turn discussions with you.
 
 ### Quality Gates
 
 Built-in safety checks prevent the workflow from advancing when something isn't right:
 
 - **Security Block**: The greenfield orchestrator won't move to implementation if critical security issues are found
-- **QA Reject Gate**: If Murat (testing) rejects the implementation, the workflow sends it back to Amelia (developer) for fixes
+- **QA Reject Gate**: If the Quality Guardian rejects the implementation, the workflow sends it back to the Implementer for fixes
 - **Completeness Check**: The orchestrator verifies output files exist before moving to the next step
 
 ### Context Sharding
@@ -143,20 +145,20 @@ Large documents (like a PRD or architecture spec) can be split into small, focus
 
 ```bash
 /bmad:bmad-shard                    # Split documents into shards
-/bmad:bmad-amelia STORY-001         # Implement one story at a time
+/bmad:bmad-impl STORY-001          # Implement one story at a time
 ```
 
-Each invocation loads only the relevant shard (~300 tokens instead of ~5,000), making agents faster and cheaper to run.
+Each invocation loads only the relevant shard (~300 tokens instead of ~5,000), making roles faster and cheaper to run.
 
 ### MCP Integration
 
-Agents connect to external services through MCP (Model Context Protocol) when available. If a service isn't set up, agents simply skip those features — nothing breaks.
+Roles connect to external services through MCP (Model Context Protocol) when available. If a service isn't set up, roles simply skip those features — nothing breaks.
 
 | MCP Server | Used By | What it provides |
 |---|---|---|
-| Linear | All agents | Issue tracking, sprint management |
-| Cupertino | Winston, Amelia, Sally | Apple documentation, Human Interface Guidelines, Swift APIs |
-| claude-mem | All agents | Memory that persists across Claude Code sessions |
+| Linear | All roles | Issue tracking, sprint management |
+| Cupertino | Architecture Owner, Implementer, Experience Designer | Apple documentation, Human Interface Guidelines, Swift APIs |
+| claude-mem | All roles | Memory that persists across Claude Code sessions |
 
 ## Customization
 
@@ -164,22 +166,22 @@ See [docs/CUSTOMIZATION.md](docs/CUSTOMIZATION.md) for the full guide.
 
 ### Per-Project Config
 
-Create `~/.claude/bmad/projects/<project>/config.yaml` to change how agents behave for a specific project:
+Create `~/.claude/bmad/projects/<project>/config.yaml` to change how roles behave for a specific project:
 
 ```yaml
 agents:
-  bmad-winston:
+  bmad-arch:
     context_files:
       - docs/ARCHITECTURE.md
     extra_instructions: |
       This project uses MVVM+C with Combine.
 
-  bmad-amelia:
+  bmad-impl:
     extra_instructions: |
       Use Swift 6 strict concurrency.
 ```
 
-### Adding Agents
+### Adding Roles
 
 Drop a `SKILL.md` in `plugin/skills/bmad-<name>/`. Auto-discovered.
 
@@ -191,23 +193,23 @@ Drop a `.md` in `plugin/resources/templates/docs/` or `software/`.
 
 ### New Feature
 ```
-Mary → John → [Sally] → Winston → [Security] → [Bob] → Amelia → Murat
+Scope Clarifier → Prioritizer → [Experience Designer] → Architecture Owner → [Security] → [Facilitator] → Implementer → Quality Guardian
 ```
 Steps in brackets are optional.
 
 ### Bug Fix
 ```
-Amelia (analyze) → Winston (review) → Amelia (fix) → Murat (verify)
+Implementer (analyze) → Architecture Owner (review) → Implementer (fix) → Quality Guardian (verify)
 ```
 
 ### Code Review
 ```
-Amelia (implement) → Murat (test) → Code Review (multi-agent PR review) → Triage (handle feedback) → merge
+Implementer (implement) → Quality Guardian (test) → Code Review (multi-agent PR review) → Triage (handle feedback) → merge
 ```
 
 ## Soul
 
-The team principles live in `plugin/resources/soul.md` — every agent reads them on every invocation. To understand the culture behind BMAD, start there.
+The team principles live in `plugin/resources/soul.md` — every role reads them on every invocation. To understand the culture behind BMAD, start there.
 
 ## Migration from BMAD-Setup
 

@@ -16,7 +16,7 @@ Show the status of the BMAD framework for the current project.
    - If it exists: show current phase, active workflow, completed steps
    - If it doesn't exist: indicate BMAD is not yet initialized for this project
 
-4. **Check existing artifacts**: List files in `~/.claude/bmad/projects/<project-name>/output/` if the directory exists. Show each agent's output files.
+4. **Check existing artifacts**: List files in `~/.claude/bmad/projects/<project-name>/output/` if the directory exists. Show each role's output files.
 
 5. **Show simple view** (default):
 
@@ -28,22 +28,22 @@ Status:  <initialized/not initialized>
 Phase:   <current phase from session-state or "Not started">
 
 What's done:
-  <List completed steps, e.g. "Requirements (Mary)", "Architecture (Winston)">
+  <List completed steps, e.g. "Requirements (Scope Clarifier)", "Architecture (Architecture Owner)">
   <Or "Nothing yet — run /bmad-init to get started">
 
 What's next:
-  <Next suggested step based on phase, e.g. "Talk to John about product planning">
+  <Next suggested step based on phase>
   <Or "Run /bmad-greenfield for the full workflow">
 
-Your team:
-  /bmad-mary      — Mary, Business Analyst (requirements, user stories)
-  /bmad-winston   — Winston, System Architect (design, trade-offs)
-  /bmad-amelia    — Amelia, Developer (implementation, code review)
-  /bmad-murat     — Murat, Test Architect (testing, quality)
-  /bmad-sally     — Sally, UX Expert (UI/UX design)
-  /bmad-john      — John, Product Manager (prioritization, roadmap)
-  /bmad-bob       — Bob, Scrum Master (sprint planning)
-  /bmad-doris     — Doris, Documentation Specialist
+Your circle:
+  /bmad-scope       — Scope Clarifier (requirements, user stories)
+  /bmad-arch        — Architecture Owner (design, trade-offs)
+  /bmad-impl        — Implementer (implementation, code review)
+  /bmad-qa          — Quality Guardian (testing, quality)
+  /bmad-ux          — Experience Designer (UI/UX design)
+  /bmad-prioritize  — Prioritizer (prioritization, roadmap)
+  /bmad-facilitate  — Facilitator (sprint planning)
+  /bmad-docs        — Documentation Steward
 
 Workflows:
   /bmad-greenfield — Full workflow start to finish
@@ -65,14 +65,14 @@ Tip: Type /bmad detailed for version info and dependency status.
 Generated artifacts:
 ```
 Generated artifacts:
-  mary/      <list of files or empty>
-  winston/   <list of files or empty>
-  amelia/    <list of files or empty>
-  murat/     <list of files or empty>
-  sally/     <list of files or empty>
-  john/      <list of files or empty>
-  bob/       <list of files or empty>
-  doris/     <list of files or empty>
+  scope/      <list of files or empty>
+  arch/       <list of files or empty>
+  impl/       <list of files or empty>
+  qa/         <list of files or empty>
+  ux/         <list of files or empty>
+  prioritize/ <list of files or empty>
+  facilitate/ <list of files or empty>
+  docs/       <list of files or empty>
 
 Output directory: ~/.claude/bmad/projects/<project-name>/output/
 ```

@@ -11,23 +11,23 @@
 
 # Optional phases enabled by default for greenfield workflow
 greenfield_defaults:
-  sally: true
+  ux: true
   security: true
-  bob: false
+  facilitate: false
 
-# Agent overrides — add extra context or instructions per agent
+# Role overrides — add extra context or instructions per role
 agents:
-  bmad-winston:
+  bmad-arch:
     # Additional files to read for architectural context
     context_files:
       - docs/ARCHITECTURE.md
       - docs/ADR/
-    # Extra instructions appended to the agent's prompt
+    # Extra instructions appended to the role's prompt
     extra_instructions: |
       This project uses MVVM+C architecture with Combine.
       All new modules must follow the existing pattern.
 
-  bmad-amelia:
+  bmad-impl:
     context_files:
       - Sources/
     extra_instructions: |
@@ -35,12 +35,12 @@ agents:
       All public APIs must have documentation comments.
       Follow existing code style and conventions.
 
-  bmad-murat:
+  bmad-qa:
     extra_instructions: |
       Minimum test coverage target: 80%.
       Focus on integration tests for data flows.
 
-  bmad-sally:
+  bmad-ux:
     extra_instructions: |
       Follow Apple HIG for iOS.
       Support Dynamic Type and VoiceOver.

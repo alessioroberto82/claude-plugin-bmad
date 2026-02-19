@@ -1,11 +1,11 @@
 # BMAD — Dependency Manifest
 # Single source of truth for all optional dependencies.
-# Read by: install-deps.sh, update-deps.sh, bmad-init agent.
+# Read by: install-deps.sh, update-deps.sh, bmad-init.
 #
 # Override per-project in ~/.claude/bmad/projects/<project>/config.yaml
 # under the "dependencies:" key.
 #
-# All dependencies are OPTIONAL. Agents degrade gracefully when missing.
+# All dependencies are OPTIONAL. Roles degrade gracefully when missing.
 
 groups:
   core:
@@ -18,7 +18,7 @@ groups:
         check_command: ""
         install_command: ""
         install_note: "Enable in Claude Code settings → MCP Servers → Linear"
-        used_by: "mary, winston, amelia, murat, sally, john, bob, doris, code-review, sprint"
+        used_by: "scope, arch, impl, qa, ux, prioritize, facilitate, docs, code-review, sprint"
 
       - id: claude-mem
         type: plugin
@@ -28,7 +28,7 @@ groups:
         check_command: "grep -q claude-mem ~/.claude/plugins/installed_plugins.json 2>/dev/null"
         install_command: "claude plugin marketplace add thedotmack && claude plugin install claude-mem@thedotmack"
         update_command: "claude plugin marketplace update thedotmack && claude plugin update claude-mem@thedotmack"
-        used_by: "all agents"
+        used_by: "all roles"
 
   ios:
     label: "iOS / Swift development"
@@ -42,7 +42,7 @@ groups:
         check_command: "command -v cupertino"
         install_command: "brew tap mihaelamj/tap && brew install cupertino"
         update_command: "brew upgrade cupertino"
-        used_by: "winston, amelia, sally"
+        used_by: "arch, impl, ux"
 
       - id: swiftui-expert
         type: plugin
@@ -52,7 +52,7 @@ groups:
         check_command: "grep -q swiftui-expert ~/.claude/plugins/installed_plugins.json 2>/dev/null"
         install_command: "claude plugin marketplace add swiftui-expert-skill && claude plugin install swiftui-expert@swiftui-expert-skill"
         update_command: "claude plugin marketplace update swiftui-expert-skill && claude plugin update swiftui-expert@swiftui-expert-skill"
-        used_by: "winston, amelia, sally"
+        used_by: "arch, impl, ux"
 
       - id: swift-lsp
         type: plugin
@@ -62,7 +62,7 @@ groups:
         check_command: "grep -q swift-lsp ~/.claude/plugins/installed_plugins.json 2>/dev/null"
         install_command: "claude plugin marketplace add claude-plugins-official && claude plugin install swift-lsp@claude-plugins-official"
         update_command: "claude plugin marketplace update claude-plugins-official && claude plugin update swift-lsp@claude-plugins-official"
-        used_by: "amelia"
+        used_by: "impl"
 
   extras:
     label: "Additional tools"
@@ -75,7 +75,7 @@ groups:
         check_command: "grep -q Notion ~/.claude/plugins/installed_plugins.json 2>/dev/null"
         install_command: "claude plugin marketplace add claude-plugins-official && claude plugin install Notion@claude-plugins-official"
         update_command: "claude plugin marketplace update claude-plugins-official && claude plugin update Notion@claude-plugins-official"
-        used_by: "doris"
+        used_by: "docs"
 
       - id: bmad-mcp
         type: npm

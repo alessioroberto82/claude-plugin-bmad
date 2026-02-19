@@ -1,7 +1,7 @@
 # Security Audit: {Feature/System Name}
 
 **Date**: {YYYY-MM-DD}
-**Auditor**: Murat (BMAD Test Architect)
+**Auditor**: Quality Guardian (BMAD)
 **Scope**: {What was audited}
 
 ## STRIDE Threat Model

@@ -1,6 +1,6 @@
 # BMAD — Customization Guide
 
-This guide explains how to customize BMAD for your team and projects. You can change everything from team principles to individual agent behavior.
+This guide explains how to customize BMAD for your team and projects. You can change everything from team principles to individual role behavior.
 
 ## Quick Customization
 
@@ -8,27 +8,27 @@ If you just want to tweak how BMAD works for your project, here are the most com
 
 | What you want to do | How |
 |---|---|
-| Give an agent extra instructions for your project | Create a config file (see Section 1 below) |
+| Give a role extra instructions for your project | Create a config file (see Section 1 below) |
 | Change the team's working principles | Edit `plugin/resources/soul.md` — plain text, takes effect immediately |
-| Add a document template for Doris | Drop a `.md` file in `plugin/resources/templates/docs/` |
-| Add a new team member | Create a folder and skill file (see Section 2 below) |
+| Add a document template for the Documentation Steward | Drop a `.md` file in `plugin/resources/templates/docs/` |
+| Add a new role to the circle | Create a folder and skill file (see Section 2 below) |
 
 ## Customization Layers
 
 | Layer | What | Where | Friction |
 |---|---|---|---|
 | **Soul** | Team principles | `plugin/resources/soul.md` | Edit file, instant effect |
-| **Per-project config** | Agent overrides, templates | `~/.claude/bmad/projects/<project>/config.yaml` | Create YAML file |
-| **Agent behavior** | Role definitions | `plugin/skills/bmad-<name>/SKILL.md` | Edit SKILL.md |
+| **Per-project config** | Role overrides, templates | `~/.claude/bmad/projects/<project>/config.yaml` | Create YAML file |
+| **Role behavior** | Role definitions | `plugin/skills/bmad-<name>/SKILL.md` | Edit SKILL.md |
 | **Templates** | Document templates | `plugin/resources/templates/` | Drop .md file |
-| **New agent** | Add a team member | `plugin/skills/bmad-<name>/SKILL.md` | Create directory + file |
+| **New role** | Add a circle member | `plugin/skills/bmad-<name>/SKILL.md` | Create directory + file |
 | **Code review** | PR review with CLAUDE.md compliance | `/bmad-code-review <PR>` | Invoke on any open PR |
 
 ---
 
 ## 1. Per-Project Configuration
 
-This is a settings file that tells BMAD agents how to behave differently for a specific project. Copy the example and change the values to match your project.
+This is a settings file that tells BMAD roles how to behave differently for a specific project. Copy the example and change the values to match your project.
 
 Create `~/.claude/bmad/projects/<project-name>/config.yaml`:
 
@@ -38,19 +38,19 @@ domain: software
 
 # Which optional steps to include in the full workflow
 greenfield_defaults:
-  sally: true       # Include UX design phase
+  ux: true          # Include UX design phase
   security: true    # Include security review
-  bob: false        # Skip sprint planning
+  facilitate: false  # Skip sprint planning
 
-# Instructions for specific agents
+# Instructions for specific roles
 agents:
-  bmad-winston:
+  bmad-arch:
     context_files:
       - docs/ARCHITECTURE.md
     extra_instructions: |
       This project uses MVVM+C with Combine.
 
-  bmad-amelia:
+  bmad-impl:
     extra_instructions: |
       Use Swift 6 strict concurrency.
 ```
@@ -59,7 +59,7 @@ See `plugin/resources/templates/config-example.yaml` for a full example with all
 
 ---
 
-## 2. Adding a New Agent
+## 2. Adding a New Role
 
 1. Create the directory: `plugin/skills/bmad-<name>/`
 2. Create `SKILL.md` with this template:
@@ -67,21 +67,21 @@ See `plugin/resources/templates/config-example.yaml` for a full example with all
 ```yaml
 ---
 name: bmad-<name>
-description: "<Name> — <Role>. <One-line purpose>. <When to use>."
+description: "<Role Name> — <One-line purpose>. <When to use>."
 context: fork
 agent: general-purpose
 allowed-tools: Read, Grep, Glob, Bash
 ---
 
-# <Name> — <Role>
+# <Role Name>
 
-You are **<Name>**, the <Role> of the BMAD team.
+You energize the **<Role Name>** role in the BMAD circle.
 
 ## Soul
 Read and embody the principles in `${CLAUDE_PLUGIN_ROOT}/resources/soul.md`.
 
-## Your Identity
-<2-3 sentences about perspective and priorities>
+## Your Role
+<2-3 sentences about the role's purpose and accountabilities>
 
 ## Domain Detection
 <Standard domain detection block>
@@ -94,9 +94,9 @@ Read and embody the principles in `${CLAUDE_PLUGIN_ROOT}/resources/soul.md`.
 2. <Save output to ~/.claude/bmad/projects/{project}/output/<name>/>
 
 ## Handoff
-> **<Name> (<Role>) — Complete.**
+> **<Role Name> — Complete.**
 > Output saved to: <path>
-> Next suggested agent: <recommendation>
+> Next suggested role: <recommendation>
 ```
 
 3. Done. Claude Code auto-discovers the skill.
@@ -107,12 +107,12 @@ Read and embody the principles in `${CLAUDE_PLUGIN_ROOT}/resources/soul.md`.
 ## 3. Adding a New Template
 
 1. Drop a `.md` file in the appropriate directory:
-   - `plugin/resources/templates/docs/` — for Doris (documentation)
-   - `plugin/resources/templates/software/` — for agents (PRD, architecture, etc.)
+   - `plugin/resources/templates/docs/` — for the Documentation Steward
+   - `plugin/resources/templates/software/` — for roles (PRD, architecture, etc.)
 
 2. Use `{placeholder}` patterns for dynamic content.
 
-3. Doris will automatically discover and list new templates in the docs/ directory.
+3. The Documentation Steward will automatically discover and list new templates in the docs/ directory.
 
 ---
 
@@ -120,35 +120,35 @@ Read and embody the principles in `${CLAUDE_PLUGIN_ROOT}/resources/soul.md`.
 
 Edit `plugin/resources/soul.md`. Changes take effect on the next skill invocation.
 
-The Soul is loaded by every agent and sets the behavioral foundation. Keep it concise and principle-based.
+The Soul is loaded by every role and sets the behavioral foundation. It includes both team principles and holacracy alignment guidelines. Keep it concise and principle-based.
 
 ---
 
 ## 5. Adding to the Greenfield Workflow
 
-To add a new agent to the greenfield orchestrator:
+To add a new role to the greenfield orchestrator:
 
 1. Edit `plugin/skills/bmad-greenfield/SKILL.md`
-2. Add the agent to the workflow sequence
-3. Add to the "Agent Sequence Detail" table
+2. Add the role to the workflow sequence
+3. Add to the "Role Sequence Detail" table
 4. Add checkpoint handling in the execution phase
 
 ---
 
 ## For Developers: Context Model Reference
 
-> This section is for developers who are modifying or creating agents. You can skip this if you're just using BMAD.
+> This section is for developers who are modifying or creating roles. You can skip this if you're just using BMAD.
 
 | Context | When to Use | Effect |
 |---|---|---|
-| `fork` | Work agents (analysis, design, implementation) | Isolated subagent, clean context, no bleed between runs |
+| `fork` | Work roles (analysis, design, implementation) | Isolated subagent, clean context, no bleed between runs |
 | `same` | Orchestrators, interactive workflows, utilities | Runs in main conversation, supports multi-turn dialogue |
 
 ---
 
 ## For Developers: Agent Type Reference
 
-> This section is for developers building custom agents.
+> This section is for developers building custom roles.
 
 | Agent Type | When to Use |
 |---|---|
@@ -161,9 +161,9 @@ To add a new agent to the greenfield orchestrator:
 
 ## For Developers: MCP Integration
 
-> This section is for developers who want to connect BMAD agents to external services via MCP (Model Context Protocol).
+> This section is for developers who want to connect BMAD roles to external services via MCP (Model Context Protocol).
 
-Agents reference MCP tools (Linear, Cupertino, claude-mem) but degrade gracefully if unavailable. To configure:
+Roles reference MCP tools (Linear, Cupertino, claude-mem) but degrade gracefully if unavailable. To configure:
 
 - **Linear**: Set up Linear MCP server in Claude Code settings
 - **Cupertino**: Set up Cupertino MCP server for Apple docs
