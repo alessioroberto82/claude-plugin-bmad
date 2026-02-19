@@ -18,19 +18,52 @@ Show the status of the BMAD framework for the current project.
 
 4. **Check existing artifacts**: List files in `~/.claude/bmad/projects/<project-name>/output/` if the directory exists. Show each agent's output files.
 
-5. **Show formatted output**:
+5. **Show simple view** (default):
 
 ```
-BMAD Corporate
-==============
-Project: <project-name>
+BMAD Corporate — <project-name>
+================================
 Domain:  <detected>
 Status:  <initialized/not initialized>
-Phase:   <current phase from session-state or N/A>
+Phase:   <current phase from session-state or "Not started">
 
-Active workflow: <greenfield/sprint/none>
-Completed steps: <list or N/A>
+What's done:
+  <List completed steps, e.g. "Requirements (Mary)", "Architecture (Winston)">
+  <Or "Nothing yet — run /bmad-init to get started">
 
+What's next:
+  <Next suggested step based on phase, e.g. "Talk to John about product planning">
+  <Or "Run /bmad-greenfield for the full workflow">
+
+Your team:
+  /bmad-mary      — Mary, Business Analyst (requirements, user stories)
+  /bmad-winston   — Winston, System Architect (design, trade-offs)
+  /bmad-amelia    — Amelia, Developer (implementation, code review)
+  /bmad-murat     — Murat, Test Architect (testing, quality)
+  /bmad-sally     — Sally, UX Expert (UI/UX design)
+  /bmad-john      — John, Product Manager (prioritization, roadmap)
+  /bmad-bob       — Bob, Scrum Master (sprint planning)
+  /bmad-doris     — Doris, Documentation Specialist
+
+Workflows:
+  /bmad-greenfield — Full workflow start to finish
+  /bmad-sprint     — Sprint planning session
+
+Review:
+  /bmad-code-review — PR code review
+  /bmad-triage      — Handle review feedback
+
+Utilities:
+  /bmad-init  — Set up BMAD for this project
+  /bmad-shard — Split large docs for faster processing
+
+Tip: Type /bmad detailed for version info and dependency status.
+```
+
+6. **If the user requests "detailed" or "full" view**, also show:
+
+Generated artifacts:
+```
 Generated artifacts:
   mary/      <list of files or empty>
   winston/   <list of files or empty>
@@ -42,34 +75,15 @@ Generated artifacts:
   doris/     <list of files or empty>
 
 Output directory: ~/.claude/bmad/projects/<project-name>/output/
-
-Available agents:
-  Team:
-    /bmad-mary      - Mary, Business Analyst (requirements, user stories)
-    /bmad-winston   - Winston, System Architect (design, ADRs, trade-offs)
-    /bmad-amelia    - Amelia, Developer (implementation, code review)
-    /bmad-murat     - Murat, Test Architect (test strategy, QA)
-    /bmad-sally     - Sally, UX Expert (UI/UX design)
-    /bmad-john      - John, Product Manager (prioritization, roadmap)
-    /bmad-bob       - Bob, Scrum Master (sprint planning, coordination)
-    /bmad-doris     - Doris, Documentation Specialist (doc generation)
-
-  Orchestrators:
-    /bmad-greenfield - Full workflow (analysis → QA, 6-9 steps)
-    /bmad-sprint     - Sprint planning ceremony (6 steps)
-
-  Review:
-    /bmad-code-review - Multi-agent PR code review with CLAUDE.md compliance
-    /bmad-triage      - Triage incoming PR review comments (accept/reject/unclear)
-
-  Utilities:
-    /bmad-init       - Initialize BMAD for this project
-    /bmad-shard      - Context sharding for large documents
-
-Quick start: /bmad-init to initialize, then /bmad-mary to begin.
 ```
 
-6. **Check dependency versions**: Read `~/.claude/plugins/installed_plugins.json` and check system binaries to show current versions.
+Active workflow details:
+```
+Active workflow: <greenfield/sprint/none>
+Completed steps: <list or N/A>
+```
+
+Check dependency versions: Read `~/.claude/plugins/installed_plugins.json` and check system binaries to show current versions.
 
 ```
 Dependencies:

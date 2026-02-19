@@ -1,6 +1,17 @@
 # BMAD Corporate — Customization Guide
 
-This guide explains how to customize every aspect of BMAD Corporate for your team and projects.
+This guide explains how to customize BMAD for your team and projects. You can change everything from team principles to individual agent behavior.
+
+## Quick Customization
+
+If you just want to tweak how BMAD works for your project, here are the most common changes:
+
+| What you want to do | How |
+|---|---|
+| Give an agent extra instructions for your project | Create a config file (see Section 1 below) |
+| Change the team's working principles | Edit `plugin/resources/soul.md` — plain text, takes effect immediately |
+| Add a document template for Doris | Drop a `.md` file in `plugin/resources/templates/docs/` |
+| Add a new team member | Create a folder and skill file (see Section 2 below) |
 
 ## Customization Layers
 
@@ -17,19 +28,21 @@ This guide explains how to customize every aspect of BMAD Corporate for your tea
 
 ## 1. Per-Project Configuration
 
-Create `~/.claude/bmad/projects/<project-name>/config.yaml` to customize agent behavior for a specific project.
+This is a settings file that tells BMAD agents how to behave differently for a specific project. Copy the example and change the values to match your project.
+
+Create `~/.claude/bmad/projects/<project-name>/config.yaml`:
 
 ```yaml
-# Override domain detection
+# What kind of project this is (software, business, personal, or general)
 domain: software
 
-# Greenfield workflow defaults
+# Which optional steps to include in the full workflow
 greenfield_defaults:
-  sally: true
-  security: true
-  bob: false
+  sally: true       # Include UX design phase
+  security: true    # Include security review
+  bob: false        # Skip sprint planning
 
-# Per-agent overrides
+# Instructions for specific agents
 agents:
   bmad-winston:
     context_files:
@@ -42,7 +55,7 @@ agents:
       Use Swift 6 strict concurrency.
 ```
 
-See `plugin/resources/templates/config-example.yaml` for a full example.
+See `plugin/resources/templates/config-example.yaml` for a full example with all available options.
 
 ---
 
@@ -122,16 +135,20 @@ To add a new agent to the greenfield orchestrator:
 
 ---
 
-## 6. Context Model Reference
+## For Developers: Context Model Reference
+
+> This section is for developers who are modifying or creating agents. You can skip this if you're just using BMAD.
 
 | Context | When to Use | Effect |
 |---|---|---|
-| `fork` | Work agents (analysis, design, implementation) | Isolated subagent, clean context, no bleed |
-| `same` | Orchestrators, interactive workflows, utilities | Runs in main conversation, multi-turn |
+| `fork` | Work agents (analysis, design, implementation) | Isolated subagent, clean context, no bleed between runs |
+| `same` | Orchestrators, interactive workflows, utilities | Runs in main conversation, supports multi-turn dialogue |
 
 ---
 
-## 7. Agent Type Reference
+## For Developers: Agent Type Reference
+
+> This section is for developers building custom agents.
 
 | Agent Type | When to Use |
 |---|---|
@@ -142,7 +159,9 @@ To add a new agent to the greenfield orchestrator:
 
 ---
 
-## 8. MCP Integration
+## For Developers: MCP Integration
+
+> This section is for developers who want to connect BMAD agents to external services via MCP (Model Context Protocol).
 
 Agents reference MCP tools (Linear, Cupertino, claude-mem) but degrade gracefully if unavailable. To configure:
 
