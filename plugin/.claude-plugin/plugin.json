@@ -1,18 +1,21 @@
 {
   "name": "bmad",
   "version": "0.2.0",
-  "description": "BMAD: 9 named AI agents for structured development workflows with Linear, Cupertino, and cross-session memory integration",
+  "description": "Multi-agent development workflow plugin with holacracy roles, quality gates, and full customization",
   "author": {
-    "name": "Alessio Roberto"
+    "name": "Alessio Roberto",
+    "url": "https://github.com/alessioroberto82"
   },
-  "license": "UNLICENSED",
+  "repository": "https://github.com/alessioroberto82/claude-plugin-bmad",
+  "license": "MIT",
   "keywords": [
     "bmad",
     "multi-agent",
     "workflow",
     "holacracy",
     "development",
-    "ios",
-    "swift"
+    "quality-gates",
+    "sprint-planning",
+    "code-review"
   ]
 }
