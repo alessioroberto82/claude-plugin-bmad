@@ -37,6 +37,7 @@ plugin/
     └── bmad-shard/SKILL.md             # Context sharding utility
 docs/
 ├── CUSTOMIZATION.md                    # 8-layer customization guide
+├── GETTING-STARTED.md                  # Non-technical getting started guide
 └── MIGRATION.md                        # Migration from old BMAD-Setup
 ```
 
@@ -84,8 +85,12 @@ allowed-tools: Read, Grep, Glob, Bash
 - **Domain detection**: Roles detect project type by looking for marker files (Package.swift, package.json, etc.) and adjust behavior accordingly
 - **Quality gates**: P0 security blocks stop workflow before implementation. QA rejection loops back to the Implementer. Completeness checks verify outputs exist before advancing
 - **Zero project footprint**: All BMAD outputs go to `~/.claude/bmad/projects/<project>/`. Nothing is committed to the repo
-- **MCP tools are optional**: Roles check for Linear, Cupertino, claude-mem availability but degrade gracefully if absent
+- **MCP tools are optional**: Roles check for MCP tools (Linear, claude-mem, and domain-specific servers) but degrade gracefully if absent
 - **Soul is mandatory**: Every role must reference and follow `plugin/resources/soul.md`
 - **Dependencies are optional**: All dependencies are declared in `deps-manifest.yaml`. `bmad-init` detects missing deps and offers installation. Roles degrade gracefully when dependencies are missing
 - **Templates live in resources**: Document templates go in `plugin/resources/templates/docs/` or `plugin/resources/templates/software/`
+- **Template variants**: Domain-specific template variants use `-{domain}` suffix (e.g., `module-architecture-swift.md`). Base templates are always language-agnostic. `bmad-docs` auto-selects by domain detection
+- **Domain-agnostic core**: Skills must NOT name-drop specific MCP tools (Cupertino, SwiftUI Expert, etc.) — use "Domain-specific tools" generically. Domain-specific deps live only in `deps-manifest.yaml`
+- **Do not touch for neutralization**: `deps-manifest.yaml`, `bmad-init/SKILL.md`, and `bmad-triage/SKILL.md` contain domain-specific content by design (installer, multi-domain tables). These are correct patterns, not iOS bias
+- **docs/MIGRATION.md**: Contains intentional persona name references (Mary, Winston, etc.) for migration mapping — do not remove
 - **Holacracy alignment**: Roles have purposes and accountabilities, not personas. Communication references roles, never personal names. External communication uses team voice, not role voice

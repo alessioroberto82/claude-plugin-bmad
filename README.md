@@ -80,13 +80,20 @@ All dependencies are **optional** — roles work without them and adapt when too
 |---|---|---|---|
 | Linear | Cloud MCP | Core | Issue tracking and sprint management for all roles |
 | claude-mem | Plugin | Core | Memory that persists across sessions for all roles |
-| Cupertino | Brew MCP | iOS | Apple documentation and Human Interface Guidelines for iOS projects |
-| SwiftUI Expert | Plugin | iOS | SwiftUI best practices and patterns |
-| Swift LSP | Plugin | iOS | Code intelligence for Swift files |
 | Notion | Plugin | Extras | The Documentation Steward can publish docs to Notion |
 | bmad-mcp | npm | Extras | Additional workflow tools for Greenfield orchestrator |
 
-> **MCP** = Model Context Protocol — a way for Claude to connect to external services (like Linear or Apple docs). Think of it as a plugin for the plugin.
+**Domain-Specific (iOS):**
+
+| Dependency | Type | What it adds |
+|---|---|---|
+| Cupertino | Brew MCP | Apple documentation and Human Interface Guidelines |
+| SwiftUI Expert | Plugin | SwiftUI best practices and patterns |
+| Swift LSP | Plugin | Code intelligence for Swift files |
+
+Domain-specific dependencies are auto-detected by `bmad-init` based on project marker files (e.g., `Package.swift` for iOS). See `deps-manifest.yaml` for conditions.
+
+> **MCP** = Model Context Protocol — a way for Claude to connect to external services. Think of it as a plugin for the plugin.
 
 ```bash
 # First-time setup (interactive — walks you through what to install)
@@ -157,8 +164,8 @@ Roles connect to external services through MCP (Model Context Protocol) when ava
 | MCP Server | Used By | What it provides |
 |---|---|---|
 | Linear | All roles | Issue tracking, sprint management |
-| Cupertino | Architecture Owner, Implementer, Experience Designer | Apple documentation, Human Interface Guidelines, Swift APIs |
 | claude-mem | All roles | Memory that persists across Claude Code sessions |
+| Domain-specific tools | Roles with domain detection | Platform documentation and framework APIs (e.g., Cupertino for iOS) |
 
 ## Customization
 
@@ -174,11 +181,11 @@ agents:
     context_files:
       - docs/ARCHITECTURE.md
     extra_instructions: |
-      This project uses MVVM+C with Combine.
+      This project uses a layered architecture with dependency injection.
 
   bmad-impl:
     extra_instructions: |
-      Use Swift 6 strict concurrency.
+      Follow project coding standards and existing conventions.
 ```
 
 ### Adding Roles

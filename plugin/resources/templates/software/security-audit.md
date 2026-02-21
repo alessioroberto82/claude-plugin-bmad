@@ -25,12 +25,12 @@
 | A09 | Logging Failures | Pass/Fail/N/A | {Notes} |
 | A10 | SSRF | Pass/Fail/N/A | {Notes} |
 
-## iOS-Specific Security
+## Platform-Specific Security
 
-- **Keychain usage**: {Assessment}
-- **App Transport Security**: {Assessment}
-- **Data Protection**: {Assessment}
-- **Biometric auth**: {Assessment}
+- **{Platform security concern 1}**: {Assessment}
+- **{Platform security concern 2}**: {Assessment}
+- **{Platform security concern 3}**: {Assessment}
+- **{Platform security concern 4}**: {Assessment}
 
 ## Findings
 

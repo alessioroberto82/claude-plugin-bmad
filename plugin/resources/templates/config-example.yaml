@@ -9,6 +9,10 @@
 # Domain override (skip auto-detection)
 # domain: software
 
+# Template variant overrides (force a specific template variant)
+# templates:
+#   module-architecture: module-architecture-swift  # Force Swift variant
+
 # Optional phases enabled by default for greenfield workflow
 greenfield_defaults:
   ux: true
@@ -24,16 +28,15 @@ agents:
       - docs/ADR/
     # Extra instructions appended to the role's prompt
     extra_instructions: |
-      This project uses MVVM+C architecture with Combine.
+      This project uses a layered architecture with dependency injection.
       All new modules must follow the existing pattern.
 
   bmad-impl:
     context_files:
-      - Sources/
+      - src/
     extra_instructions: |
-      Use Swift 6 strict concurrency.
+      Follow project coding standards and existing conventions.
       All public APIs must have documentation comments.
-      Follow existing code style and conventions.
 
   bmad-qa:
     extra_instructions: |
@@ -42,12 +45,12 @@ agents:
 
   bmad-ux:
     extra_instructions: |
-      Follow Apple HIG for iOS.
-      Support Dynamic Type and VoiceOver.
+      Follow platform design guidelines.
+      Support accessibility features.
 
 # Linear project mapping (for MCP integration)
 # linear:
-#   team: "iOS"
+#   team: "My Team"
 #   project: "My Project"
 
 # claude-mem project name (for memory search scoping)
@@ -57,7 +60,6 @@ agents:
 # Override which dependencies are installed for this project.
 # See deps-manifest.yaml for the full list of available dependencies.
 # dependencies:
-#   cupertino: skip          # Don't install this dependency
 #   notion: include          # Include an extra that's off by default
 #   claude-mem:              # Replace a default with an alternative
 #     skip: true

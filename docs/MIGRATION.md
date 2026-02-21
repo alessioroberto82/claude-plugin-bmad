@@ -51,7 +51,7 @@ Config keys have also changed (e.g., `bmad-winston` → `bmad-arch`, `bmad-ameli
 
 - Output location: `~/.claude/bmad/projects/<project>/output/`
 - Soul principles (now with holacracy section)
-- MCP integrations (Linear, Cupertino, claude-mem)
+- MCP integrations (Linear, claude-mem, and domain-specific servers)
 - Zero project footprint
 - Session state format
 

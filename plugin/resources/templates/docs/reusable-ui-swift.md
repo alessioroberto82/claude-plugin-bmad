@@ -12,7 +12,7 @@
 {Brief description and its scope}
 
 ## Location
-`{path}/{ComponentName}.{ext}`
+`{path}/{ComponentName}.swift`
 
 ## Supported Parameters
 - [ ] {Parameter 1}
@@ -21,15 +21,15 @@
 
 ## Interface
 
-```pseudocode
-component {ComponentName} {
+```swift
+struct {ComponentName}: View {
     // Required
-    title: String
-    value: String
+    let title: String
+    let value: String
 
     // Optional
-    unit: String?
-    trend: Trend?
+    var unit: String?
+    var trend: Trend?
 }
 ```
 
@@ -44,7 +44,7 @@ component {ComponentName} {
 
 ## Usage Example
 
-```pseudocode
+```swift
 {ComponentName}(
     title: "{Parameter}",
     value: "{Value}",

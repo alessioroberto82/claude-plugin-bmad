@@ -38,6 +38,16 @@ Available templates:
 
 Ask the user: "Which template do you want to use?"
 
+### Step 1b: Select Template Variant
+
+After the user selects a template, check for domain-specific variants:
+
+1. Detect domain using standard domain detection (marker files in current directory)
+2. Check if a variant exists: `{template-name}-{domain}.md` (e.g., `module-architecture-swift.md`)
+3. Check `config.yaml` for a `templates:` override (e.g., `module-architecture: module-architecture-swift`)
+4. Priority: config override > domain variant > base template
+5. If a variant is selected, inform the user: "Using {variant} template for {domain} project."
+
 ### Step 2: Get Target Module/Feature
 
 Ask the user: "Which module or feature do you want to generate documentation for?"
@@ -60,7 +70,7 @@ For the target module:
 ### Step 5: Analyze Code and Git
 
 For the target module:
-- Extract Swift declarations (classes, structs, protocols, methods)
+- Extract code declarations (classes, types, interfaces, functions)
 - Run git analysis:
   - `git shortlog -s -n -- {module_path}` for contributors
   - `git log --oneline -- {module_path}` for commit history
@@ -110,7 +120,7 @@ Report: "Document saved to: {path}"
 |---------|--------|
 | `{Module Name}` | User input |
 | `{Capability N}` | Code analysis |
-| `{ComponentName}` | Swift declarations |
+| `{ComponentName}` | Code declarations |
 | `{Trigger}`, `{What Happens}` | Code flow analysis |
 | `{AUTO:date}` | Current date |
 | `{AUTO:contributors}` | git shortlog |

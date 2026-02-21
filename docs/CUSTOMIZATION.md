@@ -48,11 +48,11 @@ agents:
     context_files:
       - docs/ARCHITECTURE.md
     extra_instructions: |
-      This project uses MVVM+C with Combine.
+      This project uses a layered architecture with dependency injection.
 
   bmad-impl:
     extra_instructions: |
-      Use Swift 6 strict concurrency.
+      Follow project coding standards and existing conventions.
 ```
 
 See `plugin/resources/templates/config-example.yaml` for a full example with all available options.
@@ -163,15 +163,15 @@ To add a new role to the greenfield orchestrator:
 
 > This section is for developers who want to connect BMAD roles to external services via MCP (Model Context Protocol).
 
-Roles reference MCP tools (Linear, Cupertino, claude-mem) but degrade gracefully if unavailable. To configure:
+Roles reference MCP tools (Linear, claude-mem, and domain-specific servers) but degrade gracefully if unavailable. To configure:
 
 - **Linear**: Set up Linear MCP server in Claude Code settings
-- **Cupertino**: Set up Cupertino MCP server for Apple docs
 - **claude-mem**: Install claude-mem plugin for cross-session memory
+- **Domain-specific tools**: Configured via `deps-manifest.yaml` groups (e.g., Cupertino for iOS, installed automatically by `bmad-init` when domain markers are detected)
 
 Per-project Linear mapping in `config.yaml`:
 ```yaml
 linear:
-  team: "iOS"
+  team: "My Team"
   project: "My Project"
 ```
