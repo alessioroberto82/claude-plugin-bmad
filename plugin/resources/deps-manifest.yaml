@@ -53,6 +53,10 @@ groups:
         install_command: "claude plugin marketplace add swiftui-expert-skill && claude plugin install swiftui-expert@swiftui-expert-skill"
         update_command: "claude plugin marketplace update swiftui-expert-skill && claude plugin update swiftui-expert@swiftui-expert-skill"
         used_by: "arch, impl, ux"
+        suggest_in:
+          arch: "SwiftUI state management and view architecture decisions"
+          impl: "implementing SwiftUI views and components"
+          ux: "UI patterns and platform design guidelines"
 
       - id: swift-lsp
         type: plugin
@@ -73,6 +77,9 @@ groups:
         install_command: "claude plugin marketplace add AvdLee/Swift-Concurrency-Agent-Skill && claude plugin install swift-concurrency@AvdLee/Swift-Concurrency-Agent-Skill"
         update_command: "claude plugin marketplace update AvdLee/Swift-Concurrency-Agent-Skill && claude plugin update swift-concurrency@AvdLee/Swift-Concurrency-Agent-Skill"
         used_by: "arch, impl"
+        suggest_in:
+          arch: "concurrency model, actor isolation, and async/await architecture"
+          impl: "implementing async/await, actors, or Task-based code"
 
       - id: swift-testing-expert
         type: plugin
@@ -83,6 +90,9 @@ groups:
         install_command: "claude plugin marketplace add AvdLee/Swift-Testing-Agent-Skill && claude plugin install swift-testing-expert@AvdLee/Swift-Testing-Agent-Skill"
         update_command: "claude plugin marketplace update AvdLee/Swift-Testing-Agent-Skill && claude plugin update swift-testing-expert@AvdLee/Swift-Testing-Agent-Skill"
         used_by: "qa, impl"
+        suggest_in:
+          qa: "test quality review and Swift Testing patterns"
+          impl: "writing tests with Swift Testing framework"
 
   extras:
     label: "Additional tools"
