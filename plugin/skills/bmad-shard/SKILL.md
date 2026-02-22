@@ -1,9 +1,10 @@
 ---
 name: bmad-shard
 description: Splits large documents (PRD, architecture) into atomic shards for context management. Reduces token usage by 90%. Use when PRD or architecture exceeds 3000 tokens.
-context: same
-agent: general-purpose
 allowed-tools: Read, Write, Grep, Glob, Bash
+metadata:
+  context: same
+  agent: general-purpose
 ---
 
 # BMAD Document Sharding

@@ -1,9 +1,10 @@
 ---
 name: bmad-code-review
 description: "Code Review — Multi-agent PR review with CLAUDE.md compliance. Use on any open pull request."
-context: same
-agent: general-purpose
 allowed-tools: Read, Grep, Glob, Bash(gh issue view:*), Bash(gh search:*), Bash(gh issue list:*), Bash(gh pr comment:*), Bash(gh pr diff:*), Bash(gh pr view:*), Bash(gh pr list:*), Bash(git rev-parse:*), Bash(git log:*), Bash(git blame:*)
+metadata:
+  context: same
+  agent: general-purpose
 ---
 
 # Code Review

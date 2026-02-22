@@ -1,9 +1,10 @@
 ---
 name: bmad-greenfield
 description: Orchestrates full greenfield workflow (init → Scope Clarifier → Prioritizer → Experience Designer → Architecture Owner → Security → Facilitator → Implementer → Quality Guardian). Interactive with human checkpoints at each phase. Optional phases (Experience Designer, Security, Facilitator). Resumable from any checkpoint.
-context: same
-agent: general-purpose
 allowed-tools: Read, Write, Grep, Glob, Bash
+metadata:
+  context: same
+  agent: general-purpose
 ---
 
 # BMAD Greenfield Workflow Orchestrator

@@ -1,9 +1,10 @@
 ---
 name: bmad-scope
 description: Scope Clarifier — Gathers requirements, clarifies scope, breaks down user stories. Use to start a new feature or clarify ambiguous requirements.
-context: fork
-agent: Explore
 allowed-tools: Read, Grep, Glob, Bash
+metadata:
+  context: fork
+  agent: Explore
 ---
 
 # Scope Clarifier
