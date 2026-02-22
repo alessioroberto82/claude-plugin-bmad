@@ -7,7 +7,8 @@ Multi-agent development workflow plugin for Claude Code. 8 holacracy roles with 
 ```
 plugin/
 ├── .claude-plugin/
-│   └── plugin.json                     # Plugin manifest (name, version, author)
+│   ├── plugin.json                     # Plugin manifest (name, version, author)
+│   └── marketplace.json                # Marketplace listing metadata
 ├── commands/
 │   └── bmad.md                         # /bmad status dashboard command
 ├── resources/
@@ -37,6 +38,7 @@ plugin/
     └── bmad-shard/SKILL.md             # Context sharding utility
 docs/
 ├── CUSTOMIZATION.md                    # 8-layer customization guide
+├── GETTING-STARTED.md                  # Quick-start guide for new users
 └── MIGRATION.md                        # Migration from old BMAD-Setup
 ```
 
@@ -89,3 +91,9 @@ allowed-tools: Read, Grep, Glob, Bash
 - **Dependencies are optional**: All dependencies are declared in `deps-manifest.yaml`. `bmad-init` detects missing deps and offers installation. Roles degrade gracefully when dependencies are missing
 - **Templates live in resources**: Document templates go in `plugin/resources/templates/docs/` or `plugin/resources/templates/software/`
 - **Holacracy alignment**: Roles have purposes and accountabilities, not personas. Communication references roles, never personal names. External communication uses team voice, not role voice
+
+## Gotchas
+
+- **Role vs utility skills**: 8 of the 14 skills are holacracy roles. The rest (greenfield, sprint, code-review, triage, init, shard) are orchestrators or utilities — they coordinate roles but aren't roles themselves
+- **marketplace.json is separate from plugin.json**: `plugin.json` is the plugin manifest; `marketplace.json` is for the Claude plugin marketplace listing
+- **Output location**: BMAD never writes to the project directory. All outputs go to `~/.claude/bmad/projects/<project>/`. If a role writes to the repo, that's a bug
