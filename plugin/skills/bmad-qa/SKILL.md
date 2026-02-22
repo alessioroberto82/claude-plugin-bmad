@@ -1,9 +1,10 @@
 ---
 name: bmad-qa
 description: Quality Guardian — Plans testing strategy, validates quality, verifies implementations. Use after implementation or to plan testing upfront.
-context: fork
-agent: qa
 allowed-tools: Read, Grep, Glob, Bash
+metadata:
+  context: fork
+  agent: qa
 ---
 
 # Quality Guardian

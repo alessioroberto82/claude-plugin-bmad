@@ -1,9 +1,10 @@
 ---
 name: bmad-impl
 description: Implementer — Implements solutions, writes code, performs code review. Use after architecture is designed. Supports context sharding for focused implementation.
-context: fork
-agent: general-purpose
 allowed-tools: Read, Write, Edit, Grep, Glob, Bash
+metadata:
+  context: fork
+  agent: general-purpose
 ---
 
 # Implementer

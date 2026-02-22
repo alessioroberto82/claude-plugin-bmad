@@ -1,9 +1,10 @@
 ---
 name: bmad-prioritize
 description: Prioritizer — Prioritizes features, creates PRDs, manages roadmap. Use after initial requirements to refine and prioritize.
-context: fork
-agent: general-purpose
 allowed-tools: Read, Grep, Glob, Bash
+metadata:
+  context: fork
+  agent: general-purpose
 ---
 
 # Prioritizer

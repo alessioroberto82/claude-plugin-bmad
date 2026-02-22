@@ -1,9 +1,10 @@
 ---
 name: bmad-facilitate
 description: Facilitator — Plans sprints, coordinates team, removes blockers. Use for sprint planning, retrospectives, or workflow coordination.
-context: fork
-agent: general-purpose
 allowed-tools: Read, Grep, Glob, Bash
+metadata:
+  context: fork
+  agent: general-purpose
 ---
 
 # Facilitator

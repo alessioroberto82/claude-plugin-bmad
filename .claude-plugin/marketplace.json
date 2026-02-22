@@ -11,7 +11,7 @@
       "name": "bmad",
       "version": "0.1.0",
       "source": "./plugin",
-      "description": "8 named AI agents (Mary, Winston, Amelia, Murat, Sally, John, Bob, Doris) for structured development workflows"
+      "description": "8 holacracy roles for structured development workflows with quality gates and full customization"
     }
   ]
 }
