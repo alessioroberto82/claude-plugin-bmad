@@ -20,6 +20,8 @@ echo "→ Updating marketplace indexes..."
 claude plugin marketplace update claude-plugins-official 2>/dev/null || echo "  ⚠ claude-plugins-official: update failed (may not be registered)"
 claude plugin marketplace update swiftui-expert-skill 2>/dev/null || echo "  ⚠ swiftui-expert-skill: update failed"
 claude plugin marketplace update thedotmack 2>/dev/null || echo "  ⚠ thedotmack: update failed"
+claude plugin marketplace update AvdLee/Swift-Concurrency-Agent-Skill 2>/dev/null || echo "  ⚠ Swift-Concurrency: update failed"
+claude plugin marketplace update AvdLee/Swift-Testing-Agent-Skill 2>/dev/null || echo "  ⚠ Swift-Testing: update failed"
 echo ""
 
 # 2. Plugins — update installed ones
@@ -28,6 +30,8 @@ claude plugin update swift-lsp@claude-plugins-official 2>/dev/null || echo "  �
 claude plugin update swiftui-expert@swiftui-expert-skill 2>/dev/null || echo "  ⚠ swiftui-expert: update failed"
 claude plugin update claude-mem@thedotmack 2>/dev/null || echo "  ⚠ claude-mem: update failed"
 claude plugin update Notion@claude-plugins-official 2>/dev/null || echo "  ⚠ Notion: update failed"
+claude plugin update swift-concurrency@AvdLee/Swift-Concurrency-Agent-Skill 2>/dev/null || echo "  ⚠ swift-concurrency: update failed"
+claude plugin update swift-testing-expert@AvdLee/Swift-Testing-Agent-Skill 2>/dev/null || echo "  ⚠ swift-testing-expert: update failed"
 # code-review, feature-dev, github auto-update (Anthropic official)
 echo ""
 
