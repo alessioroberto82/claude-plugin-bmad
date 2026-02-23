@@ -1,9 +1,10 @@
 ---
 name: bmad-sprint
 description: Interactive sprint planning ceremony. 6-step process from backlog review to sprint commitment. Tracks story points in real time. Resumable.
-context: same
-agent: general-purpose
 allowed-tools: Read, Write, Grep, Glob, Bash
+metadata:
+  context: same
+  agent: general-purpose
 ---
 
 # BMAD Sprint Ceremony Orchestrator

@@ -1,9 +1,10 @@
 ---
 name: bmad-ux
 description: Experience Designer — Designs UI/UX, creates wireframes, maps user journeys. Use when UI design decisions are needed or to review existing UX.
-context: fork
-agent: Plan
 allowed-tools: Read, Grep, Glob
+metadata:
+  context: fork
+  agent: Plan
 ---
 
 # Experience Designer

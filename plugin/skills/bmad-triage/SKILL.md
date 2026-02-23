@@ -1,9 +1,10 @@
 ---
 name: bmad-triage
 description: "Triage — PR review comment handler. Analyzes, triages, and resolves review feedback."
-context: same
-agent: general-purpose
 allowed-tools: Read, Grep, Glob, Write, Edit, Bash(gh api:*), Bash(gh pr view:*), Bash(gh pr list:*), Bash(gh repo view:*), Bash(git remote:*), Bash(git add:*), Bash(git commit:*), Bash(git push), Bash(git rev-parse:*), Bash(git log:*)
+metadata:
+  context: same
+  agent: general-purpose
 ---
 
 # Triage

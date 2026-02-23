@@ -7,7 +7,8 @@ Multi-agent development workflow plugin for Claude Code. 8 holacracy roles with 
 ```
 plugin/
 ├── .claude-plugin/
-│   └── plugin.json                     # Plugin manifest (name, version, author)
+│   ├── plugin.json                     # Plugin manifest (name, version, author)
+│   └── marketplace.json                # Marketplace listing metadata
 ├── commands/
 │   └── bmad.md                         # /bmad status dashboard command
 ├── resources/
@@ -37,7 +38,7 @@ plugin/
     └── bmad-shard/SKILL.md             # Context sharding utility
 docs/
 ├── CUSTOMIZATION.md                    # 8-layer customization guide
-├── GETTING-STARTED.md                  # Non-technical getting started guide
+├── GETTING-STARTED.md                  # Quick-start guide for new users
 └── MIGRATION.md                        # Migration from old BMAD-Setup
 ```
 
@@ -61,9 +62,10 @@ Every role skill follows this structure:
 ---
 name: bmad-<role>
 description: "<Role Name> — <Purpose>."
-context: fork          # fork = isolated subagent | same = main conversation thread
-agent: Explore         # Explore, Plan, qa, or general-purpose
 allowed-tools: Read, Grep, Glob, Bash
+metadata:
+  context: fork        # fork = isolated subagent | same = main conversation thread
+  agent: Explore       # Explore, Plan, qa, or general-purpose
 ---
 ```
 
@@ -94,3 +96,10 @@ allowed-tools: Read, Grep, Glob, Bash
 - **Do not touch for neutralization**: `deps-manifest.yaml`, `bmad-init/SKILL.md`, and `bmad-triage/SKILL.md` contain domain-specific content by design (installer, multi-domain tables). These are correct patterns, not iOS bias
 - **docs/MIGRATION.md**: Contains intentional persona name references (Mary, Winston, etc.) for migration mapping — do not remove
 - **Holacracy alignment**: Roles have purposes and accountabilities, not personas. Communication references roles, never personal names. External communication uses team voice, not role voice
+
+## Gotchas
+
+- **Marketplace frontmatter validation**: The Luscii marketplace CI (`skills-ref`) only allows `name`, `description`, `allowed-tools`, `compatibility`, `license`, and `metadata` as top-level frontmatter fields. `context` and `agent` must go inside `metadata:`. Keep source repo in sync with marketplace
+- **Role vs utility skills**: 8 of the 14 skills are holacracy roles. The rest (greenfield, sprint, code-review, triage, init, shard) are orchestrators or utilities — they coordinate roles but aren't roles themselves
+- **marketplace.json is separate from plugin.json**: `plugin.json` is the plugin manifest; `marketplace.json` is for the Claude plugin marketplace listing
+- **Output location**: BMAD never writes to the project directory. All outputs go to `~/.claude/bmad/projects/<project>/`. If a role writes to the repo, that's a bug

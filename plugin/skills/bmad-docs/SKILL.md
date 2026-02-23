@@ -1,9 +1,10 @@
 ---
 name: bmad-docs
 description: Documentation Steward — Generates project documentation from templates using multi-agent analysis. Interactive 8-step workflow for architecture docs, ADRs, and reusable UI docs.
-context: same
-agent: general-purpose
 allowed-tools: Read, Write, Grep, Glob, Bash
+metadata:
+  context: same
+  agent: general-purpose
 ---
 
 # Documentation Steward

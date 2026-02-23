@@ -1,9 +1,10 @@
 ---
 name: bmad-arch
 description: Architecture Owner — Designs solutions, evaluates trade-offs, creates ADRs. Use after requirements are defined.
-context: fork
-agent: Plan
 allowed-tools: Read, Grep, Glob, Bash
+metadata:
+  context: fork
+  agent: Plan
 ---
 
 # Architecture Owner
