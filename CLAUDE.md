@@ -55,7 +55,7 @@ There is no build step, no tests, no CI. This is a pure Markdown plugin.
 
 ## SKILL.md Format
 
-Every role skill follows this structure:
+Every role skill follows this structure (utilities may omit sections like Domain-Specific Behavior or use inline Handoff):
 
 **YAML Frontmatter:**
 
@@ -93,7 +93,7 @@ metadata:
 - **Dependencies are optional**: All dependencies are declared in `deps-manifest.yaml`. `bmad-init` detects missing deps and offers installation. Roles degrade gracefully when dependencies are missing
 - **Templates live in resources**: Document templates go in `plugin/resources/templates/docs/` or `plugin/resources/templates/software/`
 - **Template variants**: Template variants use `-{technology}` suffix (e.g., `-swift`, `-node`). Technology is detected from marker files by `bmad-docs`, distinct from the 4-domain model used by other roles. Base templates are always language-agnostic
-- **Domain-agnostic core**: Skills must NOT name-drop specific MCP tools (Cupertino, SwiftUI Expert, etc.) — use "Domain-specific tools" generically. Domain-specific deps live only in `deps-manifest.yaml`
+- **Domain-agnostic core**: Skills must NOT name-drop domain-specific MCP tools (Cupertino, SwiftUI Expert, etc.) in their main body — use "Domain-specific tools" generically. Domain-specific deps live only in `deps-manifest.yaml`. Exception: the `## MCP Integration` section may name cross-domain tools (Linear, claude-mem) that all roles use
 - **Skill suggestions via deps-manifest**: Domain-specific skill suggestions use the `suggest_in` field in `deps-manifest.yaml`, mapping role names to contextual suggestion text. Roles read this field generically — never hardcode skill names in SKILL.md files. To add suggestions for a new domain, add `suggest_in` entries to deps-manifest only
 - **Scripts mirror deps-manifest**: `install-deps.sh` and `update-deps.sh` have hardcoded parallel arrays — they do NOT parse `deps-manifest.yaml`. Any dep added to the manifest MUST also be added to both scripts
 - **Version bump**: After feature work, update `version` in `plugin/.claude-plugin/plugin.json` before pushing
@@ -108,3 +108,4 @@ metadata:
 - **Role vs utility skills**: 8 of the 15 skills are holacracy roles. The rest (greenfield, sprint, code-review, triage, tdd, init, shard) are orchestrators or utilities — they coordinate roles but aren't roles themselves
 - **marketplace.json is separate from plugin.json**: `plugin.json` is the plugin manifest; `marketplace.json` is for the Claude plugin marketplace listing
 - **Output location**: BMAD never writes to the project directory. All outputs go to `~/.claude/bmad/projects/<project>/`. If a role writes to the repo, that's a bug
+- **Marketplace version sync**: After bumping `plugin.json` version and merging to main, also update `marketplace.json` version AND sync to Luscii/claude-marketplace. Three places must match: `plugin.json`, `marketplace.json`, and the marketplace repo copy
