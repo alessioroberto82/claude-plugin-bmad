@@ -40,13 +40,20 @@ Ask the user: "Which template do you want to use?"
 
 ### Step 1b: Select Template Variant
 
-After the user selects a template, check for domain-specific variants:
+After the user selects a template, check for technology-specific variants:
 
-1. Detect domain using standard domain detection (marker files in current directory)
-2. Check if a variant exists: `{template-name}-{domain}.md` (e.g., `module-architecture-swift.md`)
+1. Detect technology from marker files in the current directory:
+   - `Package.swift`, `*.xcodeproj` → `swift`
+   - `package.json` → `node`
+   - `pom.xml` → `java`
+   - `requirements.txt`, `pyproject.toml` → `python`
+   - `go.mod` → `go`
+   - `Cargo.toml` → `rust`
+2. Check if a variant exists: `{template-name}-{technology}.md` (e.g., `module-architecture-swift.md`)
 3. Check `config.yaml` for a `templates:` override (e.g., `module-architecture: module-architecture-swift`)
-4. Priority: config override > domain variant > base template
-5. If a variant is selected, inform the user: "Using {variant} template for {domain} project."
+4. Priority: config override > technology variant > base template
+5. If a variant is selected, inform the user: "Using {variant} template for {technology} project."
+6. If no technology match or no variant file exists, use the base template.
 
 ### Step 2: Get Target Module/Feature
 

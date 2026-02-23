@@ -89,7 +89,7 @@ allowed-tools: Read, Grep, Glob, Bash
 - **Soul is mandatory**: Every role must reference and follow `plugin/resources/soul.md`
 - **Dependencies are optional**: All dependencies are declared in `deps-manifest.yaml`. `bmad-init` detects missing deps and offers installation. Roles degrade gracefully when dependencies are missing
 - **Templates live in resources**: Document templates go in `plugin/resources/templates/docs/` or `plugin/resources/templates/software/`
-- **Template variants**: Domain-specific template variants use `-{domain}` suffix (e.g., `module-architecture-swift.md`). Base templates are always language-agnostic. `bmad-docs` auto-selects by domain detection
+- **Template variants**: Template variants use `-{technology}` suffix (e.g., `-swift`, `-node`). Technology is detected from marker files by `bmad-docs`, distinct from the 4-domain model used by other roles. Base templates are always language-agnostic
 - **Domain-agnostic core**: Skills must NOT name-drop specific MCP tools (Cupertino, SwiftUI Expert, etc.) — use "Domain-specific tools" generically. Domain-specific deps live only in `deps-manifest.yaml`
 - **Do not touch for neutralization**: `deps-manifest.yaml`, `bmad-init/SKILL.md`, and `bmad-triage/SKILL.md` contain domain-specific content by design (installer, multi-domain tables). These are correct patterns, not iOS bias
 - **docs/MIGRATION.md**: Contains intentional persona name references (Mary, Winston, etc.) for migration mapping — do not remove

@@ -43,7 +43,7 @@ Read from `~/.claude/bmad/projects/{project}/output/`:
 - Screen Wireframes (ASCII art)
 - Interaction Patterns (tap, swipe, navigation)
 - Accessibility Considerations
-- Platform Conventions (HIG compliance)
+- Platform Conventions (design guidelines compliance)
 - Error States and Edge Cases UX
 
 ### Business Strategy
