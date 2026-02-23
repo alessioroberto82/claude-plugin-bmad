@@ -1,6 +1,6 @@
 # BMAD — Dependency Manifest
 # Single source of truth for all optional dependencies.
-# Read by: install-deps.sh, update-deps.sh, bmad-init.
+# Read by: install-deps.sh, update-deps.sh, bmad-init, bmad-arch, bmad-impl, bmad-qa.
 #
 # Override per-project in ~/.claude/bmad/projects/<project>/config.yaml
 # under the "dependencies:" key.
