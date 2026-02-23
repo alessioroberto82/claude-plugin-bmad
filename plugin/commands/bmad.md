@@ -54,6 +54,7 @@ Review:
   /bmad-triage      — Handle review feedback
 
 Utilities:
+  /bmad-tdd   — TDD red-green-refactor enforcer
   /bmad-init  — Set up BMAD for this project
   /bmad-shard — Split large docs for faster processing
 
@@ -81,6 +82,13 @@ Active workflow details:
 ```
 Active workflow: <greenfield/sprint/none>
 Completed steps: <list or N/A>
+```
+
+TDD configuration:
+```
+TDD:
+  Enabled:     <true/false from config.yaml, default: true>
+  Enforcement: <hard/soft from config.yaml, default: hard>
 ```
 
 Check dependency versions: Read `~/.claude/plugins/installed_plugins.json` and check system binaries to show current versions.

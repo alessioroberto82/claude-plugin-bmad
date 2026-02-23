@@ -47,6 +47,7 @@ These run multi-step workflows, guiding you through each phase with decision poi
 | Command | What it does |
 |---|---|
 | `/bmad:bmad-init` | Sets up BMAD for your current project. Run this once per project. Checks for optional tools and offers to install them. |
+| `/bmad:bmad-tdd` | Enforces strict red-green-refactor TDD cycle. Write a failing test, make it pass, refactor. Used standalone or as sub-workflow of the Implementer |
 | `/bmad:bmad-shard` | Splits large documents into smaller pieces (called "shards") so roles can work with just the part they need — reduces token usage by ~90% |
 | `/bmad:bmad` | Shows project status: what phase you're in, what's been done, and what roles are available |
 
@@ -144,6 +145,7 @@ Built-in safety checks prevent the workflow from advancing when something isn't 
 
 - **Security Block**: The greenfield orchestrator won't move to implementation if critical security issues are found
 - **QA Reject Gate**: If the Quality Guardian rejects the implementation, the workflow sends it back to the Implementer for fixes
+- **TDD Compliance**: The Quality Guardian verifies commit history follows the `test(red):` → `feat(green):` → `refactor:` pattern. Hard enforcement blocks merge; soft enforcement warns only
 - **Completeness Check**: The orchestrator verifies output files exist before moving to the next step
 
 ### Context Sharding
@@ -200,7 +202,7 @@ Drop a `.md` in `plugin/resources/templates/docs/` or `software/`.
 
 ### New Feature
 ```
-Scope Clarifier → Prioritizer → [Experience Designer] → Architecture Owner → [Security] → [Facilitator] → Implementer → Quality Guardian
+Scope Clarifier → Prioritizer → [Experience Designer] → Architecture Owner → [Security] → [Facilitator] → Implementer (with TDD) → Quality Guardian
 ```
 Steps in brackets are optional.
 
