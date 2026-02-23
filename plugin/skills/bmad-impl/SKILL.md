@@ -95,8 +95,7 @@ If directory `~/.claude/bmad/projects/{project}/shards/stories/` exists:
 7. **Save implementation notes** to: `~/.claude/bmad/projects/$PROJECT_NAME/output/impl/implementation-notes-{date}.md`
 
 8. **MCP Integration** (if available):
-   - **Cupertino**: Look up Apple APIs and framework documentation during implementation
-   - **SwiftUI Expert**: Reference SwiftUI patterns and best practices
+   - **Domain-specific tools**: If domain-specific MCP tools are available (configured via deps-manifest.yaml), use them to look up framework documentation and platform best practices.
    - **Linear**: Update issue status, comment on implementation progress
    - **claude-mem**: Search for past implementation patterns. Save key decisions at completion.
 

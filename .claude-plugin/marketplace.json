@@ -4,7 +4,7 @@
     "name": "Alessio Roberto"
   },
   "metadata": {
-    "description": "BMAD: Multi-agent development workflow plugin with named holacracy roles"
+    "description": "BMAD: Multi-agent development workflow plugin with holacracy roles, quality gates, and full customization"
   },
   "plugins": [
     {

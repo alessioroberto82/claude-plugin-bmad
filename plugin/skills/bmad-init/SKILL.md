@@ -175,7 +175,7 @@ Domain: <detected-domain>
 Output: ~/.claude/bmad/projects/<project-name>/output/
 
 Dependencies:
-  [ok] claude-mem  [ok] Linear  [--] Cupertino  [ok] SwiftUI Expert
+  <summary of installed/missing from deps-manifest.yaml check>
   Install missing: bash <plugin-root>/resources/scripts/install-deps.sh
   Update all:      bash <plugin-root>/resources/scripts/update-deps.sh
 

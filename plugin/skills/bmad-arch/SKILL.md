@@ -1,6 +1,6 @@
 ---
 name: bmad-arch
-description: Architecture Owner — Designs solutions, evaluates trade-offs, creates ADRs. Use after requirements are defined. Has access to Apple documentation via Cupertino MCP.
+description: Architecture Owner — Designs solutions, evaluates trade-offs, creates ADRs. Use after requirements are defined.
 allowed-tools: Read, Grep, Glob, Bash
 metadata:
   context: fork
@@ -108,8 +108,7 @@ Also check for project config: `~/.claude/bmad/projects/{project}/config.yaml`
 6. **Generate architecture document**: Write to `~/.claude/bmad/projects/$PROJECT_NAME/output/arch/{filename}`
 
 7. **MCP Integration** (if available):
-   - **Cupertino**: Look up Apple frameworks, APIs, and best practices when designing iOS/Swift architecture
-   - **SwiftUI Expert**: Reference SwiftUI patterns for UI architecture decisions
+   - **Domain-specific tools**: If domain-specific MCP tools are available (configured via deps-manifest.yaml), use them to look up framework documentation and platform best practices.
    - **Linear**: Reference project context and link architecture decisions to issues
    - **claude-mem**: Search for past architectural decisions in similar projects. Save key ADRs at completion.
 

@@ -87,19 +87,16 @@ Check dependency versions: Read `~/.claude/plugins/installed_plugins.json` and c
 
 ```
 Dependencies:
-  Plugins:
-    code-review     <version/hash>  (auto-update)
-    feature-dev     <version/hash>  (auto-update)
-    github          <version/hash>  (auto-update)
-    swift-lsp       <version>
-    swiftui-expert  <version>
+  Core:
     claude-mem      <version>
+    Linear          cloud (managed by Claude)
+
+  Extras:
+    bmad-mcp        <version from npm list -g bmad-mcp>
     Notion          <version>
 
-  MCP Servers:
-    bmad-mcp        <version from npm list -g bmad-mcp>
-    cupertino       <version> (brew tap mihaelamj/tap)
-    Linear          cloud (managed by Claude)
+  Domain-Specific (if detected):
+    <list installed domain deps from deps-manifest.yaml>
 
   Local:
     bmad  <version from plugin.json>

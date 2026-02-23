@@ -103,7 +103,7 @@ flowchart TD
 
 ### 1. {ComponentName}
 
-**Location**: `{path}/{ComponentName}.{ext}`
+**Location**: `{path}/{ComponentName}.swift`
 
 {Brief description of what this component does}
 
@@ -119,7 +119,7 @@ flowchart TD
 
 ### 2. {ComponentName}
 
-**Location**: `{path}/{ComponentName}.{ext}`
+**Location**: `{path}/{ComponentName}.swift`
 
 {Brief description}
 
@@ -132,10 +132,10 @@ flowchart TD
 
 Configuration struct for controlling behavior:
 
-```pseudocode
-type {ConfigName} {
-    {property}: {Type}     // {Comment}
-    {property}: {Type}     // {Comment}
+```swift
+struct {ConfigName} {
+    let {property}: {Type}     // {Comment}
+    let {property}: {Type}     // {Comment}
 }
 ```
 
@@ -187,10 +187,10 @@ Triggered by: {trigger conditions}
 
 Errors are tracked via `{ErrorType}` and monitored through {monitoring system}:
 
-```pseudocode
-type {ErrorType} implements {Protocol} {
-    type: String        // {comment}
-    message: String?    // {comment}
+```swift
+struct {ErrorType}: {Protocol} {
+    var type: String        // {comment}
+    var message: String?    // {comment}
 }
 ```
 
