@@ -22,7 +22,7 @@ If you just want to tweak how BMAD works for your project, here are the most com
 | **Role behavior** | Role definitions | `plugin/skills/bmad-<name>/SKILL.md` | Edit SKILL.md |
 | **Templates** | Document templates | `plugin/resources/templates/` | Drop .md file |
 | **New role** | Add a circle member | `plugin/skills/bmad-<name>/SKILL.md` | Create directory + file |
-| **Code review** | PR review with CLAUDE.md compliance | `/bmad-code-review <PR>` | Invoke on any open PR |
+| **Code review** | PR review with CLAUDE.md compliance | `/bmad:bmad-code-review <PR>` | Invoke on any open PR |
 
 ---
 
@@ -53,6 +53,13 @@ agents:
   bmad-impl:
     extra_instructions: |
       Follow project coding standards and existing conventions.
+
+# TDD (Test-Driven Development)
+# Enabled by default. The Implementer enforces red-green-refactor via /bmad-tdd.
+# The Quality Guardian verifies TDD compliance in commit history.
+tdd:
+  enabled: true           # Set to false to disable TDD workflow
+  enforcement: hard       # hard = QA blocks on violation; soft = QA warns only
 ```
 
 See `plugin/resources/templates/config-example.yaml` for a full example with all available options.
@@ -68,9 +75,10 @@ See `plugin/resources/templates/config-example.yaml` for a full example with all
 ---
 name: bmad-<name>
 description: "<Role Name> — <One-line purpose>. <When to use>."
-context: fork
-agent: general-purpose
 allowed-tools: Read, Grep, Glob, Bash
+metadata:
+  context: fork            # fork = isolated subagent | same = main conversation
+  agent: general-purpose   # Explore, Plan, qa, or general-purpose
 ---
 
 # <Role Name>

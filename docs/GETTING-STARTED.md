@@ -97,7 +97,7 @@ The greenfield command runs the entire process from start to finish, with you ma
 /bmad:bmad-greenfield
 ```
 
-This walks through: Scope Clarifier (requirements) → Prioritizer (product plan) → Experience Designer (design) → Architecture Owner (architecture) → Facilitator (sprint planning) → Implementer (implementation) → Quality Guardian (testing). You can skip steps that don't apply.
+This walks through: Scope Clarifier (requirements) → Prioritizer (product plan) → Experience Designer (design) → Architecture Owner (architecture) → Facilitator (sprint planning) → Implementer (implementation with TDD) → Quality Guardian (testing + TDD compliance). You can skip steps that don't apply.
 
 ## Available commands
 
@@ -117,6 +117,7 @@ Every command starts with `/bmad:`. Just type it and press Enter.
 | `/bmad:bmad-sprint` | Run a sprint planning session |
 | `/bmad:bmad-code-review` | Review a pull request |
 | `/bmad:bmad-triage` | Handle review feedback on a pull request |
+| `/bmad:bmad-tdd` | Enforce test-driven development (red-green-refactor cycle) |
 | `/bmad:bmad-shard` | Split large documents into smaller pieces (saves time and cost) |
 | `/bmad:bmad-init` | Set up BMAD for your current project (run once) |
 | `/bmad:bmad` | See project status and what's been done |

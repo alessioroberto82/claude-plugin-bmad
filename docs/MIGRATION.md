@@ -11,7 +11,7 @@ This guide covers migrating from the original BMAD-Setup (global slash commands 
 | `~/.claude/commands/bmad-init.md` | Plugin skill: `/bmad:bmad-init` |
 | `~/.claude/commands/bmad-remove.md` | Not needed (zero footprint by default) |
 | `~/Documents/BMAD-Setup/soul.md` | `plugin/resources/soul.md` |
-| `~/Documents/BMAD-Setup/bmad-section-template.md` | Distributed across 14 SKILL.md files |
+| `~/Documents/BMAD-Setup/bmad-section-template.md` | Distributed across 15 SKILL.md files |
 | Single conversation role-playing | Real role isolation (`context: fork`) |
 | No state persistence | `session-state.json` with pause/resume |
 | No quality gates | P0 blocks + QA reject gates |
@@ -164,6 +164,7 @@ mv ~/Documents/BMAD-Setup ~/Documents/BMAD-Setup-archived
 | `/bmad:bmad-doris` | `/bmad:bmad-docs` |
 | N/A | `/bmad:bmad-sprint` (sprint ceremony) |
 | N/A | `/bmad:bmad-shard` (context sharding) |
+| N/A | `/bmad:bmad-tdd` (TDD enforcement) |
 | N/A | `/bmad:bmad` (status dashboard) |
 
 ## Key Improvements After Migration
@@ -175,3 +176,4 @@ mv ~/Documents/BMAD-Setup ~/Documents/BMAD-Setup-archived
 5. **Team adoption**: `claude plugin install` — no more copying files and editing paths
 6. **Extensibility**: Add a role = create a directory with SKILL.md. Done.
 7. **Holacracy alignment**: Roles have purposes and accountabilities, not personas
+8. **TDD by default**: Red-green-refactor cycle enforced by the Implementer, verified by the Quality Guardian
