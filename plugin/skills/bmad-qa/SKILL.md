@@ -137,15 +137,41 @@ These are suggestions, not blocks — proceed with or without them. If a suggest
    - If P1 issues: verdict is **CONDITIONAL PASS** — fix recommended before merge
    - If only P2/P3: verdict is **PASS**
 
-5. **Code Review Gate**: If verdict is PASS or CONDITIONAL PASS and changes are on a PR branch, automatically recommend `/bmad-code-review` for multi-agent PR review with CLAUDE.md compliance checks before merge.
+5. **TDD Compliance Check**:
+   Read `~/.claude/bmad/projects/{project}/config.yaml` for `tdd` settings.
+   TDD is enabled by default — only skip this check if `tdd.enabled: false`.
 
-6. **Save** to `~/.claude/bmad/projects/$PROJECT_NAME/output/qa/test-report-{date}.md`
+   When TDD is enabled:
+   1. Inspect commit history on current branch:
+      ```bash
+      git log --oneline main..HEAD
+      ```
+   2. For each implementation unit, verify the commit pattern:
+      - `test(red):` commit exists (required)
+      - `feat(green):` commit follows (required)
+      - `refactor:` commit follows (optional — skip allowed)
+   3. Add TDD Compliance section to the test report:
+      ```markdown
+      ## TDD Compliance
 
-7. **MCP Integration** (if available):
+      | Story/Unit | Red | Green | Refactor | Verdict |
+      |---|---|---|---|---|
+      | {description} | ✓ abc1234 | ✓ def5678 | ✓ ghi9012 | PASS |
+      | {description} | ✓ jkl3456 | ✗ missing | — | FAIL |
+      ```
+   4. Apply enforcement:
+      - `tdd.enforcement: hard` (default) + any FAIL → verdict = **REJECT** (P0: TDD cycle violated)
+      - `tdd.enforcement: soft` + any FAIL → add P1 warning, do not override existing verdict
+
+6. **Code Review Gate**: If verdict is PASS or CONDITIONAL PASS and changes are on a PR branch, automatically recommend `/bmad-code-review` for multi-agent PR review with CLAUDE.md compliance checks before merge.
+
+7. **Save** to `~/.claude/bmad/projects/$PROJECT_NAME/output/qa/test-report-{date}.md`
+
+8. **MCP Integration** (if available):
    - **Linear**: Link test results to issues, comment on verification outcomes
    - **claude-mem**: Search for past test patterns. Save test strategy decisions at completion.
 
-8. **Handoff**:
+9. **Handoff**:
    > **Quality Guardian — Complete.**
    > Verdict: **{PASS/CONDITIONAL PASS/REJECT}**
    > Output saved to: `~/.claude/bmad/projects/{project}/output/qa/`
