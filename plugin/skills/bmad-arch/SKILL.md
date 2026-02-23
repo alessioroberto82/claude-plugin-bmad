@@ -56,6 +56,14 @@ Also check for project config: `~/.claude/bmad/projects/{project}/config.yaml`
 - Performance & Scalability considerations
 - Security considerations
 
+**Domain Skill Suggestions**:
+
+Check `${CLAUDE_PLUGIN_ROOT}/resources/deps-manifest.yaml` for domain-specific dependency groups that match the detected project type (e.g., `ios` group when `Package.swift` or `*.xcodeproj` exists). For each dependency in a matching group that has a `suggest_in` entry for this role (`arch`), suggest:
+
+> "Consider invoking `/<dep-id>` for <suggest_in text>"
+
+These are suggestions, not blocks — proceed with or without them. If a suggested skill is not installed, note: "Not installed. Run: `<install_command>` from deps-manifest."
+
 ### Business Strategy
 **Focus**: Process design, workflow, organizational structure
 **Output filename**: `operational-architecture.md`

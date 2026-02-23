@@ -93,6 +93,9 @@ metadata:
 - **Templates live in resources**: Document templates go in `plugin/resources/templates/docs/` or `plugin/resources/templates/software/`
 - **Template variants**: Template variants use `-{technology}` suffix (e.g., `-swift`, `-node`). Technology is detected from marker files by `bmad-docs`, distinct from the 4-domain model used by other roles. Base templates are always language-agnostic
 - **Domain-agnostic core**: Skills must NOT name-drop specific MCP tools (Cupertino, SwiftUI Expert, etc.) — use "Domain-specific tools" generically. Domain-specific deps live only in `deps-manifest.yaml`
+- **Skill suggestions via deps-manifest**: Domain-specific skill suggestions use the `suggest_in` field in `deps-manifest.yaml`, mapping role names to contextual suggestion text. Roles read this field generically — never hardcode skill names in SKILL.md files. To add suggestions for a new domain, add `suggest_in` entries to deps-manifest only
+- **Scripts mirror deps-manifest**: `install-deps.sh` and `update-deps.sh` have hardcoded parallel arrays — they do NOT parse `deps-manifest.yaml`. Any dep added to the manifest MUST also be added to both scripts
+- **Version bump**: After feature work, update `version` in `plugin/.claude-plugin/plugin.json` before pushing
 - **Do not touch for neutralization**: `deps-manifest.yaml`, `bmad-init/SKILL.md`, and `bmad-triage/SKILL.md` contain domain-specific content by design (installer, multi-domain tables). These are correct patterns, not iOS bias
 - **docs/MIGRATION.md**: Contains intentional persona name references (Mary, Winston, etc.) for migration mapping — do not remove
 - **Holacracy alignment**: Roles have purposes and accountabilities, not personas. Communication references roles, never personal names. External communication uses team voice, not role voice
