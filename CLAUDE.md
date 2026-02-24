@@ -5,10 +5,11 @@ Multi-agent development workflow plugin for Claude Code. 15 skills (8 holacracy 
 ## Project Structure
 
 ```
+.claude-plugin/
+└── marketplace.json                    # Marketplace listing metadata
 plugin/
 ├── .claude-plugin/
-│   ├── plugin.json                     # Plugin manifest (name, version, author)
-│   └── marketplace.json                # Marketplace listing metadata
+│   └── plugin.json                     # Plugin manifest (name, version, author)
 ├── commands/
 │   └── bmad.md                         # /bmad status dashboard command
 ├── resources/
