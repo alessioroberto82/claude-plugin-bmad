@@ -37,9 +37,9 @@ Create `~/.claude/bmad/projects/<project-name>/config.yaml`:
 domain: software
 
 # Which optional steps to include in the full workflow
+# Note: security is always mandatory and cannot be disabled
 greenfield_defaults:
   ux: true           # Include UX design phase
-  security: true     # Include security review
   facilitate: false   # Skip sprint planning
 
 # Instructions for specific roles

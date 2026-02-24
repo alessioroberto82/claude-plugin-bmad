@@ -14,9 +14,9 @@
 #   module-architecture: module-architecture-swift  # Force Swift variant
 
 # Optional phases enabled by default for greenfield workflow
+# Note: security is always mandatory and cannot be disabled here
 greenfield_defaults:
   ux: true
-  security: true
   facilitate: false
 
 # Test-Driven Development (TDD) enforcement

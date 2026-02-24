@@ -18,15 +18,14 @@ You are the conductor — you don't play the instruments, you ensure the orchest
 
 ## Workflow Structure
 
-**Base Workflow** (6 mandatory steps):
+**Base Workflow** (7 mandatory steps):
 ```
-init → scope → prioritize → arch → impl → qa
+init → scope → prioritize → arch → security → impl → qa
 ```
 
-**Optional Phases** (3 optional steps):
+**Optional Phases** (2 optional steps):
 ```
 + ux (after prioritize, before arch)
-+ security (after arch, before impl)
 + facilitate (before impl)
 ```
 
@@ -88,10 +87,11 @@ BMAD Greenfield Workflow
 Project: {PROJECT_NAME}
 Domain: {detected domain}
 
+Mandatory phases: Security Review (always included)
+
 Optional phases:
 1. Experience Designer (UX Design) — Include? [y/n]
-2. Security Review — Include? [y/n]
-3. Facilitator (Sprint Planning) — Include? [y/n]
+2. Facilitator (Sprint Planning) — Include? [y/n]
 ```
 
 **Generate step sequence** based on selections.
@@ -111,7 +111,6 @@ Optional phases:
     "completed_steps": ["init"],
     "optional_phases": {
       "ux": true/false,
-      "security": true/false,
       "facilitate": true/false
     },
     "step_sequence": ["init", "scope", "prioritize", ...],
@@ -162,7 +161,7 @@ After completion, type one of:
 | 2 | **Prioritizer** | Prioritize & create PRD | Requirements | `prioritize/PRD.md` |
 | 3* | **Experience Designer** | Design UX | PRD | `ux/ux-design.md` |
 | 4 | **Architecture Owner** | Design architecture | PRD + UX (if available) | `arch/architecture.md` |
-| 5* | **Security Guardian** | Security audit | Architecture | `security/security-audit.md` |
+| 5 | **Security Guardian** | Security audit | Architecture | `security/security-audit.md` |
 | 6* | **Facilitator** | Sprint planning | PRD + Architecture | `facilitate/sprint-plan.md` |
 | 7 | **Implementer** | Implement | Architecture + PRD | Code in repo |
 | 8 | **Quality Guardian** | Test & validate | Requirements + Code | `qa/test-report.md` |
@@ -179,7 +178,7 @@ After completion, type one of:
 3. If file exists: update session-state.json checkpoint, advance to next step
 
 **`skip`**:
-- Only allowed for optional phases (ux, security, facilitate)
+- Only allowed for optional phases (ux, facilitate)
 - If mandatory phase: "This phase is mandatory. Please run the role or type 'exit' to leave the workflow."
 - If optional: record as skipped in session-state, advance
 
@@ -236,7 +235,7 @@ Completed:
 
 ### Gate 1: Security P0 Block
 
-After the security review step (if included):
+After the security review step:
 1. Read `$BASE/output/security/security-audit.md`
 2. If the document contains "P0" severity issues:
    ```
@@ -295,7 +294,7 @@ When all steps are completed:
    | PRD | Prioritizer | ✓ | PRD.md |
    | UX Design | Experience Designer | ✓/skipped | ux-design.md |
    | Architecture | Architecture Owner | ✓ | architecture.md |
-   | Security | Security Guardian | ✓/skipped | security-audit.md |
+   | Security | Security Guardian | ✓ | security-audit.md |
    | Sprint Plan | Facilitator | ✓/skipped | sprint-plan.md |
    | Implementation | Implementer | ✓ | (code in repo) |
    | QA | Quality Guardian | ✓ | test-report.md |
