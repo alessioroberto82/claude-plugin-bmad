@@ -190,10 +190,16 @@ Available roles:
 
 Review:
   /bmad-code-review - Multi-agent PR code review with CLAUDE.md compliance
+  /bmad-triage      - Triage PR review comments
 
 Orchestrators:
   /bmad-greenfield - Full workflow (analysis → QA)
   /bmad-sprint     - Sprint planning ceremony
+
+Utilities:
+  /bmad-tdd        - TDD red-green-refactor cycle
+  /bmad-shard      - Split large documents into shards
+  /bmad-init       - Project initialization (already done)
 
 Start with: /bmad-scope to gather requirements, or /bmad-greenfield for the full workflow.
 ```

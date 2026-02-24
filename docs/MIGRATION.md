@@ -11,8 +11,8 @@ This guide covers migrating from the original BMAD-Setup (global slash commands 
 | `~/.claude/commands/bmad-init.md` | Plugin skill: `/bmad:bmad-init` |
 | `~/.claude/commands/bmad-remove.md` | Not needed (zero footprint by default) |
 | `~/Documents/BMAD-Setup/soul.md` | `plugin/resources/soul.md` |
-| `~/Documents/BMAD-Setup/bmad-section-template.md` | Distributed across 15 SKILL.md files |
-| Single conversation role-playing | Real role isolation (`context: fork`) |
+| `~/Documents/BMAD-Setup/bmad-section-template.md` | Distributed across 16 SKILL.md files |
+| Single conversation role-playing | Real role isolation (`context: fork`) via 16 SKILL.md files |
 | No state persistence | `session-state.json` with pause/resume |
 | No quality gates | P0 blocks + QA reject gates |
 | No token management | Context sharding via `/bmad:bmad-shard` |
@@ -162,6 +162,7 @@ mv ~/Documents/BMAD-Setup ~/Documents/BMAD-Setup-archived
 | `/bmad:bmad-john` | `/bmad:bmad-prioritize` |
 | `/bmad:bmad-bob` | `/bmad:bmad-facilitate` |
 | `/bmad:bmad-doris` | `/bmad:bmad-docs` |
+| N/A | `/bmad:bmad-security` (security audit) |
 | N/A | `/bmad:bmad-sprint` (sprint ceremony) |
 | N/A | `/bmad:bmad-shard` (context sharding) |
 | N/A | `/bmad:bmad-tdd` (TDD enforcement) |

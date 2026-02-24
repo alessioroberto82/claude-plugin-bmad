@@ -33,14 +33,14 @@ This is a settings file that tells BMAD roles how to behave differently for a sp
 Create `~/.claude/bmad/projects/<project-name>/config.yaml`:
 
 ```yaml
-# What kind of project this is (software, business, personal, or general)
+# What kind of project this is (software or general)
 domain: software
 
 # Which optional steps to include in the full workflow
 greenfield_defaults:
-  ux: true          # Include UX design phase
-  security: true    # Include security review
-  facilitate: false  # Skip sprint planning
+  ux: true           # Include UX design phase
+  security: true     # Include security review
+  facilitate: false   # Skip sprint planning
 
 # Instructions for specific roles
 agents:

@@ -73,7 +73,7 @@ Read from `~/.claude/bmad/projects/{project}/output/`:
 9. **Handoff**:
    > **Experience Designer — Complete.**
    > Output saved to: `~/.claude/bmad/projects/{project}/output/ux/{filename}`
-   > Next suggested role: `/bmad-arch` for architecture review, or `/bmad-impl` for implementation.
+   > Next suggested role: `/bmad-arch` for architecture design.
 
 ## BMAD Principles
 - User needs first: design for the user, not for the developer

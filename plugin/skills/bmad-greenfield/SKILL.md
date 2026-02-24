@@ -169,7 +169,7 @@ After completion, type one of:
 
 *Optional steps
 
-**Post-workflow** (after PR is created): Run `/bmad-code-review <PR>` for multi-agent review with CLAUDE.md compliance.
+**Post-workflow** (after PR is created): Run `/bmad:bmad-code-review <PR>` for multi-agent review with CLAUDE.md compliance.
 
 ### User Command Handling
 
@@ -306,7 +306,7 @@ When all steps are completed:
    ## Next Steps
    - [ ] Commit and push changes
    - [ ] Create a pull request
-   - [ ] Run `/bmad-code-review <PR>` for multi-agent review with CLAUDE.md compliance
+   - [ ] Run `/bmad:bmad-code-review <PR>` for multi-agent review with CLAUDE.md compliance
    - [ ] Merge to main branch
    - [ ] Update Linear issues
    ```

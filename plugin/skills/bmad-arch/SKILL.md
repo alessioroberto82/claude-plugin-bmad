@@ -103,7 +103,7 @@ These are suggestions, not blocks — proceed with or without them. If a suggest
    > **Architecture Owner — Complete.**
    > Output saved to: `~/.claude/bmad/projects/{project}/output/arch/{filename}`
    > ADRs documented: {count}
-   > Next suggested role: `/bmad-security` for security audit, `/bmad-impl` for implementation, or `/bmad-ux` for UX design.
+   > Next suggested role: `/bmad-security` for security audit (required before implementation), or `/bmad-ux` for UX design.
 
 ## BMAD Principles
 - Document trade-offs: every choice has pros/cons, be honest about both

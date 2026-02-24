@@ -28,6 +28,7 @@ You don't need to be technical to use BMAD. If you can type a sentence and press
 | **Implementer** | Writes and reviews the actual code |
 | **Quality Guardian** | Makes sure everything works correctly |
 | **Facilitator** | Organizes the work into sprints |
+| **Security Guardian** | Audits security, models threats, checks compliance |
 | **Documentation Steward** | Creates project documentation |
 
 ## Your first conversation
@@ -97,7 +98,7 @@ The greenfield command runs the entire process from start to finish, with you ma
 /bmad:bmad-greenfield
 ```
 
-This walks through: Scope Clarifier (requirements) → Prioritizer (product plan) → Experience Designer (design) → Architecture Owner (architecture) → Facilitator (sprint planning) → Implementer (implementation with TDD) → Quality Guardian (testing + TDD compliance). You can skip steps that don't apply.
+This walks through: Scope Clarifier (requirements) → Prioritizer (product plan) → Experience Designer (design) → Architecture Owner (architecture) → Security Guardian (security audit) → Facilitator (sprint planning) → Implementer (implementation with TDD) → Quality Guardian (testing + TDD compliance). You can skip optional steps.
 
 ## Available commands
 
@@ -112,6 +113,7 @@ Every command starts with `/bmad:`. Just type it and press Enter.
 | `/bmad:bmad-impl` | Implement code |
 | `/bmad:bmad-qa` | Test and validate quality |
 | `/bmad:bmad-facilitate` | Plan sprints and coordinate |
+| `/bmad:bmad-security` | Audit security and model threats |
 | `/bmad:bmad-docs` | Generate documentation |
 | `/bmad:bmad-greenfield` | Run the full workflow start to finish |
 | `/bmad:bmad-sprint` | Run a sprint planning session |

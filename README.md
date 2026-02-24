@@ -124,7 +124,8 @@ BMAD never adds files to your project repository. All outputs are stored in a se
 │   ├── impl/         # Implementation notes
 │   ├── code-review/  # PR review reports
 │   ├── triage/       # Triage learnings
-│   ├── qa/           # Test plans, reports, security audits
+│   ├── qa/           # Test plans, reports
+│   ├── security/     # Security audits
 │   ├── ux/           # UX designs
 │   ├── prioritize/   # PRDs
 │   ├── facilitate/   # Sprint plans

@@ -6,7 +6,7 @@
 # Custom template directory (in addition to bundled templates)
 # templates_dir: /path/to/your/templates/
 
-# Domain override (skip auto-detection)
+# Domain override (skip auto-detection: software or general)
 # domain: software
 
 # Template variant overrides (force a specific template variant)
