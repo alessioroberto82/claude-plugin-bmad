@@ -1,6 +1,7 @@
 ---
 name: bmad-init
 description: Initialize BMAD framework for the current project. Creates output directories in home folder (zero project footprint). Checks and installs optional dependencies. Run once per project.
+allowed-tools: Read, Grep, Glob, Bash
 metadata:
   context: same
 ---

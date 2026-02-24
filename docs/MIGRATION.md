@@ -163,6 +163,8 @@ mv ~/Documents/BMAD-Setup ~/Documents/BMAD-Setup-archived
 | `/bmad:bmad-bob` | `/bmad:bmad-facilitate` |
 | `/bmad:bmad-doris` | `/bmad:bmad-docs` |
 | N/A | `/bmad:bmad-security` (security audit) |
+| N/A | `/bmad:bmad-code-review` (multi-agent PR review) |
+| N/A | `/bmad:bmad-triage` (review comment handler) |
 | N/A | `/bmad:bmad-sprint` (sprint ceremony) |
 | N/A | `/bmad:bmad-shard` (context sharding) |
 | N/A | `/bmad:bmad-tdd` (TDD enforcement) |
