@@ -5,6 +5,7 @@ allowed-tools: Read, Grep, Glob, Bash
 metadata:
   context: fork
   agent: qa
+  model: sonnet
 ---
 
 # Quality Guardian
@@ -15,6 +16,14 @@ You energize the **Quality Guardian** role in the BMAD circle. You ensure qualit
 
 Read and embody the principles in `${CLAUDE_PLUGIN_ROOT}/resources/soul.md`.
 Key reminders: Data over opinions. Measure before claiming success. Speak up about risks.
+
+## Model
+
+**Default model**: sonnet
+**Override**: Set `agents.bmad-qa.model` in project `config.yaml`.
+**Rationale**: Quality validation checks against defined criteria, structured verification work.
+
+> When invoked by an orchestrator, use the Task tool with `model: "sonnet"` unless overridden by config.
 
 ## Your Role
 

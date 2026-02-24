@@ -1,6 +1,6 @@
 ---
 name: bmad-greenfield
-description: Orchestrates full greenfield workflow (init → Scope Clarifier → Prioritizer → Experience Designer → Architecture Owner → Security → Facilitator → Implementer → Quality Guardian). Interactive with human checkpoints at each phase. Optional phases (Experience Designer, Security, Facilitator). Resumable from any checkpoint.
+description: Orchestrates full greenfield workflow (init → Scope Clarifier → Prioritizer → Experience Designer → Architecture Owner → Security → Facilitator → Implementer → Quality Guardian). Interactive with human checkpoints at each phase. Optional phases (Experience Designer, Facilitator). Resumable from any checkpoint.
 allowed-tools: Read, Write, Grep, Glob, Bash
 metadata:
   context: same
@@ -45,6 +45,23 @@ init → scope → prioritize → ux → arch → security → facilitate → im
 Detect the project domain by analyzing files in the current directory:
 - **software**: if common project markers exist (e.g., `package.json`, `requirements.txt`, `go.mod`, `Cargo.toml`, `pom.xml`, `*.xcodeproj`, `Makefile`, `CMakeLists.txt`, `Gemfile`, `build.gradle`)
 - **general**: default if no software indicator found
+
+## Model Routing
+
+Each role runs with a recommended Claude model. The orchestrator passes the `model` parameter when presenting role invocations. Users can override per-project in `config.yaml`.
+
+| Role | Default Model | Rationale |
+|------|--------------|-----------|
+| Scope Clarifier | sonnet | Structured requirements gathering |
+| Prioritizer | sonnet | Feature prioritization |
+| Experience Designer | sonnet | UX design patterns |
+| Architecture Owner | opus | Deep trade-off reasoning |
+| Security Guardian | opus | Adversarial threat modeling |
+| Facilitator | haiku | Lightweight coordination |
+| Implementer | opus | Code generation quality |
+| Quality Guardian | sonnet | Criteria-based validation |
+
+**Config override**: `agents.bmad-{name}.model` in `~/.claude/bmad/projects/{project}/config.yaml`
 
 ---
 
@@ -113,6 +130,16 @@ Optional phases:
       "ux": true/false,
       "facilitate": true/false
     },
+    "model_routing": {
+      "bmad-scope": "sonnet",
+      "bmad-prioritize": "sonnet",
+      "bmad-ux": "sonnet",
+      "bmad-arch": "opus",
+      "bmad-security": "opus",
+      "bmad-facilitate": "haiku",
+      "bmad-impl": "opus",
+      "bmad-qa": "sonnet"
+    },
     "step_sequence": ["init", "scope", "prioritize", ...],
     "checkpoints": [
       {
@@ -135,9 +162,10 @@ For each step in the sequence, follow this protocol:
 
 ```
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Step {N}/{total}: {Role Name}
+Step {N}/{total}: {Role Name} [{model}]
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 Purpose: {What this role will do}
+Model: {opus|sonnet|haiku} (override in config.yaml)
 Input: {What artifacts from previous steps are available}
 Output: {What artifact this role will produce}
 
@@ -155,16 +183,16 @@ After completion, type one of:
 
 ### Role Sequence Detail
 
-| Step | Role | Purpose | Input | Output |
-|---|---|---|---|---|
-| 1 | **Scope Clarifier** | Gather requirements | User description | `scope/requirements.md` |
-| 2 | **Prioritizer** | Prioritize & create PRD | Requirements | `prioritize/PRD.md` |
-| 3* | **Experience Designer** | Design UX | PRD | `ux/ux-design.md` |
-| 4 | **Architecture Owner** | Design architecture | PRD + UX (if available) | `arch/architecture.md` |
-| 5 | **Security Guardian** | Security audit | Architecture | `security/security-audit.md` |
-| 6* | **Facilitator** | Sprint planning | PRD + Architecture | `facilitate/sprint-plan.md` |
-| 7 | **Implementer** | Implement | Architecture + PRD | Code in repo |
-| 8 | **Quality Guardian** | Test & validate | Requirements + Code | `qa/test-report.md` |
+| Step | Role | Model | Purpose | Input | Output |
+|---|---|---|---|---|---|
+| 1 | **Scope Clarifier** | sonnet | Gather requirements | User description | `scope/requirements.md` |
+| 2 | **Prioritizer** | sonnet | Prioritize & create PRD | Requirements | `prioritize/PRD.md` |
+| 3* | **Experience Designer** | sonnet | Design UX | PRD | `ux/ux-design.md` |
+| 4 | **Architecture Owner** | opus | Design architecture | PRD + UX (if available) | `arch/architecture.md` |
+| 5 | **Security Guardian** | opus | Security audit | Architecture | `security/security-audit.md` |
+| 6* | **Facilitator** | haiku | Sprint planning | PRD + Architecture | `facilitate/sprint-plan.md` |
+| 7 | **Implementer** | opus | Implement | Architecture + PRD | Code in repo |
+| 8 | **Quality Guardian** | sonnet | Test & validate | Requirements + Code | `qa/test-report.md` |
 
 *Optional steps
 

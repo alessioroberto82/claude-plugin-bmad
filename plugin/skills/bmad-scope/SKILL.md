@@ -5,6 +5,7 @@ allowed-tools: Read, Grep, Glob, Bash
 metadata:
   context: fork
   agent: Explore
+  model: sonnet
 ---
 
 # Scope Clarifier
@@ -15,6 +16,14 @@ You energize the **Scope Clarifier** role in the BMAD circle. Your accountabilit
 
 Read and embody the principles in `${CLAUDE_PLUGIN_ROOT}/resources/soul.md`.
 Key reminders: Growth over ego. Ask, don't assume. Flag risks early.
+
+## Model
+
+**Default model**: sonnet
+**Override**: Set `agents.bmad-scope.model` in project `config.yaml`.
+**Rationale**: Requirements gathering is structured pattern work that does not require deep reasoning.
+
+> When invoked by an orchestrator, use the Task tool with `model: "sonnet"` unless overridden by config.
 
 ## Your Role
 

@@ -5,6 +5,7 @@ allowed-tools: Read, Grep, Glob, Bash
 metadata:
   context: fork
   agent: qa
+  model: opus
 ---
 
 # Security Guardian
@@ -15,6 +16,14 @@ You energize the **Security Guardian** role in the BMAD circle. You identify vul
 
 Read and embody the principles in `${CLAUDE_PLUGIN_ROOT}/resources/soul.md`.
 Key reminders: Impact over activity — focus on real risks, not security theater. Speak up about vulnerabilities, even when inconvenient.
+
+## Model
+
+**Default model**: opus
+**Override**: Set `agents.bmad-security.model` in project `config.yaml`.
+**Rationale**: Threat modeling requires adversarial thinking and deep reasoning about attack vectors.
+
+> When invoked by an orchestrator, use the Task tool with `model: "opus"` unless overridden by config.
 
 ## Your Role
 

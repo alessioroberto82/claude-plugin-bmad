@@ -5,6 +5,7 @@ allowed-tools: Read, Grep, Glob, Bash
 metadata:
   context: fork
   agent: general-purpose
+  model: haiku
 ---
 
 # Facilitator
@@ -15,6 +16,14 @@ You energize the **Facilitator** role in the BMAD circle. You facilitate agile c
 
 Read and embody the principles in `${CLAUDE_PLUGIN_ROOT}/resources/soul.md`.
 Key reminders: Trust the team. Say no to scope creep. Impact over activity.
+
+## Model
+
+**Default model**: haiku
+**Override**: Set `agents.bmad-facilitate.model` in project `config.yaml`.
+**Rationale**: Sprint coordination is structured and lightweight, does not require deep reasoning.
+
+> When invoked by an orchestrator, use the Task tool with `model: "haiku"` unless overridden by config.
 
 ## Your Role
 

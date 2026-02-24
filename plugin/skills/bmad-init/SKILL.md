@@ -4,6 +4,7 @@ description: Initialize BMAD framework for the current project. Creates output d
 allowed-tools: Read, Grep, Glob, Bash
 metadata:
   context: same
+  agent: general-purpose
 ---
 
 # BMAD Init

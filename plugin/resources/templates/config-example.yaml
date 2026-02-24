@@ -28,9 +28,19 @@ tdd:
   enabled: true           # Enable TDD workflow (default: true)
   enforcement: hard       # hard = QA blocks on violation; soft = QA warns only
 
-# Role overrides — add extra context or instructions per role
+# Model routing — assign Claude model per role (opus, sonnet, haiku)
+# Roles with context: fork run as subagents and respect this setting.
+# Roles with context: same inherit the session model (setting is ignored).
+# Default: inherits from session (usually opus).
+#
+# Role overrides — add model, extra context, or instructions per role
 agents:
+  bmad-scope:
+    model: sonnet
+  bmad-prioritize:
+    model: sonnet
   bmad-arch:
+    model: opus
     # Additional files to read for architectural context
     context_files:
       - docs/ARCHITECTURE.md
@@ -39,23 +49,32 @@ agents:
     extra_instructions: |
       This project uses a layered architecture with dependency injection.
       All new modules must follow the existing pattern.
-
+  bmad-security:
+    model: opus
+  bmad-facilitate:
+    model: haiku
   bmad-impl:
+    model: opus
     context_files:
       - src/
     extra_instructions: |
       Follow project coding standards and existing conventions.
       All public APIs must have documentation comments.
-
   bmad-qa:
+    model: sonnet
     extra_instructions: |
       Minimum test coverage target: 80%.
       Focus on integration tests for data flows.
-
   bmad-ux:
+    model: sonnet
     extra_instructions: |
       Follow platform design guidelines.
       Support accessibility features.
+
+# Code review agent models (bmad-code-review spawns 2 parallel agents)
+code_review:
+  agent_a_model: sonnet    # Standards & Bugs
+  agent_b_model: sonnet    # Security
 
 # Linear project mapping (for MCP integration)
 # linear:

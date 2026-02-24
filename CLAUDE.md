@@ -40,6 +40,8 @@ docs/                                  # CUSTOMIZATION.md, GETTING-STARTED.md, M
 
 **TDD**: On by default. `bmad-impl` uses `/bmad-tdd` for red-green-refactor. `bmad-qa` verifies via commit history. Disable: `tdd.enabled: false` in config.yaml. Enforcement: `hard` (blocks) or `soft` (warns).
 
+**Model routing**: Fork-context skills specify a default model (opus/sonnet/haiku) in frontmatter `metadata.model`. Orchestrators pass the `model` parameter to Task tool. Override per-project in `config.yaml` under `agents.<name>.model`. Same-context skills inherit the session model.
+
 **Holacracy**: Roles have purposes, not personas. Reference roles, not names. External comms use team voice.
 
 ## Gotchas
