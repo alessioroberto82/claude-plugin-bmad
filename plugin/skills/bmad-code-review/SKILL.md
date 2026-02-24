@@ -1,7 +1,7 @@
 ---
 name: bmad-code-review
 description: "Code Review — Multi-agent PR review with CLAUDE.md compliance. Use on any open pull request."
-allowed-tools: Read, Grep, Glob, Task, Bash(gh issue view:*), Bash(gh search:*), Bash(gh issue list:*), Bash(gh pr comment:*), Bash(gh pr diff:*), Bash(gh pr view:*), Bash(gh pr list:*), Bash(git rev-parse:*), Bash(git log:*), Bash(git blame:*), Bash(git show:*), Bash(mkdir:*)
+allowed-tools: Read, Grep, Glob, Task, Bash(gh issue view:*), Bash(gh search:*), Bash(gh issue list:*), Bash(gh pr comment:*), Bash(gh pr diff:*), Bash(gh pr view:*), Bash(gh pr list:*), Bash(git rev-parse:*), Bash(git log:*), Bash(git blame:*), Bash(git show:*), Bash(mkdir ~/.claude/bmad/*)
 metadata:
   context: same
   agent: general-purpose
