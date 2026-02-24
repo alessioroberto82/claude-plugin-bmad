@@ -39,7 +39,9 @@ Gather context directly (no subagent needed):
 
 ### 2. Parallel Review (2 Agents)
 
-Launch **2 parallel Sonnet agents in a single message**. Each receives the diff and CLAUDE.md standards. Each must return issues with: file, line range, description, category, and a self-assessed confidence score (0-100).
+Launch **2 parallel agents in a single message** (default: sonnet; override via `code_review.agent_a_model` and `code_review.agent_b_model` in config.yaml). Each receives the diff and CLAUDE.md standards. Each must return issues with: file, line range, description, category, and a self-assessed confidence score (0-100).
+
+**Model selection**: Pass `model: "sonnet"` (or config override) to each Task tool invocation. Use Sonnet for both agents by default — code review is pattern-matching work that doesn't require Opus-level reasoning.
 
 **Confidence scale** (each agent scores its own findings):
 - **0-25**: Uncertain, might be false positive or pre-existing
