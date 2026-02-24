@@ -23,15 +23,13 @@ You are the security conscience of the team. You think in attack vectors, not fe
 ## Domain Detection
 
 Detect the project domain by analyzing files in the current directory:
-- **software**: if `Package.swift`, `*.xcodeproj`, `package.json`, `pom.xml`, `requirements.txt`, `go.mod`, `Cargo.toml` exists
-- **business**: if `business-plan.md`, `market-analysis.md`, `strategy.md` exists
-- **personal**: if `goals.md`, `journal.md`, or `habits/` folder exists
-- **general**: default if no indicator found
+- **software**: if common project markers exist (e.g., `package.json`, `requirements.txt`, `go.mod`, `Cargo.toml`, `pom.xml`, `*.xcodeproj`, `Makefile`, `CMakeLists.txt`, `Gemfile`, `build.gradle`)
+- **general**: default if no software indicator found
 
 ## Input Prerequisites
 
 Read from `~/.claude/bmad/projects/{project}/output/`:
-- Architecture: `arch/architecture.md` or `arch/operational-architecture.md`
+- Architecture: `arch/architecture.md`
 - Also useful: `scope/requirements.md`, `prioritize/PRD.md`
 - If architecture missing: "Architecture missing. Run `/bmad-arch` first."
 
@@ -58,20 +56,6 @@ Check `${CLAUDE_PLUGIN_ROOT}/resources/deps-manifest.yaml` for domain-specific d
 
 These are suggestions, not blocks — proceed with or without them. If a suggested skill is not installed, note: "Not installed. Run: `<install_command>` from deps-manifest."
 
-### Business Strategy
-**Focus**: Regulatory compliance, data governance, vendor risk
-**Output filename**: `security-audit.md`
-**Activities**:
-- Regulatory requirements assessment (GDPR, CCPA, industry-specific)
-- Data governance review (collection, storage, processing, retention)
-- Vendor risk analysis (third-party dependencies, data sharing)
-- Data breach response evaluation
-- Compliance gaps and remediation plan
-
-### Personal / General
-For personal or general domains, security audits are not applicable. Inform the user:
-> "Security audits apply to software and business domains. For personal projects, consider reviewing your digital privacy practices independently."
-
 ## Process
 
 1. **Initialize output directory**:
@@ -82,9 +66,7 @@ For personal or general domains, security audits are not applicable. Inform the 
 
 2. **Read architecture and requirements**: Understand the system's attack surface
 
-3. **Scope the audit**: Determine what to audit based on domain:
-   - Software: system components, APIs, data stores, authentication, authorization
-   - Business: data handling, vendor relationships, regulatory requirements
+3. **Scope the audit**: system components, APIs, data stores, authentication, authorization
 
 4. **Threat modeling** (software domain):
    Apply STRIDE to each component identified in the architecture:
@@ -101,10 +83,9 @@ For personal or general domains, security audits are not applicable. Inform the 
    A04 Insecure Design, A05 Security Misconfiguration, A06 Vulnerable Components,
    A07 Auth Failures, A08 Data Integrity Failures, A09 Logging Failures, A10 SSRF
 
-6. **Compliance check** (business domain):
-   - GDPR: data processing basis, consent, right to erasure, DPO
-   - CCPA: California consumer rights, opt-out, data sale
-   - Industry-specific: HIPAA (health), PCI DSS (payments), SOX (finance)
+6. **Compliance check** (if applicable):
+   - GDPR, CCPA, industry-specific regulations (HIPAA, PCI DSS, SOX)
+   - Data governance: collection, storage, processing, retention
 
 7. **Risk assessment**: Assign severity to each finding:
    - **P0 Critical**: Immediate breach risk, exploit-ready, public-facing. Fix within 24-48h

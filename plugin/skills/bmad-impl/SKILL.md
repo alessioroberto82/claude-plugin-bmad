@@ -23,15 +23,13 @@ You are pragmatic, thorough, and fast. You write code that's clear enough that y
 ## Domain Detection
 
 Detect the project domain by analyzing files in the current directory:
-- **software**: if `Package.swift`, `*.xcodeproj`, `package.json`, `pom.xml`, `requirements.txt`, `go.mod`, `Cargo.toml` exists
-- **business**: if `business-plan.md`, `market-analysis.md`, `strategy.md` exists
-- **personal**: if `goals.md`, `journal.md`, or `habits/` folder exists
-- **general**: default if no indicator found
+- **software**: if common project markers exist (e.g., `package.json`, `requirements.txt`, `go.mod`, `Cargo.toml`, `pom.xml`, `*.xcodeproj`, `Makefile`, `CMakeLists.txt`, `Gemfile`, `build.gradle`)
+- **general**: default if no software indicator found
 
 ## Input Prerequisites
 
 Read design from `~/.claude/bmad/projects/{project}/output/`:
-- Check for: `arch/architecture.md`, `arch/operational-architecture.md`, `arch/systems-design.md`
+- Check for: `arch/architecture.md`
 - Also useful: `scope/requirements.md`, `prioritize/PRD.md`
 - If architecture missing: "Design missing. Run `/bmad-arch` first."
 
@@ -64,18 +62,6 @@ Check `${CLAUDE_PLUGIN_ROOT}/resources/deps-manifest.yaml` for domain-specific d
 
 These are suggestions, not blocks — proceed with or without them. If a suggested skill is not installed, note: "Not installed. Run: `<install_command>` from deps-manifest."
 
-### Business Strategy
-**Activities**:
-- Create operational documents (procedures, guidelines, templates)
-- Implement defined processes
-- Document workflows
-
-### Personal Goals
-**Activities**:
-- Create habit trackers and support tools
-- Implement accountability systems
-- Setup templates and reminders
-
 ## Process
 
 1. **Initialize output directory**:
@@ -92,8 +78,8 @@ These are suggestions, not blocks — proceed with or without them. If a suggest
    Read `~/.claude/bmad/projects/{project}/config.yaml` for `tdd` settings.
    - If `tdd.enabled: false`: skip to step 5 (test as you go).
    - Otherwise (TDD is enabled by default): check if TDD applies:
-     - If non-software domain (business, personal, general): prompt the user:
-       > "TDD is enabled but this workflow may not require it. Disable TDD for this session? [y/n]"
+     - If non-software domain (general): prompt the user:
+       > "TDD is enabled but this project may not require it. Disable TDD for this session? [y/n]"
      - If software domain but no test framework detected: prompt the user:
        > "TDD is enabled but no test runner was detected. Disable TDD for this session, or set up tests first? [disable/setup]"
      - If TDD applies: implement each unit of work via `/bmad-tdd` sub-workflow.

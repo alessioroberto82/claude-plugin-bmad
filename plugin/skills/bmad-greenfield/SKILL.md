@@ -44,10 +44,8 @@ init → scope → prioritize → ux → arch → security → facilitate → im
 ## Domain Detection
 
 Detect the project domain by analyzing files in the current directory:
-- **software**: if `Package.swift`, `*.xcodeproj`, `package.json`, `pom.xml`, `requirements.txt`, `go.mod`, `Cargo.toml` exists
-- **business**: if `business-plan.md`, `market-analysis.md`, `strategy.md` exists
-- **personal**: if `goals.md`, `journal.md`, or `habits/` folder exists
-- **general**: default if no indicator found
+- **software**: if common project markers exist (e.g., `package.json`, `requirements.txt`, `go.mod`, `Cargo.toml`, `pom.xml`, `*.xcodeproj`, `Makefile`, `CMakeLists.txt`, `Gemfile`, `build.gradle`)
+- **general**: default if no software indicator found
 
 ---
 
@@ -297,7 +295,7 @@ When all steps are completed:
    | PRD | Prioritizer | ✓ | PRD.md |
    | UX Design | Experience Designer | ✓/skipped | ux-design.md |
    | Architecture | Architecture Owner | ✓ | architecture.md |
-   | Security | Quality Guardian | ✓/skipped | security-audit.md |
+   | Security | Security Guardian | ✓/skipped | security-audit.md |
    | Sprint Plan | Facilitator | ✓/skipped | sprint-plan.md |
    | Implementation | Implementer | ✓ | (code in repo) |
    | QA | Quality Guardian | ✓ | test-report.md |

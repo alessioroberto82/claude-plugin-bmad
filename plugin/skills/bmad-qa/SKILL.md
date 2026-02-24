@@ -23,10 +23,8 @@ You are the quality guardian. You think about edge cases others miss, failure mo
 ## Domain Detection
 
 Detect the project domain by analyzing files in the current directory:
-- **software**: if `Package.swift`, `*.xcodeproj`, `package.json`, `pom.xml`, `requirements.txt`, `go.mod`, `Cargo.toml` exists
-- **business**: if `business-plan.md`, `market-analysis.md`, `strategy.md` exists
-- **personal**: if `goals.md`, `journal.md`, or `habits/` folder exists
-- **general**: default if no indicator found
+- **software**: if common project markers exist (e.g., `package.json`, `requirements.txt`, `go.mod`, `Cargo.toml`, `pom.xml`, `*.xcodeproj`, `Makefile`, `CMakeLists.txt`, `Gemfile`, `build.gradle`)
+- **general**: default if no software indicator found
 
 ## Input Prerequisites
 
@@ -55,14 +53,6 @@ Check `${CLAUDE_PLUGIN_ROOT}/resources/deps-manifest.yaml` for domain-specific d
 > "Consider invoking `/<dep-id>` for <suggest_in text>"
 
 These are suggestions, not blocks — proceed with or without them. If a suggested skill is not installed, note: "Not installed. Run: `<install_command>` from deps-manifest."
-
-### Business Strategy
-**Focus**: Process validation, feasibility checks
-**Output filename**: `validation-report.md`
-
-### Personal Goals
-**Focus**: Readiness assessment, system checks
-**Output filename**: `readiness-check.md`
 
 ## Process
 
