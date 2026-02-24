@@ -1,6 +1,6 @@
 ---
 name: bmad-qa
-description: Quality Guardian — Plans testing strategy, validates quality, verifies implementations. Use after implementation or to plan testing upfront.
+description: Quality Guardian — Plans testing strategy, validates quality, verifies implementations. Use after implementation or to plan testing upfront. Use with 'lint' argument to check plugin internal consistency.
 allowed-tools: Read, Grep, Glob, Bash
 metadata:
   context: fork
@@ -55,6 +55,131 @@ Check `${CLAUDE_PLUGIN_ROOT}/resources/deps-manifest.yaml` for domain-specific d
 These are suggestions, not blocks — proceed with or without them. If a suggested skill is not installed, note: "Not installed. Run: `<install_command>` from deps-manifest."
 
 ## Process
+
+### Mode Selection
+
+- If `$ARGUMENTS` contains "lint": run **Plugin Lint Mode**
+- If implementation exists and needs verification: run **Verification Mode**
+- Otherwise: run **Test Planning Mode**
+
+### Plugin Lint Mode
+
+Run when invoked with `/bmad:bmad-qa lint`. Validates internal consistency of the BMAD plugin itself. No external dependencies needed — reads only plugin files and docs.
+
+1. **Initialize output directory**:
+   ```bash
+   PROJECT_NAME=$(basename "$PWD" | tr '[:upper:]' '[:lower:]')
+   mkdir -p ~/.claude/bmad/projects/$PROJECT_NAME/output/qa
+   ```
+
+2. **Discover skill inventory**: Glob `plugin/skills/bmad-*/SKILL.md` to get the authoritative list of skills. This is the source of truth for all checks.
+
+3. **Run checks** (parallelize where possible):
+
+   **Check 1 — Skill Registry Sync**
+   Verify every skill appears in all hub files:
+   - `README.md` (The Circle + Review + Orchestrators + Utilities tables)
+   - `plugin/commands/bmad.md` (dashboard)
+   - `plugin/skills/bmad-init/SKILL.md` (confirmation output)
+   - `plugin/skills/bmad-greenfield/SKILL.md` (role sequence table)
+   - `docs/GETTING-STARTED.md` (circle table + commands table)
+   - `docs/MIGRATION.md` (command mapping table)
+   Flag: missing entries = P1, extra/stale entries = P1
+
+   **Check 2 — Frontmatter Validation**
+   For each SKILL.md, verify:
+   - Has `name:` matching directory name (`bmad-<name>`)
+   - Has `description:`
+   - Has `metadata:` with `context:` (fork or same)
+   - `allowed-tools:` present (except utilities that don't need them)
+   - Only allowed top-level fields per marketplace rules: `name`, `description`, `allowed-tools`, `compatibility`, `license`, `metadata`
+   Flag: missing required field = P1, forbidden field = P1
+
+   **Check 3 — Command Prefix**
+   Grep all `.md` files for bare `/bmad-<name>` references that should use `/bmad:bmad-<name>`:
+   - In user-facing text (handoff messages, error messages, post-workflow instructions)
+   - Exception: inside `${CLAUDE_PLUGIN_ROOT}` paths, dependency script paths, and config key names (e.g., `bmad-arch:` in YAML)
+   - Exception: prose references in skill body where the skill itself is providing the command format to Claude (e.g., "Run `/bmad-scope` first")
+   Flag: bare command in user-facing output = P2
+
+   **Check 4 — Workflow Gate Integrity**
+   Verify the security gate is respected:
+   - `bmad-arch` handoff must NOT suggest `/bmad-impl` directly
+   - `bmad-ux` handoff must NOT suggest `/bmad-impl` directly
+   - `bmad-greenfield` must have security step between arch and impl in the sequence
+   - `bmad-greenfield` must have Security P0 Block gate
+   Flag: gate bypass = P0
+
+   **Check 5 — Documentation Sync**
+   Verify docs reflect current state:
+   - `docs/GETTING-STARTED.md` circle table matches skill inventory (roles only)
+   - `docs/CUSTOMIZATION.md` domain values are only `software` or `general`
+   - `docs/MIGRATION.md` skill count matches actual count
+   - `README.md` output directory tree matches `bmad-init` mkdir list
+   Flag: stale doc = P1
+
+   **Check 6 — Version Alignment**
+   - `plugin/.claude-plugin/plugin.json` version matches `.claude-plugin/marketplace.json` version
+   Flag: mismatch = P1
+
+   **Check 7 — Domain-Agnostic Core**
+   Grep SKILL.md files for domain-specific tool names (e.g., "Cupertino", "SwiftUI Expert", "Swift LSP") outside allowed sections:
+   - Allowed: `## MCP Integration` sections, `deps-manifest.yaml`, `bmad-init`, `bmad-triage`
+   - Forbidden: anywhere else in SKILL.md body
+   Flag: domain leak = P1
+
+   **Check 8 — Deps Manifest Sync**
+   Compare `plugin/resources/deps-manifest.yaml` entries against:
+   - `plugin/resources/scripts/install-deps.sh` hardcoded arrays
+   - `plugin/resources/scripts/update-deps.sh` hardcoded arrays
+   Flag: missing/extra entry = P1
+
+4. **Generate lint report**:
+   ```markdown
+   # Plugin Lint Report
+
+   **Date**: {date}
+   **Plugin version**: {version from plugin.json}
+   **Skills found**: {count}
+   **Checks run**: 8
+
+   ## Summary
+   - P0: {count} (gate bypass)
+   - P1: {count} (misleading/broken)
+   - P2: {count} (cosmetic)
+
+   ## Findings
+
+   ### P0 — Critical
+   | # | Check | File | Line(s) | Issue | Suggested Fix |
+   |---|---|---|---|---|---|
+
+   ### P1 — Important
+   | # | Check | File | Line(s) | Issue | Suggested Fix |
+   |---|---|---|---|---|---|
+
+   ### P2 — Cosmetic
+   | # | Check | File | Line(s) | Issue | Suggested Fix |
+   |---|---|---|---|---|---|
+
+   ## Verdict: {PASS / PASS with warnings / FAIL}
+   ```
+
+5. **Verdict**:
+   - Any P0 → **FAIL**
+   - P1 but no P0 → **PASS with warnings**
+   - Only P2 or clean → **PASS**
+
+6. **Save** to `~/.claude/bmad/projects/$PROJECT_NAME/output/qa/plugin-lint-{date}.md`
+
+7. **Handoff**:
+   > **Quality Guardian — Plugin Lint Complete.**
+   > Verdict: **{PASS/PASS with warnings/FAIL}**
+   > Issues: {P0 count} critical, {P1 count} important, {P2 count} cosmetic
+   > Output saved to: `~/.claude/bmad/projects/{project}/output/qa/plugin-lint-{date}.md`
+   > {If FAIL: "P0 issues must be resolved before release."}
+
+---
 
 ### Test Planning Mode (before implementation)
 
