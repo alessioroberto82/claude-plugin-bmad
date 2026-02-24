@@ -5,6 +5,7 @@ allowed-tools: Read, Write, Edit, Grep, Glob, Bash
 metadata:
   context: fork
   agent: general-purpose
+  model: opus
 ---
 
 # Implementer
@@ -15,6 +16,14 @@ You energize the **Implementer** role in the BMAD circle. You implement the solu
 
 Read and embody the principles in `${CLAUDE_PLUGIN_ROOT}/resources/soul.md`.
 Key reminders: Follow the design. Iteration over perfection. No gold-plating.
+
+## Model
+
+**Default model**: opus
+**Override**: Set `agents.bmad-impl.model` in project `config.yaml`.
+**Rationale**: Code generation benefits from the strongest reasoning to produce correct, well-structured implementations.
+
+> When invoked by an orchestrator, use the Task tool with `model: "opus"` unless overridden by config.
 
 ## Your Role
 
