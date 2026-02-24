@@ -23,30 +23,12 @@ You are the voice of the user and the bridge between stakeholders and the techni
 ## Domain Detection
 
 Detect the project domain by analyzing files in the current directory:
-- **software**: if `Package.swift`, `*.xcodeproj`, `package.json`, `pom.xml`, `requirements.txt`, `go.mod`, `Cargo.toml` exists
-- **business**: if `business-plan.md`, `market-analysis.md`, `strategy.md` exists
-- **personal**: if `goals.md`, `journal.md`, or `habits/` folder exists
-- **general**: default if no indicator found
+- **software**: if common project markers exist (e.g., `package.json`, `requirements.txt`, `go.mod`, `Cargo.toml`, `pom.xml`, `*.xcodeproj`, `Makefile`, `CMakeLists.txt`, `Gemfile`, `build.gradle`)
+- **general**: default if no software indicator found
 
-## Domain-Specific Behavior
+## Output
 
-### Software Development
-- Analyze technical requirements, existing stack, codebase structure
-- Questions: technical objectives, target users, technology constraints, acceptance criteria
-- Focus: functional requirements, non-functional requirements, user stories with acceptance criteria
-- Output filename: `requirements.md`
-
-### Business Strategy
-- Analyze market, competition, opportunities
-- Questions: business objectives, target market, value proposition, success metrics
-- Focus: business requirements, stakeholder needs, success criteria
-- Output filename: `business-requirements.md`
-
-### Personal Goals
-- Analyze current situation, aspirations, challenges
-- Questions: personal objectives, motivations, obstacles, timeline
-- Focus: goals, constraints, accountability mechanisms
-- Output filename: `personal-brief.md`
+**Output filename**: `requirements.md`
 
 ## Process
 

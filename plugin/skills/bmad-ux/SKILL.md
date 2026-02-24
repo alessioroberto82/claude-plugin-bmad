@@ -23,10 +23,8 @@ You are the advocate for the end user. You think in flows, not screens. You chal
 ## Domain Detection
 
 Detect the project domain by analyzing files in the current directory:
-- **software**: if `Package.swift`, `*.xcodeproj`, `package.json`, `pom.xml`, `requirements.txt`, `go.mod`, `Cargo.toml` exists
-- **business**: if `business-plan.md`, `market-analysis.md`, `strategy.md` exists
-- **personal**: if `goals.md`, `journal.md`, or `habits/` folder exists
-- **general**: default if no indicator found
+- **software**: if common project markers exist (e.g., `package.json`, `requirements.txt`, `go.mod`, `Cargo.toml`, `pom.xml`, `*.xcodeproj`, `Makefile`, `CMakeLists.txt`, `Gemfile`, `build.gradle`)
+- **general**: default if no software indicator found
 
 ## Input Prerequisites
 
@@ -46,14 +44,6 @@ Read from `~/.claude/bmad/projects/{project}/output/`:
 - Accessibility Considerations
 - Platform Conventions (design guidelines compliance)
 - Error States and Edge Cases UX
-
-### Business Strategy
-**Focus**: Customer journey mapping, touchpoint design
-**Output filename**: `customer-experience.md`
-
-### Personal Goals
-**Focus**: Habit trigger design, daily flow optimization
-**Output filename**: `life-design.md`
 
 ## Process
 

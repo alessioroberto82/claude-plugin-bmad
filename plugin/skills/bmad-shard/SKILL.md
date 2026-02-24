@@ -28,7 +28,6 @@ Automatically detect documents to shard in `~/.claude/bmad/projects/{project}/ou
 | PRD | `prioritize/PRD-*.md` |
 | Architecture | `arch/architecture.md` |
 | Requirements | `scope/requirements.md` |
-| Business Requirements | `scope/business-requirements.md` |
 
 If no documents found: "No documents to shard. Run `/bmad:bmad-prioritize` or `/bmad:bmad-scope` first."
 

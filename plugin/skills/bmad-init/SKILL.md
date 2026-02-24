@@ -125,10 +125,8 @@ Derive from current directory: `basename "$PWD" | tr '[:upper:]' '[:lower:]'`
 ### 2. Detect domain
 
 Analyze files in the current directory:
-- **software**: if `Package.swift`, `*.xcodeproj`, `package.json`, `pom.xml`, `requirements.txt`, `go.mod`, `Cargo.toml` exists
-- **business**: if `business-plan.md`, `market-analysis.md`, `strategy.md` exists
-- **personal**: if `goals.md`, `journal.md`, or `habits/` folder exists
-- **general**: default if no indicator found
+- **software**: if common project markers exist (e.g., `package.json`, `requirements.txt`, `go.mod`, `Cargo.toml`, `pom.xml`, `*.xcodeproj`, `Makefile`, `CMakeLists.txt`, `Gemfile`, `build.gradle`)
+- **general**: default if no software indicator found
 
 ### 3. Create output structure
 
@@ -137,7 +135,7 @@ Zero footprint — all in home directory:
 PROJECT_NAME=$(basename "$PWD" | tr '[:upper:]' '[:lower:]')
 BASE=~/.claude/bmad/projects/$PROJECT_NAME
 
-mkdir -p $BASE/output/{scope,arch,impl,qa,ux,prioritize,facilitate,docs,code-review}
+mkdir -p $BASE/output/{scope,arch,impl,qa,security,ux,prioritize,facilitate,docs,code-review,triage}
 mkdir -p $BASE/shards/{requirements,architecture,stories}
 mkdir -p $BASE/workspace
 ```
@@ -187,6 +185,7 @@ Available roles:
   /bmad-ux          - Experience Designer (UI/UX design)
   /bmad-prioritize  - Prioritizer (prioritization, roadmap)
   /bmad-facilitate  - Facilitator (sprint planning, coordination)
+  /bmad-security    - Security Guardian (audits, threat modeling)
   /bmad-docs        - Documentation Steward (doc generation)
 
 Review:

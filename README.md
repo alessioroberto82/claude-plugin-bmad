@@ -21,6 +21,7 @@ BMAD works for everyone on the team: product managers, designers, analysts, scru
 | `/bmad:bmad-ux` | Experience Designer | Designs user interfaces and user journeys |
 | `/bmad:bmad-prioritize` | Prioritizer | Prioritizes features, creates product plans (PRDs) |
 | `/bmad:bmad-facilitate` | Facilitator | Plans sprints, coordinates the team |
+| `/bmad:bmad-security` | Security Guardian | Audits security, models threats, checks compliance |
 | `/bmad:bmad-docs` | Documentation Steward | Generates docs from templates |
 
 > **ADR** = Architecture Decision Record — a short document explaining why a technical decision was made.
@@ -30,7 +31,7 @@ BMAD works for everyone on the team: product managers, designers, analysts, scru
 
 | Command | What it does |
 |---|---|
-| `/bmad:bmad-code-review` | Reviews a pull request using 5 parallel reviewers with confidence scoring, checking against your project's CLAUDE.md conventions |
+| `/bmad:bmad-code-review` | Reviews a pull request using 2 parallel agents with confidence scoring, checking against your project's CLAUDE.md conventions |
 | `/bmad:bmad-triage` | Triages incoming PR review comments — decides which to accept, reject, or clarify, then implements fixes |
 
 ## Orchestrators

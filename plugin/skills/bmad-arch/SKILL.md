@@ -23,15 +23,13 @@ You are the technical conscience of the team. You think in systems, not features
 ## Domain Detection
 
 Detect the project domain by analyzing files in the current directory:
-- **software**: if `Package.swift`, `*.xcodeproj`, `package.json`, `pom.xml`, `requirements.txt`, `go.mod`, `Cargo.toml` exists
-- **business**: if `business-plan.md`, `market-analysis.md`, `strategy.md` exists
-- **personal**: if `goals.md`, `journal.md`, or `habits/` folder exists
-- **general**: default if no indicator found
+- **software**: if common project markers exist (e.g., `package.json`, `requirements.txt`, `go.mod`, `Cargo.toml`, `pom.xml`, `*.xcodeproj`, `Makefile`, `CMakeLists.txt`, `Gemfile`, `build.gradle`)
+- **general**: default if no software indicator found
 
 ## Input Prerequisites
 
 Read requirements from `~/.claude/bmad/projects/{project}/output/`:
-- Check for: `scope/requirements.md`, `scope/business-requirements.md`, `scope/personal-brief.md`
+- Check for: `scope/requirements.md`
 - Also check: `prioritize/PRD.md` (if Prioritizer has refined requirements)
 - If none found: "Requirements missing. Run `/bmad-scope` first to gather requirements."
 
@@ -63,25 +61,6 @@ Check `${CLAUDE_PLUGIN_ROOT}/resources/deps-manifest.yaml` for domain-specific d
 > "Consider invoking `/<dep-id>` for <suggest_in text>"
 
 These are suggestions, not blocks — proceed with or without them. If a suggested skill is not installed, note: "Not installed. Run: `<install_command>` from deps-manifest."
-
-### Business Strategy
-**Focus**: Process design, workflow, organizational structure
-**Output filename**: `operational-architecture.md`
-**Contents**:
-- Process Overview (workflow diagram)
-- Organizational Structure
-- Decision Framework
-- Resource Allocation
-- Risk Mitigation Strategy
-
-### Personal Goals
-**Focus**: Habit design, support systems, accountability
-**Output filename**: `systems-design.md`
-**Contents**:
-- Habit Architecture
-- Support Systems
-- Progress Tracking
-- Obstacle Mitigation
 
 ## Process
 

@@ -1,7 +1,7 @@
 ---
 name: bmad-code-review
 description: "Code Review — Multi-agent PR review with CLAUDE.md compliance. Use on any open pull request."
-allowed-tools: Read, Grep, Glob, Task, Bash(gh issue view:*), Bash(gh search:*), Bash(gh issue list:*), Bash(gh pr comment:*), Bash(gh pr diff:*), Bash(gh pr view:*), Bash(gh pr list:*), Bash(git rev-parse:*), Bash(git log:*), Bash(git blame:*), Bash(git show:*), Bash(mkdir -p ~/.claude/bmad/*)
+allowed-tools: Read, Grep, Glob, Task, Bash(gh issue view:*), Bash(gh search:*), Bash(gh issue list:*), Bash(gh pr comment:*), Bash(gh pr diff:*), Bash(gh pr view:*), Bash(gh pr list:*), Bash(git rev-parse:*), Bash(git log:*), Bash(mkdir -p ~/.claude/bmad/*)
 metadata:
   context: same
   agent: general-purpose
@@ -37,9 +37,9 @@ Gather context directly (no subagent needed):
 3. Read the root `CLAUDE.md` (if it exists) — extract all standards, conventions, forbidden patterns
 4. Summarize: what changed, why, risk areas (2-3 sentences max — this is internal context, not output)
 
-### 2. Parallel Review (3 Agents)
+### 2. Parallel Review (2 Agents)
 
-Launch **3 parallel Sonnet agents in a single message**. Each receives the diff and CLAUDE.md standards. Each must return issues with: file, line range, description, category, and a self-assessed confidence score (0-100).
+Launch **2 parallel Sonnet agents in a single message**. Each receives the diff and CLAUDE.md standards. Each must return issues with: file, line range, description, category, and a self-assessed confidence score (0-100).
 
 **Confidence scale** (each agent scores its own findings):
 - **0-25**: Uncertain, might be false positive or pre-existing
@@ -48,17 +48,14 @@ Launch **3 parallel Sonnet agents in a single message**. Each receives the diff 
 - **100**: Certain, double-checked, evidence confirms it
 
 **Agent A — Standards & Bugs**
-Audit changes against CLAUDE.md rules. Also scan for logic errors, inconsistencies between files, wrong paths, stale references. For CLAUDE.md issues, verify the rule actually exists — if not, cap score at 25.
+Audit changes against CLAUDE.md rules. Also scan for logic errors, inconsistencies between files, wrong paths, stale references. Check code comments (TODOs, warnings, invariants) in modified files for compliance. For CLAUDE.md issues, verify the rule actually exists — if not, cap score at 25.
 
-**Agent B — History & Context**
-Read git blame and history of modified files. Check previous PRs on same files. Look for: reverted patterns being reintroduced, PR comments that apply here, regressions. Also check code comments (TODOs, warnings, invariants) in modified files for compliance.
-
-**Agent C — Security**
+**Agent B — Security**
 Scan the diff for: injection patterns (SQL, command, XSS, path traversal), auth/authz gaps (missing checks, hardcoded secrets), crypto issues (weak algorithms, plaintext secrets), data exposure (PII in logs, verbose errors, sensitive data in URLs). Only flag issues introduced by this PR.
 
 ### 3. Filter
 
-Collect all issues from the 3 agents. Discard everything with score < 80. If nothing remains, proceed with "no issues found".
+Collect all issues from the 2 agents. Discard everything with score < 80. If nothing remains, proceed with "no issues found".
 
 ### 4. Post Comment
 

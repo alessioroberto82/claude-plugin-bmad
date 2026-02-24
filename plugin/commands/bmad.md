@@ -7,10 +7,8 @@ Show the status of the BMAD framework for the current project.
 1. **Detect project name**: `basename "$PWD" | tr '[:upper:]' '[:lower:]'`
 
 2. **Detect domain** by analyzing files in the current directory:
-   - **software**: if `Package.swift`, `*.xcodeproj`, `package.json`, `pom.xml`, `requirements.txt`, `go.mod`, `Cargo.toml` exists
-   - **business**: if `business-plan.md`, `market-analysis.md`, `strategy.md` exists
-   - **personal**: if `goals.md`, `journal.md`, or `habits/` folder exists
-   - **general**: default if no indicator found
+   - **software**: if common project markers exist (e.g., `package.json`, `requirements.txt`, `go.mod`, `Cargo.toml`, `pom.xml`, `*.xcodeproj`, `Makefile`, `CMakeLists.txt`, `Gemfile`, `build.gradle`)
+   - **general**: default if no software indicator found
 
 3. **Check workflow status**: Read `~/.claude/bmad/projects/<project-name>/output/session-state.json` if it exists.
    - If it exists: show current phase, active workflow, completed steps
@@ -43,6 +41,7 @@ Your circle:
   /bmad-ux          — Experience Designer (UI/UX design)
   /bmad-prioritize  — Prioritizer (prioritization, roadmap)
   /bmad-facilitate  — Facilitator (sprint planning)
+  /bmad-security    — Security Guardian (audits, threat modeling)
   /bmad-docs        — Documentation Steward
 
 Workflows:
@@ -66,14 +65,17 @@ Tip: Type /bmad detailed for version info and dependency status.
 Generated artifacts:
 ```
 Generated artifacts:
-  scope/      <list of files or empty>
-  arch/       <list of files or empty>
-  impl/       <list of files or empty>
-  qa/         <list of files or empty>
-  ux/         <list of files or empty>
-  prioritize/ <list of files or empty>
-  facilitate/ <list of files or empty>
-  docs/       <list of files or empty>
+  scope/       <list of files or empty>
+  arch/        <list of files or empty>
+  impl/        <list of files or empty>
+  qa/          <list of files or empty>
+  security/    <list of files or empty>
+  ux/          <list of files or empty>
+  prioritize/  <list of files or empty>
+  facilitate/  <list of files or empty>
+  code-review/ <list of files or empty>
+  triage/      <list of files or empty>
+  docs/        <list of files or empty>
 
 Output directory: ~/.claude/bmad/projects/<project-name>/output/
 ```
