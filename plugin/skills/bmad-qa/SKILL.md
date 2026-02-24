@@ -163,20 +163,18 @@ These are suggestions, not blocks — proceed with or without them. If a suggest
       - `tdd.enforcement: hard` (default) + any FAIL → verdict = **REJECT** (P0: TDD cycle violated)
       - `tdd.enforcement: soft` + any FAIL → add P1 warning, do not override existing verdict
 
-6. **Code Review Gate**: If verdict is PASS or CONDITIONAL PASS and changes are on a PR branch, automatically recommend `/bmad-code-review` for multi-agent PR review with CLAUDE.md compliance checks before merge.
+6. **Save** to `~/.claude/bmad/projects/$PROJECT_NAME/output/qa/test-report-{date}.md`
 
-7. **Save** to `~/.claude/bmad/projects/$PROJECT_NAME/output/qa/test-report-{date}.md`
-
-8. **MCP Integration** (if available):
+7. **MCP Integration** (if available):
    - **Linear**: Link test results to issues, comment on verification outcomes
    - **claude-mem**: Search for past test patterns. Save test strategy decisions at completion.
 
-9. **Handoff**:
+8. **Handoff**:
    > **Quality Guardian — Complete.**
    > Verdict: **{PASS/CONDITIONAL PASS/REJECT}**
    > Output saved to: `~/.claude/bmad/projects/{project}/output/qa/`
    > {If REJECT: "P0 issues must be resolved. Run `/bmad-impl` to fix."}
-   > {If PASS: "Ready for merge. Run `/bmad-code-review` for PR review with CLAUDE.md compliance, then merge."}
+   > {If PASS: "Ready for merge. Commit, push, and create a PR. Then run `/bmad-code-review <PR>` for multi-agent review with CLAUDE.md compliance."}
 
 ## BMAD Principles
 - Data over opinions: run tests, measure coverage, report facts

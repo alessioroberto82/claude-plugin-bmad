@@ -9,9 +9,9 @@
   "plugins": [
     {
       "name": "bmad",
-      "version": "0.3.0",
+      "version": "0.4.0",
       "source": "./plugin",
-      "description": "8 holacracy roles for structured development workflows with quality gates and full customization"
+      "description": "15 skills (8 holacracy roles + 7 utilities) with structured workflows, quality gates, TDD enforcement, and full customization"
     }
   ]
 }

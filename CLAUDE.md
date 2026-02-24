@@ -5,10 +5,11 @@ Multi-agent development workflow plugin for Claude Code. 15 skills (8 holacracy 
 ## Project Structure
 
 ```
+.claude-plugin/
+└── marketplace.json                    # Marketplace listing metadata
 plugin/
 ├── .claude-plugin/
-│   ├── plugin.json                     # Plugin manifest (name, version, author)
-│   └── marketplace.json                # Marketplace listing metadata
+│   └── plugin.json                     # Plugin manifest (name, version, author)
 ├── commands/
 │   └── bmad.md                         # /bmad status dashboard command
 ├── resources/
@@ -100,12 +101,13 @@ metadata:
 - **Do not touch for neutralization**: `deps-manifest.yaml`, `bmad-init/SKILL.md`, and `bmad-triage/SKILL.md` contain domain-specific content by design (installer, multi-domain tables). These are correct patterns, not iOS bias
 - **docs/MIGRATION.md**: Contains intentional persona name references (Mary, Winston, etc.) for migration mapping — do not remove
 - **TDD enabled by default**: TDD (red-green-refactor) is on by default. `bmad-impl` invokes `/bmad-tdd` for each implementation unit. `bmad-qa` verifies TDD compliance via commit history (`test(red):` → `feat(green):` → `refactor:`). When the workflow doesn't involve testable code, `bmad-impl` prompts to disable for the session. Permanent opt-out via `tdd.enabled: false` in config.yaml. Enforcement level configurable: `hard` (default, QA blocks) or `soft` (QA warns)
+- **Code review requires a PR**: `/bmad-code-review` needs an open pull request. Roles must not suggest it before commit → push → PR creation. The correct handoff order is: impl → qa → commit → push → create PR → code-review
 - **Holacracy alignment**: Roles have purposes and accountabilities, not personas. Communication references roles, never personal names. External communication uses team voice, not role voice
 
 ## Gotchas
 
 - **Marketplace frontmatter validation**: The Luscii marketplace CI (`skills-ref`) only allows `name`, `description`, `allowed-tools`, `compatibility`, `license`, and `metadata` as top-level frontmatter fields. `context` and `agent` must go inside `metadata:`. Keep source repo in sync with marketplace
 - **Role vs utility skills**: 8 of the 15 skills are holacracy roles. The rest (greenfield, sprint, code-review, triage, tdd, init, shard) are orchestrators or utilities — they coordinate roles but aren't roles themselves
-- **marketplace.json is separate from plugin.json**: `plugin.json` is the plugin manifest; `marketplace.json` is for the Claude plugin marketplace listing
+- **marketplace.json is separate from plugin.json**: `plugin.json` is at `plugin/.claude-plugin/`; `marketplace.json` is at root `.claude-plugin/` (outside the plugin directory). They serve different purposes — plugin manifest vs marketplace listing
 - **Output location**: BMAD never writes to the project directory. All outputs go to `~/.claude/bmad/projects/<project>/`. If a role writes to the repo, that's a bug
 - **Marketplace version sync**: After bumping `plugin.json` version and merging to main, also update `marketplace.json` version AND sync to Luscii/claude-marketplace. Three places must match: `plugin.json`, `marketplace.json`, and the marketplace repo copy

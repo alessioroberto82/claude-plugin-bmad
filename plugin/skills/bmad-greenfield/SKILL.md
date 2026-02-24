@@ -168,9 +168,10 @@ After completion, type one of:
 | 6* | **Facilitator** | Sprint planning | PRD + Architecture | `facilitate/sprint-plan.md` |
 | 7 | **Implementer** | Implement | Architecture + PRD | Code in repo |
 | 8 | **Quality Guardian** | Test & validate | Requirements + Code | `qa/test-report.md` |
-| 9 | **Code Review** | PR review with CLAUDE.md compliance | PR branch + CLAUDE.md | `code-review/pr-{n}.md` |
 
 *Optional steps
+
+**Post-workflow** (after PR is created): Run `/bmad-code-review <PR>` for multi-agent review with CLAUDE.md compliance.
 
 ### User Command Handling
 
@@ -305,7 +306,9 @@ When all steps are completed:
    ~/.claude/bmad/projects/{project}/output/
 
    ## Next Steps
-   - [ ] Run `/bmad-code-review` for PR review with CLAUDE.md compliance
+   - [ ] Commit and push changes
+   - [ ] Create a pull request
+   - [ ] Run `/bmad-code-review <PR>` for multi-agent review with CLAUDE.md compliance
    - [ ] Merge to main branch
    - [ ] Update Linear issues
    ```

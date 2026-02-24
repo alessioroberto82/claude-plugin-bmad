@@ -51,7 +51,7 @@ After the user selects a template, check for technology-specific variants:
    - `go.mod` → `go`
    - `Cargo.toml` → `rust`
 2. Check if a variant exists: `{template-name}-{technology}.md` (e.g., `module-architecture-swift.md`)
-3. Check `config.yaml` for a `templates:` override (e.g., `module-architecture: module-architecture-swift`)
+3. Check `~/.claude/bmad/projects/{project}/config.yaml` for a `templates:` override (e.g., `module-architecture: module-architecture-swift`)
 4. Priority: config override > technology variant > base template
 5. If a variant is selected, inform the user: "Using {variant} template for {technology} project."
 6. If no technology match or no variant file exists, use the base template.

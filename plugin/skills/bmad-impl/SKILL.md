@@ -111,7 +111,7 @@ These are suggestions, not blocks — proceed with or without them. If a suggest
    - Tests pass
    - No obvious issues or regressions
 
-7. **Code Review**: If changes are on a PR branch, recommend running `/bmad-code-review` for multi-agent review with CLAUDE.md compliance checks. If a `CLAUDE.md` exists in the repo root, verify your implementation follows its standards before handoff.
+7. **CLAUDE.md compliance**: If a `CLAUDE.md` exists in the repo root, verify your implementation follows its standards before handoff.
 
 8. **Save implementation notes** to: `~/.claude/bmad/projects/$PROJECT_NAME/output/impl/implementation-notes-{date}.md`
 
@@ -123,7 +123,7 @@ These are suggestions, not blocks — proceed with or without them. If a suggest
 10. **Handoff**:
    > **Implementer — Complete.**
    > Output saved to: `~/.claude/bmad/projects/{project}/output/impl/`
-   > Next suggested role: `/bmad-qa` for testing and validation, or `/bmad-code-review` for multi-agent PR review with CLAUDE.md compliance.
+   > Next suggested role: `/bmad-qa` for testing and validation.
 
 ## BMAD Principles
 - Follow the design: don't invent solutions different from those architected
