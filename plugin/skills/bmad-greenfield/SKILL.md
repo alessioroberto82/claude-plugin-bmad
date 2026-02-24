@@ -78,7 +78,7 @@ BASE=~/.claude/bmad/projects/$PROJECT_NAME
 
 **Initialize structure**:
 ```bash
-mkdir -p $BASE/output/{scope,arch,impl,qa,ux,prioritize,facilitate,docs,code-review}
+mkdir -p $BASE/output/{scope,arch,impl,qa,ux,prioritize,facilitate,docs,code-review,security}
 mkdir -p $BASE/shards/{requirements,architecture,stories}
 mkdir -p $BASE/workspace
 ```
@@ -164,7 +164,7 @@ After completion, type one of:
 | 2 | **Prioritizer** | Prioritize & create PRD | Requirements | `prioritize/PRD.md` |
 | 3* | **Experience Designer** | Design UX | PRD | `ux/ux-design.md` |
 | 4 | **Architecture Owner** | Design architecture | PRD + UX (if available) | `arch/architecture.md` |
-| 5* | **Security** | Security audit | Architecture | `qa/security-audit.md` |
+| 5* | **Security Guardian** | Security audit | Architecture | `security/security-audit.md` |
 | 6* | **Facilitator** | Sprint planning | PRD + Architecture | `facilitate/sprint-plan.md` |
 | 7 | **Implementer** | Implement | Architecture + PRD | Code in repo |
 | 8 | **Quality Guardian** | Test & validate | Requirements + Code | `qa/test-report.md` |
@@ -239,14 +239,14 @@ Completed:
 ### Gate 1: Security P0 Block
 
 After the security review step (if included):
-1. Read `$BASE/output/qa/security-audit.md`
+1. Read `$BASE/output/security/security-audit.md`
 2. If the document contains "P0" severity issues:
    ```
    SECURITY GATE FAILED
    P0 critical issues found in security audit.
    These MUST be resolved before implementation.
 
-   Review: ~/.claude/bmad/projects/{project}/output/qa/security-audit.md
+   Review: ~/.claude/bmad/projects/{project}/output/security/security-audit.md
 
    Resolve the issues, then type 'next' to re-run security review.
    ```

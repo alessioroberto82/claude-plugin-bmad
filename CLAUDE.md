@@ -1,113 +1,50 @@
 # BMAD Plugin
 
-Multi-agent development workflow plugin for Claude Code. 15 skills (8 holacracy roles + 7 utilities) with structured workflows, quality gates, TDD enforcement, and full customization.
+Pure Markdown plugin for Claude Code. 16 skills (9 holacracy roles + 7 utilities). No build, no tests, no CI.
 
-## Project Structure
-
-```
-.claude-plugin/
-└── marketplace.json                    # Marketplace listing metadata
-plugin/
-├── .claude-plugin/
-│   └── plugin.json                     # Plugin manifest (name, version, author)
-├── commands/
-│   └── bmad.md                         # /bmad status dashboard command
-├── resources/
-│   ├── soul.md                         # Team principles — loaded by all roles
-│   ├── deps-manifest.yaml              # Dependency registry (single source of truth)
-│   ├── scripts/
-│   │   ├── install-deps.sh             # First-time dependency installer
-│   │   └── update-deps.sh              # Dependency updater
-│   └── templates/
-│       ├── config-example.yaml         # Per-project config template
-│       ├── docs/                       # Document templates (ADR, module arch, UI)
-│       └── software/                   # Software templates (PRD, architecture, security)
-└── skills/
-    ├── bmad-scope/SKILL.md             # Scope Clarifier
-    ├── bmad-arch/SKILL.md              # Architecture Owner
-    ├── bmad-impl/SKILL.md              # Implementer
-    ├── bmad-qa/SKILL.md                # Quality Guardian
-    ├── bmad-ux/SKILL.md                # Experience Designer
-    ├── bmad-prioritize/SKILL.md        # Prioritizer
-    ├── bmad-facilitate/SKILL.md        # Facilitator
-    ├── bmad-docs/SKILL.md              # Documentation Steward
-    ├── bmad-code-review/SKILL.md       # Multi-agent PR code review
-    ├── bmad-triage/SKILL.md            # PR review comment triage
-    ├── bmad-greenfield/SKILL.md        # Full workflow orchestrator
-    ├── bmad-sprint/SKILL.md            # Sprint planning orchestrator
-    ├── bmad-tdd/SKILL.md               # TDD red-green-refactor enforcer
-    ├── bmad-init/SKILL.md              # Project initialization
-    └── bmad-shard/SKILL.md             # Context sharding utility
-docs/
-├── CUSTOMIZATION.md                    # 8-layer customization guide
-├── GETTING-STARTED.md                  # Quick-start guide for new users
-└── MIGRATION.md                        # Migration from old BMAD-Setup
-```
-
-## Development
-
-Test changes by loading the plugin locally:
+## Dev
 
 ```bash
 claude --plugin-dir ./plugin
 ```
 
-There is no build step, no tests, no CI. This is a pure Markdown plugin.
+## Layout
 
-## SKILL.md Format
-
-Every role skill follows this structure (utilities may omit sections like Domain-Specific Behavior or use inline Handoff):
-
-**YAML Frontmatter:**
-
-```yaml
----
-name: bmad-<role>
-description: "<Role Name> — <Purpose>."
-allowed-tools: Read, Grep, Glob, Bash
-metadata:
-  context: fork        # fork = isolated subagent | same = main conversation thread
-  agent: Explore       # Explore, Plan, qa, or general-purpose
----
+```
+.claude-plugin/marketplace.json        # Marketplace listing (root, outside plugin/)
+plugin/.claude-plugin/plugin.json      # Plugin manifest (name, version)
+plugin/commands/bmad.md                # /bmad dashboard
+plugin/resources/soul.md               # Shared principles — every role loads this
+plugin/resources/deps-manifest.yaml    # Dependency registry (source of truth)
+plugin/resources/scripts/              # install-deps.sh, update-deps.sh
+plugin/resources/templates/{docs,software}/ # Output templates
+plugin/skills/bmad-*/SKILL.md          # 16 skills (see ls)
+docs/                                  # CUSTOMIZATION.md, GETTING-STARTED.md, MIGRATION.md
 ```
 
-**Markdown Body (in order):**
+## Rules
 
-1. Soul reference — link to `soul.md` principles
-2. Role description — 2-3 sentences defining the role's accountabilities
-3. Domain detection — how to detect software/business/personal/general
-4. Input prerequisites — what files/outputs to read before starting
-5. Domain-specific behavior — different instructions per domain
-6. Process — step-by-step execution instructions
-7. Handoff — completion message and next role recommendation
-8. BMAD principles — core tenets specific to this role
+**Naming**: `bmad-<lowercase>` everywhere — dirs, frontmatter, output paths.
 
-## Conventions
+**Context model**: `context: fork` for roles, `context: same` for orchestrators/interactive.
 
-- **Role naming**: `bmad-<lowercase-role>` everywhere (skill dirs, frontmatter, output dirs)
-- **Context model**: Use `context: fork` for roles (isolated execution). Use `context: same` for orchestrators and interactive workflows
-- **Domain detection**: Roles detect project type by looking for marker files (Package.swift, package.json, etc.) and adjust behavior accordingly
-- **Quality gates**: P0 security blocks stop workflow before implementation. QA rejection loops back to the Implementer. Completeness checks verify outputs exist before advancing
-- **Zero project footprint**: All BMAD outputs go to `~/.claude/bmad/projects/<project>/`. Nothing is committed to the repo
-- **MCP tools are optional**: Roles check for MCP tools (Linear, claude-mem, and domain-specific servers) but degrade gracefully if absent
-- **Soul is mandatory**: Every role must reference and follow `plugin/resources/soul.md`
-- **Dependencies are optional**: All dependencies are declared in `deps-manifest.yaml`. `bmad-init` detects missing deps and offers installation. Roles degrade gracefully when dependencies are missing
-- **Templates live in resources**: Document templates go in `plugin/resources/templates/docs/` or `plugin/resources/templates/software/`
-- **Template variants**: Template variants use `-{technology}` suffix (e.g., `-swift`, `-node`). Technology is detected from marker files by `bmad-docs`, distinct from the 4-domain model used by other roles. Base templates are always language-agnostic
-- **Domain-agnostic core**: Skills must NOT name-drop domain-specific MCP tools (Cupertino, SwiftUI Expert, etc.) in their main body — use "Domain-specific tools" generically. Domain-specific deps live only in `deps-manifest.yaml`. Exception: the `## MCP Integration` section may name cross-domain tools (Linear, claude-mem) that all roles use
-- **Skill suggestions via deps-manifest**: Domain-specific skill suggestions use the `suggest_in` field in `deps-manifest.yaml`, mapping role names to contextual suggestion text. Roles read this field generically — never hardcode skill names in SKILL.md files. To add suggestions for a new domain, add `suggest_in` entries to deps-manifest only
-- **Scripts mirror deps-manifest**: `install-deps.sh` and `update-deps.sh` have hardcoded parallel arrays — they do NOT parse `deps-manifest.yaml`. Any dep added to the manifest MUST also be added to both scripts
-- **Version bump**: After feature work, update `version` in `plugin/.claude-plugin/plugin.json` before pushing
-- **Do not touch for neutralization**: `deps-manifest.yaml`, `bmad-init/SKILL.md`, and `bmad-triage/SKILL.md` contain domain-specific content by design (installer, multi-domain tables). These are correct patterns, not iOS bias
-- **docs/MIGRATION.md**: Contains intentional persona name references (Mary, Winston, etc.) for migration mapping — do not remove
-- **TDD enabled by default**: TDD (red-green-refactor) is on by default. `bmad-impl` invokes `/bmad-tdd` for each implementation unit. `bmad-qa` verifies TDD compliance via commit history (`test(red):` → `feat(green):` → `refactor:`). When the workflow doesn't involve testable code, `bmad-impl` prompts to disable for the session. Permanent opt-out via `tdd.enabled: false` in config.yaml. Enforcement level configurable: `hard` (default, QA blocks) or `soft` (QA warns)
-- **Code review requires a PR**: `/bmad-code-review` needs an open pull request. Roles must not suggest it before commit → push → PR creation. The correct handoff order is: impl → qa → commit → push → create PR → code-review
-- **Holacracy alignment**: Roles have purposes and accountabilities, not personas. Communication references roles, never personal names. External communication uses team voice, not role voice
+**Zero footprint**: All outputs → `~/.claude/bmad/projects/<project>/`. Never write to the repo.
+
+**Domain-agnostic core**: Never name-drop domain-specific tools (Cupertino, SwiftUI Expert) in SKILL.md body. Domain deps live only in `deps-manifest.yaml` with `suggest_in` entries. Exception: `## MCP Integration` sections may name cross-domain tools (Linear, claude-mem).
+
+**Scripts mirror manifest**: `install-deps.sh` and `update-deps.sh` have hardcoded arrays — they do NOT parse `deps-manifest.yaml`. Any dep change must update both scripts AND the manifest.
+
+**Version bump**: After feature work, update version in `plugin.json`. After merge, sync `marketplace.json` AND Luscii/claude-marketplace. Three places must match.
+
+**Workflow order**: arch → security (P0 blocks impl) → impl → qa (REJECT loops to impl) → commit → push → PR → code-review. Never suggest `/bmad-code-review` before a PR exists.
+
+**TDD**: On by default. `bmad-impl` uses `/bmad-tdd` for red-green-refactor. `bmad-qa` verifies via commit history. Disable: `tdd.enabled: false` in config.yaml. Enforcement: `hard` (blocks) or `soft` (warns).
+
+**Holacracy**: Roles have purposes, not personas. Reference roles, not names. External comms use team voice.
 
 ## Gotchas
 
-- **Marketplace frontmatter validation**: The Luscii marketplace CI (`skills-ref`) only allows `name`, `description`, `allowed-tools`, `compatibility`, `license`, and `metadata` as top-level frontmatter fields. `context` and `agent` must go inside `metadata:`. Keep source repo in sync with marketplace
-- **Role vs utility skills**: 8 of the 15 skills are holacracy roles. The rest (greenfield, sprint, code-review, triage, tdd, init, shard) are orchestrators or utilities — they coordinate roles but aren't roles themselves
-- **marketplace.json is separate from plugin.json**: `plugin.json` is at `plugin/.claude-plugin/`; `marketplace.json` is at root `.claude-plugin/` (outside the plugin directory). They serve different purposes — plugin manifest vs marketplace listing
-- **Output location**: BMAD never writes to the project directory. All outputs go to `~/.claude/bmad/projects/<project>/`. If a role writes to the repo, that's a bug
-- **Marketplace version sync**: After bumping `plugin.json` version and merging to main, also update `marketplace.json` version AND sync to Luscii/claude-marketplace. Three places must match: `plugin.json`, `marketplace.json`, and the marketplace repo copy
+- **Marketplace frontmatter**: Only `name`, `description`, `allowed-tools`, `compatibility`, `license`, `metadata` allowed as top-level fields. `context`/`agent` go inside `metadata:`
+- **marketplace.json vs plugin.json**: Different files, different locations (root `.claude-plugin/` vs `plugin/.claude-plugin/`), different purposes
+- **Do not neutralize**: `deps-manifest.yaml`, `bmad-init`, `bmad-triage` contain domain-specific content by design
+- **MIGRATION.md**: Contains intentional persona names (Mary, Winston) for migration mapping

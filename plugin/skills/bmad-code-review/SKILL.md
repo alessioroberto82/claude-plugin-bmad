@@ -56,7 +56,7 @@ Use a Haiku agent to view the pull request and return a structured summary:
 
 ### 4. Parallel Review (5 Agents)
 
-Launch 5 parallel Sonnet agents. Each receives: the PR diff, the PR summary from step 3, and **all CLAUDE.md standards from step 2**. Each returns a list of issues with the reason flagged (e.g. "CLAUDE.md adherence", "bug", "historical context").
+Launch 6 parallel Sonnet agents. Each receives: the PR diff, the PR summary from step 3, and **all CLAUDE.md standards from step 2**. Each returns a list of issues with the reason flagged (e.g. "CLAUDE.md adherence", "bug", "historical context").
 
 **Agent #1 — CLAUDE.md Compliance**
 Audit all changes against every CLAUDE.md standard found in step 2. Check naming conventions, architectural rules, forbidden patterns, required patterns. Only flag violations that the CLAUDE.md explicitly calls out.
@@ -72,6 +72,9 @@ Read previous pull requests that touched the same files. Check for comments on t
 
 **Agent #5 — Code Comments Compliance**
 Read code comments in modified files. Verify the changes comply with guidance in those comments (TODOs, warnings, invariants).
+
+**Agent #6 — Security Scan**
+Read the file changes. Scan for common security vulnerabilities in the diff. Focus on: injection patterns (SQL, command, XSS, path traversal), authentication/authorization gaps (missing checks, hardcoded secrets, insecure token handling), cryptographic issues (weak algorithms, plaintext secrets, insufficient randomness), and data exposure risks (PII in logs, verbose error messages, sensitive data in URLs). Only flag issues introduced by this PR, not pre-existing patterns.
 
 ### 5. Confidence Scoring
 
