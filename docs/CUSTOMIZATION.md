@@ -159,7 +159,8 @@ BMAD assigns a default Claude model to each fork-context role based on task comp
 | Facilitator | haiku | Lightweight coordination |
 | Implementer | opus | Code generation quality |
 | Quality Guardian | sonnet | Criteria-based validation |
-| Code Review agents | sonnet | Pattern-matching review |
+
+Code review agents (spawned by `bmad-code-review` via Task tool) also default to **sonnet**. Configure via `code_review.agent_a_model` and `code_review.agent_b_model` in config.yaml. Note: `bmad-code-review` itself is same-context and inherits the session model — only its spawned agents are configurable.
 
 ### Override via config.yaml
 

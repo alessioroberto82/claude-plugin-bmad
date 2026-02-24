@@ -14,7 +14,7 @@
 
 ### Current State
 
-16 BMAD skills. 7 use `context: fork` (run as subagents), 8 use `context: same` (inline). One skill (bmad-code-review) explicitly spawns 2 parallel Task agents.
+16 BMAD skills. 8 use `context: fork` (run as subagents), 8 use `context: same` (inline). One skill (bmad-code-review) explicitly spawns 2 parallel Task agents.
 
 **Fork-context skills** (subagent, model selectable):
 
@@ -82,8 +82,6 @@ agents:
     model: sonnet
   bmad-prioritize:
     model: sonnet
-  bmad-ux:
-    model: sonnet
   bmad-arch:
     model: opus
     context_files:
@@ -137,7 +135,7 @@ git commit -m "feat: add model routing config to config-example.yaml"
 
 ## Task 2: Add Model Directive to Fork-Context Skills
 
-For each of the 7 fork-context skills, add a `## Model` section that documents the recommended model and instructs the runtime to use it.
+For each of the 8 fork-context skills, add a `## Model` section that documents the recommended model and instructs the runtime to use it.
 
 **Files:**
 - Modify: `plugin/skills/bmad-scope/SKILL.md`
@@ -259,7 +257,7 @@ Add a "Model" column to the existing table (line ~159):
 | 2 | **Prioritizer** | sonnet | Prioritize & create PRD | Requirements | `prioritize/PRD.md` |
 | 3* | **Experience Designer** | sonnet | Design UX | PRD | `ux/ux-design.md` |
 | 4 | **Architecture Owner** | opus | Design architecture | PRD + UX (if available) | `arch/architecture.md` |
-| 5* | **Security Guardian** | opus | Security audit | Architecture | `security/security-audit.md` |
+| 5 | **Security Guardian** | opus | Security audit | Architecture | `security/security-audit.md` |
 | 6* | **Facilitator** | haiku | Sprint planning | PRD + Architecture | `facilitate/sprint-plan.md` |
 | 7 | **Implementer** | opus | Implement | Architecture + PRD | Code in repo |
 | 8 | **Quality Guardian** | sonnet | Test & validate | Requirements + Code | `qa/test-report.md` |
@@ -401,7 +399,7 @@ git commit -m "docs: add model routing section to CUSTOMIZATION.md"
 
 **Step 1: Bump version**
 
-Change version from `"0.5.1"` to `"0.6.0"` (new feature = minor bump).
+Change version from `"0.5.2"` to `"0.6.0"` (new feature = minor bump).
 
 **Step 2: Commit**
 
@@ -425,7 +423,8 @@ After all tasks:
 - [ ] CLAUDE.md has model routing rule
 - [ ] CUSTOMIZATION.md has model routing documentation
 - [ ] plugin.json version is 0.6.0
-- [ ] No same-context skills were modified (they can't change model)
+- [ ] No same-context skills were given `model:` in frontmatter
+- [ ] marketplace.json version synced to 0.6.0
 
 ## Risk Notes
 
