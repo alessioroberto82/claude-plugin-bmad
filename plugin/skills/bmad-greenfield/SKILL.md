@@ -76,7 +76,7 @@ BASE=~/.claude/bmad/projects/$PROJECT_NAME
 
 **Initialize structure**:
 ```bash
-mkdir -p $BASE/output/{scope,arch,impl,qa,ux,prioritize,facilitate,docs,code-review,security}
+mkdir -p $BASE/output/{scope,arch,impl,qa,security,ux,prioritize,facilitate,docs,code-review,triage}
 mkdir -p $BASE/shards/{requirements,architecture,stories}
 mkdir -p $BASE/workspace
 ```
