@@ -226,7 +226,6 @@ Completed:
   ○ impl
   ○ qa
   - ux (skipped)
-  - security (skipped)
 ```
 
 ---

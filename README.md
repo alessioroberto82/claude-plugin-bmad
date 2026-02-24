@@ -76,7 +76,7 @@ Then in any project:
 
 ## Dependencies
 
-All dependencies are **optional** — roles work without them and adapt when tools aren't available. `/bmad-init` detects what's installed and offers setup options.
+All dependencies are **optional** — roles work without them and adapt when tools aren't available. `/bmad:bmad-init` detects what's installed and offers setup options.
 
 | Dependency | Type | Group | What it adds |
 |---|---|---|---|
