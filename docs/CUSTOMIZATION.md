@@ -143,6 +143,53 @@ To add a new role to the greenfield orchestrator:
 
 ---
 
+## 6. Model Routing
+
+BMAD assigns a default Claude model to each fork-context role based on task complexity. Opus handles deep reasoning (architecture, security, implementation), Sonnet handles structured work (scope, prioritization, QA), and Haiku handles lightweight coordination.
+
+### Default Assignments
+
+| Role | Default Model | Rationale |
+|------|--------------|-----------|
+| Scope Clarifier | sonnet | Structured requirements gathering |
+| Prioritizer | sonnet | Feature prioritization |
+| Experience Designer | sonnet | UX design patterns |
+| Architecture Owner | opus | Deep trade-off reasoning |
+| Security Guardian | opus | Adversarial threat modeling |
+| Facilitator | haiku | Lightweight coordination |
+| Implementer | opus | Code generation quality |
+| Quality Guardian | sonnet | Criteria-based validation |
+| Code Review agents | sonnet | Pattern-matching review |
+
+### Override via config.yaml
+
+```yaml
+agents:
+  bmad-arch:
+    model: opus       # deep reasoning tasks
+  bmad-scope:
+    model: sonnet     # structured tasks
+  bmad-facilitate:
+    model: haiku      # lightweight tasks
+
+# Code review agent models
+code_review:
+  agent_a_model: sonnet
+  agent_b_model: sonnet
+```
+
+### How It Works
+
+- **Fork-context skills** (`context: fork`) specify `model:` in frontmatter metadata. Orchestrators pass this to the Task tool's `model` parameter.
+- **Same-context skills** (`context: same`) inherit the session model and cannot be overridden.
+- **Config overrides** take precedence over frontmatter defaults.
+
+### Cost Implications
+
+Model routing lets you optimize cost without sacrificing quality where it matters. Approximate relative cost per token: Opus (5x), Sonnet (1x), Haiku (0.2x).
+
+---
+
 ## For Developers: Context Model Reference
 
 > This section is for developers who are modifying or creating roles. You can skip this if you're just using BMAD.
