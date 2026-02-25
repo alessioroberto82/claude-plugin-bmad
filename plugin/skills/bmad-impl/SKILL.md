@@ -53,6 +53,7 @@ If directory `~/.claude/bmad/projects/{project}/shards/stories/` exists:
 - Load ONLY the file: `~/.claude/bmad/projects/{project}/shards/stories/$ARGUMENTS.md`
 - Do NOT load: other stories, full PRD, future tasks
 - **Benefit**: 90% token reduction, absolute focus on current task
+- **Parallel execution**: When implementing independent stories in parallel, the orchestrator may pass `isolation: "worktree"` to the Task tool for branch isolation.
 
 ## Domain-Specific Behavior
 
