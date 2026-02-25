@@ -72,11 +72,11 @@ groups:
       - id: swift-concurrency
         type: plugin
         name: Swift Concurrency
-        marketplace: AvdLee/Swift-Concurrency-Agent-Skill
+        marketplace: swift-concurrency-agent-skill
         description: "async/await, actors, Sendable, Swift 6 concurrency"
         check_command: "grep -q swift-concurrency ~/.claude/plugins/installed_plugins.json 2>/dev/null"
-        install_command: "claude plugin marketplace add AvdLee/Swift-Concurrency-Agent-Skill && claude plugin install swift-concurrency@AvdLee/Swift-Concurrency-Agent-Skill"
-        update_command: "claude plugin marketplace update AvdLee/Swift-Concurrency-Agent-Skill && claude plugin update swift-concurrency@AvdLee/Swift-Concurrency-Agent-Skill"
+        install_command: "claude plugin marketplace add swift-concurrency-agent-skill && claude plugin install swift-concurrency@swift-concurrency-agent-skill"
+        update_command: "claude plugin marketplace update swift-concurrency-agent-skill && claude plugin update swift-concurrency@swift-concurrency-agent-skill"
         used_by: "arch, impl"
         suggest_in:
           arch: "concurrency model, actor isolation, and async/await architecture"
@@ -85,11 +85,11 @@ groups:
       - id: swift-testing-expert
         type: plugin
         name: Swift Testing Expert
-        marketplace: AvdLee/Swift-Testing-Agent-Skill
+        marketplace: swift-testing-agent-skill
         description: "Swift Testing framework, #expect/#require, XCTest migration"
         check_command: "grep -q swift-testing-expert ~/.claude/plugins/installed_plugins.json 2>/dev/null"
-        install_command: "claude plugin marketplace add AvdLee/Swift-Testing-Agent-Skill && claude plugin install swift-testing-expert@AvdLee/Swift-Testing-Agent-Skill"
-        update_command: "claude plugin marketplace update AvdLee/Swift-Testing-Agent-Skill && claude plugin update swift-testing-expert@AvdLee/Swift-Testing-Agent-Skill"
+        install_command: "claude plugin marketplace add swift-testing-agent-skill && claude plugin install swift-testing-expert@swift-testing-agent-skill"
+        update_command: "claude plugin marketplace update swift-testing-agent-skill && claude plugin update swift-testing-expert@swift-testing-agent-skill"
         used_by: "qa, impl"
         suggest_in:
           qa: "test quality review and Swift Testing patterns"
