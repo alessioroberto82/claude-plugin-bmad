@@ -134,6 +134,7 @@ BMAD never adds files to your project repository. All outputs are stored in a se
 │   ├── requirements/
 │   ├── architecture/
 │   └── stories/
+├── workspace/        # Temporary working files
 └── config.yaml       # Per-project overrides
 ```
 
