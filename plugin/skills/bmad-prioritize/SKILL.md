@@ -99,7 +99,7 @@ Read from `~/.claude/bmad/projects/{project}/output/`:
    > **Prioritizer — Complete.**
    > Output saved to: `~/.claude/bmad/projects/{project}/output/prioritize/PRD-{date}.md`
    > User stories: {count}, Must Have: {count}, Should Have: {count}
-   > Next suggested role: `/bmad-arch` for architecture design, or `/bmad-ux` for UX design.
+   > Next suggested role: `/bmad:bmad-arch` for architecture design, or `/bmad:bmad-ux` for UX design.
 
 ## BMAD Principles
 - Say no: every feature you add dilutes focus — be ruthless about prioritization

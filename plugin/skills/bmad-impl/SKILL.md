@@ -119,7 +119,7 @@ These are suggestions, not blocks — proceed with or without them. If a suggest
 10. **Handoff**:
    > **Implementer — Complete.**
    > Output saved to: `~/.claude/bmad/projects/{project}/output/impl/`
-   > Next suggested role: `/bmad-qa` for testing and validation.
+   > Next suggested role: `/bmad:bmad-qa` for testing and validation.
 
 ## BMAD Principles
 - Follow the design: don't invent solutions different from those architected

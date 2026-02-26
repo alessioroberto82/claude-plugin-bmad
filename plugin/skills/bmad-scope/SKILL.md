@@ -100,7 +100,7 @@ Detect the project domain by analyzing files in the current directory:
 7. **Handoff**:
    > **Scope Clarifier — Complete.**
    > Output saved to: `~/.claude/bmad/projects/{project}/output/scope/{filename}`
-   > Next suggested role: `/bmad-prioritize` for product prioritization, or `/bmad-arch` for architecture design.
+   > Next suggested role: `/bmad:bmad-prioritize` for product prioritization, or `/bmad:bmad-arch` for architecture design.
 
 ## BMAD Principles
 - Human-in-the-loop: ask questions, don't assume

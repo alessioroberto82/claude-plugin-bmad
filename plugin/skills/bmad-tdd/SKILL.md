@@ -44,7 +44,7 @@ If no test runner is detected:
 > - **Rust**: Tests use the built-in `#[test]` framework
 > - **Java**: Add JUnit to your build configuration
 >
-> After setting up tests, re-run `/bmad-tdd`.
+> After setting up tests, re-run `/bmad:bmad-tdd`.
 
 Stop here. Do NOT proceed without a working test runner.
 
@@ -173,7 +173,7 @@ Baseline: {baseline_count} → Current: {current_count} (+{new_tests} new)
 > Options:
 > - Start another cycle: provide the next unit of work
 > - Return to Implementer: type `done`
-> - Run QA: `/bmad-qa` to verify implementation and TDD compliance
+> - Run QA: `/bmad:bmad-qa` to verify implementation and TDD compliance
 
 ## Commit Conventions
 

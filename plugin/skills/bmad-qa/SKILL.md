@@ -297,8 +297,8 @@ Run when invoked with `/bmad:bmad-qa lint`. Validates internal consistency of th
    > **Quality Guardian — Complete.**
    > Verdict: **{PASS/CONDITIONAL PASS/REJECT}**
    > Output saved to: `~/.claude/bmad/projects/{project}/output/qa/`
-   > {If REJECT: "P0 issues must be resolved. Run `/bmad-impl` to fix."}
-   > {If PASS: "Ready for merge. Commit, push, and create a PR. Then run `/bmad-code-review <PR>` for multi-agent review with CLAUDE.md compliance."}
+   > {If REJECT: "P0 issues must be resolved. Run `/bmad:bmad-impl` to fix."}
+   > {If PASS: "Ready for merge. Commit, push, and create a PR. Then run `/bmad:bmad-code-review <PR>` for multi-agent review with CLAUDE.md compliance."}
 
 ## BMAD Principles
 - Data over opinions: run tests, measure coverage, report facts

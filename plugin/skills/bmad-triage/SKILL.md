@@ -289,9 +289,9 @@ Extract actionable learnings from the review:
 
 After completing the triage:
 
-> Triage complete. If the PR needs another review cycle after fixes, run `/bmad-code-review` to verify.
+> Triage complete. If the PR needs another review cycle after fixes, run `/bmad:bmad-code-review` to verify.
 >
-> If there were unclear comments, re-run `/bmad-triage` after reviewers respond to process the clarifications.
+> If there were unclear comments, re-run `/bmad:bmad-triage` after reviewers respond to process the clarifications.
 
 ## Rules
 

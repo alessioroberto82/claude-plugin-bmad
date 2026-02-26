@@ -120,17 +120,17 @@ Based on findings, determine the verdict:
 **If SECURITY BLOCK:**
 > **Security Guardian — BLOCKED (P0 critical issues).**
 > Output saved to: `~/.claude/bmad/projects/{project}/output/security/security-audit.md`
-> These MUST be fixed before implementation. Re-run `/bmad-security` after fixes.
+> These MUST be fixed before implementation. Re-run `/bmad:bmad-security` after fixes.
 
 **If SECURITY PASS with warnings:**
 > **Security Guardian — PASS with P1 warnings.**
 > Output saved to: `~/.claude/bmad/projects/{project}/output/security/security-audit.md`
-> Proceed to `/bmad-impl`; fix P1 issues in parallel.
+> Proceed to `/bmad:bmad-impl`; fix P1 issues in parallel.
 
 **If SECURITY PASS:**
 > **Security Guardian — PASS.**
 > Output saved to: `~/.claude/bmad/projects/{project}/output/security/security-audit.md`
-> No blocking issues. Proceed to `/bmad-impl` for implementation.
+> No blocking issues. Proceed to `/bmad:bmad-impl` for implementation.
 
 ## BMAD Principles
 - Defense in depth: multiple layers of security, not single point of failure

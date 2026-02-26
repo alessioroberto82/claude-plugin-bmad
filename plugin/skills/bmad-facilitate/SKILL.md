@@ -94,7 +94,7 @@ Read from `~/.claude/bmad/projects/{project}/output/`:
    > **Facilitator — Complete.**
    > Sprint plan saved to: `~/.claude/bmad/projects/{project}/output/facilitate/sprint-plan-{date}.md`
    > Stories committed: {count}, Total points: {sum}
-   > Next: Team begins implementation with `/bmad-impl`.
+   > Next: Team begins implementation with `/bmad:bmad-impl`.
 
 ## BMAD Principles
 - Protect the team: push back on overcommitment

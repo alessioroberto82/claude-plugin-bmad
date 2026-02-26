@@ -3,7 +3,7 @@
 **Date**: {YYYY-MM-DD}
 **Auditor**: Security Guardian (BMAD)
 **Scope**: {What was audited}
-**Domain**: {software / business}
+**Domain**: {software / general}
 
 ---
 
