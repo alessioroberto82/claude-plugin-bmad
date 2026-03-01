@@ -18,6 +18,7 @@
 greenfield_defaults:
   ux: true
   facilitate: false
+  validate_prd: false    # PRD quality validation after prioritize
 
 # Test-Driven Development (TDD) enforcement
 # TDD is enabled by default. bmad-impl uses red-green-refactor cycle via bmad-tdd
@@ -49,6 +50,8 @@ agents:
     extra_instructions: |
       This project uses a layered architecture with dependency injection.
       All new modules must follow the existing pattern.
+  bmad-validate-prd:
+    model: sonnet
   bmad-security:
     model: opus
   bmad-facilitate:
