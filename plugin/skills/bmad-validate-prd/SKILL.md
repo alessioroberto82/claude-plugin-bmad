@@ -42,7 +42,7 @@ Read from `~/.claude/bmad/projects/{project}/output/`:
 - **Optional**: `scope/requirements.md` — enables requirements coverage check
 - **Reference**: `${CLAUDE_PLUGIN_ROOT}/resources/templates/software/PRD.md` — template for completeness check
 
-If `$ARGUMENTS` is provided and is not empty, use it as the PRD filename instead of the default.
+If `$ARGUMENTS` is provided and is not empty, use only its basename component as the PRD filename (strip any path separators and `..` segments). Do not allow path traversal.
 
 If PRD is missing: "PRD not found. Run `/bmad:bmad-prioritize` first to create a PRD."
 
@@ -51,7 +51,7 @@ If PRD is missing: "PRD not found. Run `/bmad:bmad-prioritize` first to create a
 1. **Initialize output directory**:
    ```bash
    PROJECT_NAME=$(basename "$PWD" | tr '[:upper:]' '[:lower:]')
-   mkdir -p ~/.claude/bmad/projects/$PROJECT_NAME/output/qa
+   mkdir -p ~/.claude/bmad/projects/"$PROJECT_NAME"/output/qa
    ```
 
 2. **Load inputs**: Read the PRD, requirements (if available), and PRD template.
