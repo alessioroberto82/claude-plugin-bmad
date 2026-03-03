@@ -53,9 +53,10 @@ Review:
   /bmad-triage      — Handle review feedback
 
 Utilities:
-  /bmad-tdd   — TDD red-green-refactor enforcer
-  /bmad-init  — Set up BMAD for this project
-  /bmad-shard — Split large docs for faster processing
+  /bmad-validate-prd — PRD quality validation (8 checks)
+  /bmad-tdd          — TDD red-green-refactor enforcer
+  /bmad-init         — Set up BMAD for this project
+  /bmad-shard        — Split large docs for faster processing
 
 Tip: Type /bmad detailed for version info and dependency status.
 ```

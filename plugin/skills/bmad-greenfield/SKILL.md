@@ -1,6 +1,6 @@
 ---
 name: bmad-greenfield
-description: Orchestrates full greenfield workflow (init → Scope Clarifier → Prioritizer → Experience Designer → Architecture Owner → Security → Facilitator → Implementer → Quality Guardian). Interactive with human checkpoints at each phase. Optional phases (Experience Designer, Facilitator). Resumable from any checkpoint.
+description: Orchestrates full greenfield workflow (init → Scope Clarifier → Prioritizer → PRD Validator → Experience Designer → Architecture Owner → Security → Facilitator → Implementer → Quality Guardian). Interactive with human checkpoints at each phase. Optional phases (PRD Validator, Experience Designer, Facilitator). Resumable from any checkpoint.
 allowed-tools: Read, Write, Grep, Glob, Bash
 metadata:
   context: same
@@ -23,15 +23,16 @@ You are the conductor — you don't play the instruments, you ensure the orchest
 init → scope → prioritize → arch → security → impl → qa
 ```
 
-**Optional Phases** (2 optional steps):
+**Optional Phases** (3 optional steps):
 ```
++ validate-prd (after prioritize, before arch)
 + ux (after prioritize, before arch)
 + facilitate (before impl)
 ```
 
-**Full Workflow** (9 steps with all options):
+**Full Workflow** (10 steps with all options):
 ```
-init → scope → prioritize → ux → arch → security → facilitate → impl → qa
+init → scope → prioritize → validate-prd → ux → arch → security → facilitate → impl → qa
 ```
 
 ## Commands
@@ -59,6 +60,7 @@ Each role runs with a recommended Claude model. The orchestrator passes the `mod
 | Security Guardian | opus | Adversarial threat modeling |
 | Facilitator | haiku | Lightweight coordination |
 | Implementer | opus | Code generation quality |
+| PRD Validator | sonnet | Structured criteria-based validation |
 | Quality Guardian | sonnet | Criteria-based validation |
 
 **Config override**: `agents.bmad-{name}.model` in `~/.claude/bmad/projects/{project}/config.yaml`
@@ -107,8 +109,9 @@ Domain: {detected domain}
 Mandatory phases: Security Review (always included)
 
 Optional phases:
-1. Experience Designer (UX Design) — Include? [y/n]
-2. Facilitator (Sprint Planning) — Include? [y/n]
+1. PRD Validation — Include? [y/n]
+2. Experience Designer (UX Design) — Include? [y/n]
+3. Facilitator (Sprint Planning) — Include? [y/n]
 ```
 
 **Generate step sequence** based on selections.
@@ -128,11 +131,13 @@ Optional phases:
     "completed_steps": ["init"],
     "optional_phases": {
       "ux": true/false,
-      "facilitate": true/false
+      "facilitate": true/false,
+      "validate_prd": true/false
     },
     "model_routing": {
       "bmad-scope": "sonnet",
       "bmad-prioritize": "sonnet",
+      "bmad-validate-prd": "sonnet",
       "bmad-ux": "sonnet",
       "bmad-arch": "opus",
       "bmad-security": "opus",
@@ -187,12 +192,13 @@ After completion, type one of:
 |---|---|---|---|---|---|
 | 1 | **Scope Clarifier** | sonnet | Gather requirements | User description | `scope/requirements.md` |
 | 2 | **Prioritizer** | sonnet | Prioritize & create PRD | Requirements | `prioritize/PRD.md` |
-| 3* | **Experience Designer** | sonnet | Design UX | PRD | `ux/ux-design.md` |
-| 4 | **Architecture Owner** | opus | Design architecture | PRD + UX (if available) | `arch/architecture.md` |
-| 5 | **Security Guardian** | opus | Security audit | Architecture | `security/security-audit.md` |
-| 6* | **Facilitator** | haiku | Sprint planning | PRD + Architecture | `facilitate/sprint-plan.md` |
-| 7 | **Implementer** | opus | Implement | Architecture + PRD | Code in repo |
-| 8 | **Quality Guardian** | sonnet | Test & validate | Requirements + Code | `qa/test-report.md` |
+| 3* | **PRD Validator** | sonnet | Validate PRD quality | PRD + Requirements | `qa/prd-validation-report.md` |
+| 4* | **Experience Designer** | sonnet | Design UX | PRD | `ux/ux-design.md` |
+| 5 | **Architecture Owner** | opus | Design architecture | PRD + UX (if available) | `arch/architecture.md` |
+| 6 | **Security Guardian** | opus | Security audit | Architecture | `security/security-audit.md` |
+| 7* | **Facilitator** | haiku | Sprint planning | PRD + Architecture | `facilitate/sprint-plan.md` |
+| 8 | **Implementer** | opus | Implement | Architecture + PRD | Code in repo |
+| 9 | **Quality Guardian** | sonnet | Test & validate | Requirements + Code | `qa/test-report.md` |
 
 *Optional steps
 
@@ -206,7 +212,7 @@ After completion, type one of:
 3. If file exists: update session-state.json checkpoint, advance to next step
 
 **`skip`**:
-- Only allowed for optional phases (ux, facilitate)
+- Only allowed for optional phases (ux, facilitate, validate-prd)
 - If mandatory phase: "This phase is mandatory. Please run the role or type 'exit' to leave the workflow."
 - If optional: record as skipped in session-state, advance
 
@@ -259,6 +265,22 @@ Completed:
 ---
 
 ## Quality Gates
+
+### Gate 0: PRD Validation Block
+
+After the validate-prd step (if included):
+1. Read `$BASE/output/qa/prd-validation-report.md`
+2. If verdict is "NEEDS REVISION":
+   ```
+   PRD VALIDATION GATE FAILED
+   The PRD Validator found blocking issues.
+
+   Review: ~/.claude/bmad/projects/{project}/output/qa/prd-validation-report.md
+
+   Fix the issues with /bmad:bmad-prioritize, then re-run /bmad:bmad-validate-prd.
+   ```
+3. Update `session-state.json` with `current_step: "prioritize"` and add a checkpoint entry, then loop back to the prioritize step
+4. If PASS or PASS with notes: advance to next step (ux or arch)
 
 ### Gate 1: Security P0 Block
 
@@ -319,6 +341,7 @@ When all steps are completed:
    |---|---|---|---|
    | Requirements | Scope Clarifier | ✓ | requirements.md |
    | PRD | Prioritizer | ✓ | PRD.md |
+   | PRD Validation | PRD Validator | ✓/skipped | prd-validation-report.md |
    | UX Design | Experience Designer | ✓/skipped | ux-design.md |
    | Architecture | Architecture Owner | ✓ | architecture.md |
    | Security | Security Guardian | ✓ | security-audit.md |
