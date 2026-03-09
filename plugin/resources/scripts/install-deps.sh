@@ -1,6 +1,6 @@
 #!/bin/bash
-# BMAD — Dependency Installer
-# First-time setup for BMAD ecosystem dependencies.
+# Circle — Dependency Installer
+# First-time setup for Circle ecosystem dependencies.
 #
 # Usage:
 #   bash install-deps.sh                    # Interactive mode
@@ -39,7 +39,7 @@ DEPS=(
   "swift-concurrency|ios|plugin|Swift Concurrency|async/await actors Sendable Swift 6|grep -q swift-concurrency $PLUGINS_JSON 2>/dev/null|claude plugin marketplace add swift-concurrency-agent-skill && claude plugin install swift-concurrency@swift-concurrency-agent-skill|arch impl||"
   "swift-testing-expert|ios|plugin|Swift Testing Expert|Swift Testing framework #expect #require|grep -q swift-testing-expert $PLUGINS_JSON 2>/dev/null|claude plugin marketplace add swift-testing-agent-skill && claude plugin install swift-testing-expert@swift-testing-agent-skill|qa impl||"
   "notion|extras|plugin|Notion|Notion workspace integration|grep -q Notion $PLUGINS_JSON 2>/dev/null|claude plugin marketplace add claude-plugins-official && claude plugin install Notion@claude-plugins-official|docs||"
-  "bmad-mcp|extras|npm|bmad-mcp|BMAD MCP server for workflow orchestration|npm list -g bmad-mcp 2>/dev/null \| grep -q bmad-mcp|npm install -g bmad-mcp|greenfield||"
+  "bmad-mcp|extras|npm|bmad-mcp|Circle MCP server for workflow orchestration|npm list -g bmad-mcp 2>/dev/null \| grep -q bmad-mcp|npm install -g bmad-mcp|greenfield||"
 )
 
 GROUP_LABELS=(
@@ -60,7 +60,7 @@ for arg in "$@"; do
     --group=*)      MODE="auto"; GROUPS="${arg#--group=}" ;;
     --dep=*)        MODE="auto"; SINGLE_DEP="${arg#--dep=}" ;;
     -h|--help)
-      echo "BMAD — Dependency Installer"
+      echo "Circle — Dependency Installer"
       echo ""
       echo "Usage:"
       echo "  bash install-deps.sh                    # Interactive mode"
@@ -197,7 +197,7 @@ print_status_group() {
 print_full_status() {
   TOTAL_INSTALLED=0; TOTAL_MISSING=0; TOTAL_MANUAL=0
 
-  echo -e "${BOLD}BMAD Dependencies${NC}"
+  echo -e "${BOLD}Circle Dependencies${NC}"
   echo "=================="
   echo ""
 
@@ -362,7 +362,7 @@ interactive_guided() {
 # ── Interactive mode ───────────────────────────────────────────────────────
 
 interactive_mode() {
-  echo -e "${BOLD}BMAD — First-Time Setup${NC}"
+  echo -e "${BOLD}Circle — First-Time Setup${NC}"
   echo "=================================="
   echo ""
 

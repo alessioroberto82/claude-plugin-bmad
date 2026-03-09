@@ -1,6 +1,6 @@
 #!/bin/bash
-# BMAD — Dependency Update Script
-# Updates all BMAD ecosystem components in one shot.
+# Circle — Dependency Update Script
+# Updates all Circle ecosystem components in one shot.
 #
 # Usage: bash update-deps.sh
 #
@@ -8,11 +8,11 @@
 #   - Claude plugins (marketplace + installed)
 #   - npm global packages (bmad-mcp)
 #   - cupertino binary (via homebrew tap mihaelamj/tap)
-#   - bmad plugin (git pull if remote exists)
+#   - circle plugin (git pull if remote exists)
 
 set -euo pipefail
 
-echo "=== BMAD Dependencies Update ==="
+echo "=== Circle Dependencies Update ==="
 echo ""
 
 # 1. Plugin marketplace — update indexes
@@ -57,18 +57,18 @@ else
 fi
 echo ""
 
-# 5. bmad plugin (if it has a remote)
-BMAD_DIR="${BMAD_DIR:-"$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"}"
-if [ -d "$BMAD_DIR/.git" ]; then
-    REMOTE=$(cd "$BMAD_DIR" && git remote -v 2>/dev/null | head -1)
+# 5. circle plugin (if it has a remote)
+CIRCLE_DIR="${CIRCLE_DIR:-"$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"}"
+if [ -d "$CIRCLE_DIR/.git" ]; then
+    REMOTE=$(cd "$CIRCLE_DIR" && git remote -v 2>/dev/null | head -1)
     if [ -n "$REMOTE" ]; then
-        echo "→ Updating bmad plugin..."
-        (cd "$BMAD_DIR" && git pull)
+        echo "→ Updating circle plugin..."
+        (cd "$CIRCLE_DIR" && git pull)
     else
-        echo "→ bmad: local only (no remote configured)"
+        echo "→ circle: local only (no remote configured)"
     fi
 else
-    echo "→ bmad: not a git repository"
+    echo "→ circle: not a git repository"
 fi
 
 echo ""
