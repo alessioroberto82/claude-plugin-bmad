@@ -1,5 +1,5 @@
-# BMAD — Per-Project Configuration
-# Copy this file to: ~/.claude/bmad/projects/<project-name>/config.yaml
+# Circle — Per-Project Configuration
+# Copy this file to: ~/.claude/circle/projects/<project-name>/config.yaml
 #
 # All fields are optional. Only include what you need to override.
 
@@ -29,10 +29,10 @@ guardrails:
 # ─────────────────────────────────────────────────────────────────
 
 # Test-Driven Development (TDD) enforcement
-# TDD is enabled by default. bmad-impl uses red-green-refactor cycle via bmad-tdd
-# for each implementation unit. bmad-qa verifies TDD compliance by inspecting commit
+# TDD is enabled by default. impl uses red-green-refactor cycle via tdd
+# for each implementation unit. qa verifies TDD compliance by inspecting commit
 # history for test(red): → feat(green): → refactor: pattern.
-# When the workflow doesn't involve testable code, bmad-impl prompts to disable.
+# When the workflow doesn't involve testable code, impl prompts to disable.
 tdd:
   enabled: true           # Enable TDD workflow (default: true)
   enforcement: hard       # hard = QA blocks on violation; soft = QA warns only
@@ -44,11 +44,11 @@ tdd:
 #
 # Role overrides — add model, extra context, or instructions per role
 agents:
-  bmad-scope:
+  scope:
     model: sonnet
-  bmad-prioritize:
+  prioritize:
     model: sonnet
-  bmad-arch:
+  arch:
     model: opus
     # Additional files to read for architectural context
     context_files:
@@ -58,31 +58,31 @@ agents:
     extra_instructions: |
       This project uses a layered architecture with dependency injection.
       All new modules must follow the existing pattern.
-  bmad-validate-prd:
+  validate-prd:
     model: sonnet
-  bmad-security:
+  security:
     model: opus
-  bmad-facilitate:
+  facilitate:
     model: haiku
-  bmad-impl:
+  impl:
     model: opus
     context_files:
       - src/
     extra_instructions: |
       Follow project coding standards and existing conventions.
       All public APIs must have documentation comments.
-  bmad-qa:
+  qa:
     model: sonnet
     extra_instructions: |
       Minimum test coverage target: 80%.
       Focus on integration tests for data flows.
-  bmad-ux:
+  ux:
     model: sonnet
     extra_instructions: |
       Follow platform design guidelines.
       Support accessibility features.
 
-# Code review agent models (bmad-code-review spawns 2 parallel agents)
+# Code review agent models (code-review spawns 2 parallel agents)
 code_review:
   agent_a_model: sonnet    # Standards & Bugs
   agent_b_model: sonnet    # Security

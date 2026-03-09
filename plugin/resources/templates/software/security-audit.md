@@ -1,7 +1,7 @@
 # Security Audit: {Feature/System Name}
 
 **Date**: {YYYY-MM-DD}
-**Auditor**: Security Guardian (BMAD)
+**Auditor**: Security Guardian (Circle)
 **Scope**: {What was audited}
 **Domain**: {software / general}
 

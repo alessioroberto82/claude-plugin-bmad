@@ -13,14 +13,14 @@ Before handoff, verify your output covers upstream requirements. This closes the
 
 | Your Role | Read This | Check For |
 |---|---|---|
-| bmad-arch | `scope/requirements.md` or `prioritize/PRD.md` | Each FR-*/user story addressed in architecture |
-| bmad-impl | `arch/architecture.md` | Each component/module implemented |
-| bmad-qa | `scope/requirements.md` or `prioritize/PRD.md` | Each acceptance criterion has a test |
-| bmad-prioritize | `scope/requirements.md` | Each FR-* has a user story |
-| bmad-ux | `prioritize/PRD.md` | Each user story has UX coverage |
-| bmad-security | `arch/architecture.md` | Each component has threat analysis |
+| arch | `scope/requirements.md` or `prioritize/PRD.md` | Each FR-*/user story addressed in architecture |
+| impl | `arch/architecture.md` | Each component/module implemented |
+| qa | `scope/requirements.md` or `prioritize/PRD.md` | Each acceptance criterion has a test |
+| prioritize | `scope/requirements.md` | Each FR-* has a user story |
+| ux | `prioritize/PRD.md` | Each user story has UX coverage |
+| security | `arch/architecture.md` | Each component has threat analysis |
 
-Read the upstream artifact from `~/.claude/bmad/projects/{project}/output/`. If the first path doesn't exist, try the alternative (e.g., PRD.md if requirements.md is missing).
+Read the upstream artifact from `~/.claude/circle/projects/{project}/output/`. If the first path doesn't exist, try the alternative (e.g., PRD.md if requirements.md is missing).
 
 ### Protocol
 
