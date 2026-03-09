@@ -110,7 +110,7 @@ Mandatory phases: Security Review (always included)
 
 Optional phases:
 1. Experience Designer (UX Design) — Include? [y/n]
-2. Facilitator (Sprint Planning) — Include? [y/n]
+2. Facilitator (Cycle Planning) — Include? [y/n]
 3. PRD Validation — Include? [Y/n]
 ```
 
@@ -196,7 +196,7 @@ After completion, type one of:
 | 4* | **Experience Designer** | sonnet | Design UX | PRD | `ux/ux-design.md` |
 | 5 | **Architecture Owner** | opus | Design architecture | PRD + UX (if available) | `arch/architecture.md` |
 | 6 | **Security Guardian** | opus | Security audit | Architecture | `security/security-audit.md` |
-| 7* | **Facilitator** | haiku | Sprint planning | PRD + Architecture | `facilitate/sprint-plan.md` |
+| 7* | **Facilitator** | haiku | Cycle planning | PRD + Architecture | `facilitate/cycle-plan.md` |
 | 8 | **Implementer** | opus | Implement | Architecture + PRD | Code in repo |
 | 9 | **Quality Guardian** | sonnet | Test & validate | Requirements + Code | `qa/test-report-{date}.md` |
 
@@ -346,7 +346,7 @@ When all steps are completed:
    | UX Design | Experience Designer | ✓/skipped | ux-design.md |
    | Architecture | Architecture Owner | ✓ | architecture.md |
    | Security | Security Guardian | ✓ | security-audit.md |
-   | Sprint Plan | Facilitator | ✓/skipped | sprint-plan.md |
+   | Cycle Plan | Facilitator | ✓/skipped | cycle-plan.md |
    | Implementation | Implementer | ✓ | (code in repo) |
    | QA | Quality Guardian | ✓ | test-report.md |
 
@@ -358,7 +358,7 @@ When all steps are completed:
    - [ ] Create a pull request
    - [ ] Run `/bmad:bmad-code-review <PR>` for multi-agent review with CLAUDE.md compliance
    - [ ] Merge to main branch
-   - [ ] Update Linear issues
+   - [ ] Update Linear cycle
    ```
 
 3. **Display completion**:

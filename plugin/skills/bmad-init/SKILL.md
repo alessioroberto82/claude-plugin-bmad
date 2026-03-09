@@ -192,7 +192,7 @@ Available roles:
   /bmad:bmad-qa          - Quality Guardian (test strategy, QA)
   /bmad:bmad-ux          - Experience Designer (UI/UX design)
   /bmad:bmad-prioritize  - Prioritizer (prioritization, roadmap)
-  /bmad:bmad-facilitate  - Facilitator (sprint planning, coordination)
+  /bmad:bmad-facilitate  - Facilitator (cycle planning, coordination)
   /bmad:bmad-security    - Security Guardian (audits, threat modeling)
   /bmad:bmad-docs        - Documentation Steward (doc generation)
 
@@ -202,7 +202,7 @@ Review:
 
 Orchestrators:
   /bmad:bmad-greenfield - Full workflow (analysis → QA)
-  /bmad:bmad-sprint     - Sprint planning ceremony
+  /bmad:bmad-cycle      - Cycle planning ceremony (Shape Up)
 
 Utilities:
   /bmad:bmad-validate-prd - Validate PRD quality (8 checks)
