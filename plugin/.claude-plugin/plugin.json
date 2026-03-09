@@ -1,18 +1,17 @@
 {
-  "name": "bmad",
-  "version": "0.11.0",
-  "description": "Multi-agent development workflow plugin with holacracy roles, quality gates, and full customization",
+  "name": "circle",
+  "version": "1.0.0",
+  "description": "Holacracy-based development workflow with distributed roles, quality gates, and Shape Up planning",
   "author": {
     "name": "Alessio Roberto",
     "url": "https://github.com/alessioroberto82"
   },
-  "repository": "https://github.com/alessioroberto82/claude-plugin-bmad",
+  "repository": "https://github.com/alessioroberto82/claude-plugin-circle",
   "license": "MIT",
   "keywords": [
-    "bmad",
-    "multi-agent",
-    "workflow",
+    "circle",
     "holacracy",
+    "workflow",
     "development",
     "quality-gates",
     "cycle-planning",
