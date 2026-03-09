@@ -1,9 +1,9 @@
-# BMAD — Dependency Manifest
+# Circle — Dependency Manifest
 # Single source of truth for all optional dependencies.
-# Reference for: install-deps.sh, update-deps.sh, bmad-init, bmad-arch, bmad-impl, bmad-qa.
+# Reference for: install-deps.sh, update-deps.sh, init, arch, impl, qa.
 # NOTE: Shell scripts do not parse this file; keep their hardcoded registries in sync with this manifest.
 #
-# Override per-project in ~/.claude/bmad/projects/<project>/config.yaml
+# Override per-project in ~/.claude/circle/projects/<project>/config.yaml
 # under the "dependencies:" key.
 #
 # All dependencies are OPTIONAL. Roles degrade gracefully when missing.
@@ -111,7 +111,7 @@ groups:
       - id: bmad-mcp
         type: npm
         name: bmad-mcp
-        description: "BMAD MCP server for structured workflow orchestration"
+        description: "Circle MCP server for structured workflow orchestration"
         check_command: "npm list -g bmad-mcp 2>/dev/null | grep -q bmad-mcp"
         install_command: "npm install -g bmad-mcp"
         update_command: "npm install -g bmad-mcp"
