@@ -78,7 +78,7 @@
 ### P1 — High (Fix before release)
 - {Finding or "None"}
 
-### P2 — Medium (Fix in next sprint)
+### P2 — Medium (Fix in next cycle)
 - {Finding or "None"}
 
 ### P3 — Low (Track for future)
@@ -89,7 +89,7 @@
 | Priority | Finding | Action | Owner | Timeline |
 |---|---|---|---|---|
 | P0 | {Finding} | {Action} | {Role} | Immediate |
-| P1 | {Finding} | {Action} | {Role} | This sprint |
+| P1 | {Finding} | {Action} | {Role} | This cycle |
 
 ## Verdict
 
