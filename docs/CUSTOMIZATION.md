@@ -19,7 +19,7 @@ If you just want to tweak how Circle works for your project, here are the most c
 | Layer | What | Where | Friction |
 |---|---|---|---|
 | **Soul** | Team principles | `plugin/resources/soul.md` | Edit file, instant effect |
-| **Knowledge Pack** | Project-aware roles | `docs/bmad/` in your repo | Create Markdown files |
+| **Knowledge Pack** | Project-aware roles | `docs/circle/` in your repo | Create Markdown files |
 | **Per-project config** | Role overrides, templates | `~/.claude/circle/projects/<project>/config.yaml` | Create YAML file |
 | **Role behavior** | Role definitions | `plugin/skills/<name>/SKILL.md` | Edit SKILL.md |
 | **Templates** | Document templates | `plugin/resources/templates/` | Drop .md file |
@@ -34,7 +34,7 @@ A Knowledge Pack makes Circle understand your project. It's a set of Markdown fi
 
 ### Step 1: Create knowledge files
 
-Create `docs/bmad/` (or `Docs/bmad/`) in your repo with these files:
+Create `docs/circle/` (or `Docs/circle/`) in your repo with these files:
 
 | File | What to include | Target size |
 |---|---|---|
@@ -47,7 +47,7 @@ Create `docs/bmad/` (or `Docs/bmad/`) in your repo with these files:
 Each file starts with a metadata comment for staleness tracking:
 
 ```markdown
-<!-- bmad-knowledge | last-reviewed: 2026-03-04 | owner: @yourhandle -->
+<!-- circle-knowledge | last-reviewed: 2026-03-04 | owner: @yourhandle -->
 # Your Title
 
 Content organized with ## headers...
@@ -56,12 +56,12 @@ Content organized with ## headers...
 For cross-platform projects sharing domain vocabulary, add a sync marker:
 
 ```markdown
-<!-- shared-origin: my-domain | sync-with: other-repo/docs/bmad/domain.md -->
+<!-- shared-origin: my-domain | sync-with: other-repo/docs/circle/domain.md -->
 ```
 
 ### Step 2: Create config template
 
-Add `docs/bmad/config.yaml` to your repo. This maps knowledge files to Circle roles:
+Add `docs/circle/config.yaml` to your repo. This maps knowledge files to Circle roles:
 
 ```yaml
 project:
@@ -75,56 +75,56 @@ reading_order:
 agents:
   scope:
     context_files:
-      - docs/bmad/project.md
-      - docs/bmad/domain.md
+      - docs/circle/project.md
+      - docs/circle/domain.md
 
   arch:
     context_files:
-      - docs/bmad/project.md
-      - docs/bmad/domain.md
-      - docs/bmad/architecture.md
-      - docs/bmad/integrations.md
+      - docs/circle/project.md
+      - docs/circle/domain.md
+      - docs/circle/architecture.md
+      - docs/circle/integrations.md
     extra_instructions: |
       Use domain-specific skills for architecture decisions.
 
   impl:
     context_files:
-      - docs/bmad/project.md
-      - docs/bmad/domain.md
-      - docs/bmad/architecture.md
-      - docs/bmad/build.md
-      - docs/bmad/integrations.md
+      - docs/circle/project.md
+      - docs/circle/domain.md
+      - docs/circle/architecture.md
+      - docs/circle/build.md
+      - docs/circle/integrations.md
     extra_instructions: |
       Run build verification before committing.
 
   qa:
     context_files:
-      - docs/bmad/project.md
-      - docs/bmad/domain.md
-      - docs/bmad/architecture.md
-      - docs/bmad/build.md
+      - docs/circle/project.md
+      - docs/circle/domain.md
+      - docs/circle/architecture.md
+      - docs/circle/build.md
 
   code-review:
     context_files:
-      - docs/bmad/project.md
-      - docs/bmad/architecture.md
-      - docs/bmad/build.md
+      - docs/circle/project.md
+      - docs/circle/architecture.md
+      - docs/circle/build.md
 
   ux:
     context_files:
-      - docs/bmad/project.md
-      - docs/bmad/domain.md
+      - docs/circle/project.md
+      - docs/circle/domain.md
 
   security:
     context_files:
-      - docs/bmad/project.md
-      - docs/bmad/architecture.md
-      - docs/bmad/integrations.md
+      - docs/circle/project.md
+      - docs/circle/architecture.md
+      - docs/circle/integrations.md
 ```
 
 ### Step 3: Activate
 
-Run `/circle:init`. It detects the config template at `docs/bmad/config.yaml` and copies it to `~/.claude/circle/projects/<project>/config.yaml`. Every Circle role now loads project knowledge automatically.
+Run `/circle:init`. It detects the config template at `docs/circle/config.yaml` and copies it to `~/.claude/circle/projects/<project>/config.yaml`. Every Circle role now loads project knowledge automatically.
 
 New team members: clone the repo → `/circle:init` → done.
 
@@ -190,6 +190,8 @@ allowed-tools: Read, Grep, Glob, Bash
 metadata:
   context: fork            # fork = isolated subagent | same = main conversation
   agent: general-purpose   # Explore, Plan, qa, or general-purpose
+  model: sonnet            # opus, sonnet, or haiku
+  effort: medium           # low, medium, high, or max
 ---
 
 # <Role Name>
