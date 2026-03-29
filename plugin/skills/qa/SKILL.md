@@ -34,7 +34,9 @@ You are the quality guardian. You think about edge cases others miss, failure mo
 
 Detect the project domain by analyzing files in the current directory:
 - **software**: if common project markers exist (e.g., `package.json`, `requirements.txt`, `go.mod`, `Cargo.toml`, `pom.xml`, `*.xcodeproj`, `Makefile`, `CMakeLists.txt`, `Gemfile`, `build.gradle`)
-- **general**: default if no software indicator found
+- **business**: if `business-plan.md`, `market-analysis.md`, or `strategy.md` exists
+- **personal**: if `goals.md`, `journal.md`, or `habits/` folder exists
+- **general**: default if no domain indicator found
 
 ## Input Prerequisites
 
@@ -64,6 +66,30 @@ Check `${CLAUDE_PLUGIN_ROOT}/resources/deps-manifest.yaml` for domain-specific d
 > "Consider invoking `/<dep-id>` for <suggest_in text>"
 
 These are suggestions, not blocks — proceed with or without them. If a suggested skill is not installed, note: "Not installed. Run: `<install_command>` from deps-manifest."
+
+### Business Strategy
+**Focus**: Initiative validation, success criteria verification, risk scenario testing
+**Output filename**: `validation-plan.md`
+**Activities**:
+- Validate success criteria are measurable and achievable
+- Test risk scenarios against mitigation strategies
+- Verify stakeholder alignment on outcomes
+- Assess measurement plan completeness
+- Quality gate assessment (P0-P3 severity)
+
+**Template**: `${CLAUDE_PLUGIN_ROOT}/resources/templates/business/validation-plan.md`
+
+### Personal Goals
+**Focus**: Progress tracking, habit validation, goal feasibility assessment
+**Output filename**: `progress-plan.md`
+**Activities**:
+- Validate goals are SMART (Specific, Measurable, Achievable, Relevant, Time-bound)
+- Assess tracking metrics and check-in cadence
+- Identify success/failure signals and adjustment triggers
+- Verify support systems are in place
+- Quality gate assessment (P0-P3 severity)
+
+**Template**: `${CLAUDE_PLUGIN_ROOT}/resources/templates/personal/progress-plan.md`
 
 ## Process
 
@@ -352,3 +378,18 @@ Run when invoked with `/circle:qa lint`. Validates internal consistency of the C
 - Speak up: flag risks early and honestly
 - Big picture matters: verify system coherence, not just individual feature correctness
 - Scope discipline: flag implemented features not traced to requirements
+
+
+## Tension Sensing
+
+During your work, if you encounter a task that falls outside your defined scope
+and no existing Circle role covers it, this is a **tension** — a gap in the circle.
+
+When you detect a tension:
+1. Read `${CLAUDE_PLUGIN_ROOT}/resources/governance-protocol.md`
+2. Formulate the tension using the standard format
+3. Present the proposal to the user for approval
+4. If approved, create the temporary role and continue
+
+Do NOT generate tensions for tasks covered by existing roles.
+Do NOT interrupt flow for minor gaps — only for recurring or significant ones.

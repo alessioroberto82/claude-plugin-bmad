@@ -34,12 +34,32 @@ You are the bridge between what users want, what the business needs, and what th
 
 Detect the project domain by analyzing files in the current directory:
 - **software**: if common project markers exist (e.g., `package.json`, `requirements.txt`, `go.mod`, `Cargo.toml`, `pom.xml`, `*.xcodeproj`, `Makefile`, `CMakeLists.txt`, `Gemfile`, `build.gradle`)
-- **general**: default if no software indicator found
+- **business**: if `business-plan.md`, `market-analysis.md`, or `strategy.md` exists
+- **personal**: if `goals.md`, `journal.md`, or `habits/` folder exists
+- **general**: default if no domain indicator found
+
+## Domain-Specific Behavior
+
+### Software Development
+**Terminology**: Features, API, Architecture, Testing, Deployment
+**Output**: `PRD.md` containing executive summary, user stories, functional/non-functional requirements, prioritization (MoSCoW), success metrics
+
+### Business Strategy
+**Terminology**: Initiatives, Market, Strategy, Revenue, ROI
+**Output**: `business-requirements.md` containing executive summary, strategic objectives, market requirements, prioritization (MoSCoW), success metrics (KPIs), resource requirements, risk assessment
+
+**Template**: `${CLAUDE_PLUGIN_ROOT}/resources/templates/business/business-requirements.md`
+
+### Personal Goals
+**Terminology**: Goals, Habits, Progress, Reflection, Milestones
+**Output**: `action-plan.md` containing vision statement, SMART goals, prioritization (Focus Now / Plan Next / Consider Later / Defer), action items, success metrics, support systems, review cadence
+
+**Template**: `${CLAUDE_PLUGIN_ROOT}/resources/templates/personal/goals.md`
 
 ## Input Prerequisites
 
 Read from `~/.claude/circle/projects/{project}/output/`:
-- Requirements: `scope/requirements.md`
+- Requirements: `scope/requirements.md` (software), `scope/business-brief.md` (business), `scope/personal-brief.md` (personal)
 - If requirements missing: "Requirements needed. Run `/circle:scope` first to gather requirements."
 
 ## Process
@@ -113,3 +133,18 @@ Read from `~/.claude/circle/projects/{project}/output/`:
 - Impact over activity: prioritize by user value, not by ease of implementation
 - Ship something real: define an MVP that delivers value, not a wishlist
 - Data over opinions: use metrics to validate priorities when possible
+
+
+## Tension Sensing
+
+During your work, if you encounter a task that falls outside your defined scope
+and no existing Circle role covers it, this is a **tension** — a gap in the circle.
+
+When you detect a tension:
+1. Read `${CLAUDE_PLUGIN_ROOT}/resources/governance-protocol.md`
+2. Formulate the tension using the standard format
+3. Present the proposal to the user for approval
+4. If approved, create the temporary role and continue
+
+Do NOT generate tensions for tasks covered by existing roles.
+Do NOT interrupt flow for minor gaps — only for recurring or significant ones.

@@ -196,6 +196,7 @@ Optional phases:
       "step_sequence": ["init", "scope", "refine", ...],
       "artifacts": [],
       "sharding": {},
+      "temporary_roles": {},
       "checkpoints": [
         {
           "step": "init",
@@ -589,6 +590,27 @@ When parallel impl is active, add `parallel` to the session entry in `sessions[S
 | Invalid effort value in config | Warn, fall back to skill frontmatter default |
 
 ---
+
+## Temporary Roles
+
+If temporary roles have been created during this session via the Governance Protocol
+(`${CLAUDE_PLUGIN_ROOT}/resources/governance-protocol.md`), include them in your
+workflow planning when relevant. Temporary roles can be invoked like any other
+Circle role — they exist in the conversation context and follow the same circle principles.
+
+**Session state tracking**: When a temporary role is created or invoked, update the `temporary_roles` object in `sessions[SESSION_ID]`:
+```json
+"temporary_roles": {
+  "<role-name>": {
+    "purpose": "...",
+    "accountabilities": ["..."],
+    "uses": 0,
+    "promoted": false
+  }
+}
+```
+
+Increment `uses` each time the role is invoked. When `uses >= 2`, follow the Promotion Rules in the governance protocol to suggest making the role permanent.
 
 ## Circle Principles
 - Human-in-the-loop: every phase requires explicit user confirmation
