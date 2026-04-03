@@ -53,6 +53,7 @@ These run multi-step workflows, guiding you through each phase with decision poi
 | `/circle:validate-prd` | Validates PRD quality against 8 structured checks. Use after creating a PRD, before architecture design |
 | `/circle:tdd` | Enforces strict red-green-refactor TDD cycle. Write a failing test, make it pass, refactor. Used standalone or as sub-workflow of the Implementer |
 | `/circle:shard` | Splits large documents into smaller pieces (called "shards") so roles can work with just the part they need — reduces token usage by ~90% |
+| `/circle:skills-discovery` | Discovers and installs third-party skills with security-gated validation |
 | `/circle:dashboard` | Shows project status: what phase you're in, what's been done, and what roles are available |
 
 > **Token** = the unit of text that AI models process. Fewer tokens means faster responses and lower cost.
@@ -183,7 +184,7 @@ Circle never adds files to your project repository. All outputs are stored in a 
 ├── shards/           # Context shards
 │   ├── requirements/
 │   ├── architecture/
-│   └── stories/
+│   └── tasks/
 ├── workspace/        # Temporary working files
 └── config.yaml       # Per-project overrides
 ```
