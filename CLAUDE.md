@@ -17,8 +17,8 @@ plugin/commands/circle.md              # /circle dashboard
 plugin/resources/soul.md               # Shared principles — every role loads this
 plugin/resources/deps-manifest.yaml    # Dependency registry (source of truth)
 plugin/resources/scripts/              # install-deps.sh, update-deps.sh
-plugin/resources/templates/{docs,software}/ # Output templates
-plugin/skills/*/SKILL.md               # 17 skills (see ls)
+plugin/resources/templates/{docs,software,business,personal}/ # Output templates
+plugin/skills/*/SKILL.md               # 18 skills (see ls)
 docs/                                  # CHANGELOG.md, CUSTOMIZATION.md, GETTING-STARTED.md
 ```
 

@@ -1,5 +1,27 @@
 # Changelog
 
+## v1.7.0 — Governance, Skills Discovery & Multi-Domain
+
+### Governance Protocol (from PR #25, #28)
+- **Dynamic role creation** — roles can detect gaps and propose temporary roles via tension format, with human approval required
+- **Promotion rules** — temporary roles used 2+ times get suggested for permanent SKILL.md generation
+- **Role template** — new `resources/templates/software/role-template.md` for generated roles
+- **Tension sensing** — 10 holacracy roles now detect structural gaps and surface them via governance protocol
+
+### Skills Discovery (from PR #26)
+- **New skill: `/circle:skills-discovery`** — security-gated skill install flow with criteria validation
+- **New resource: `skill-security-criteria.md`** — security criteria for evaluating third-party skills
+
+### Multi-Domain Support (from PR #27)
+- **Business & Personal domains** — `init` now detects domain; roles adapt behavior per domain
+- **New templates** — `templates/business/` (5 templates) and `templates/personal/` (5 templates)
+- **Domain adaptations in soul.md** — domain-specific principles for software, business, and personal contexts
+
+### Cleanup
+- **Removed ghost `track` reference** from governance-protocol.md (role was removed in v1.6.1)
+- **Version sync** — plugin.json, marketplace.json, and CHANGELOG aligned at v1.7.0
+- **Skill count** — updated from 16 to 18 (added skills-discovery + governance protocol support)
+
 ## v1.6.2 — Code Review Foundational File Threshold
 
 - **Foundational file threshold** — findings on `soul.md`, root `CLAUDE.md`, and `deps-manifest.yaml` use a lower confidence threshold (75 vs 90) to prevent high-impact issues from being silently filtered
