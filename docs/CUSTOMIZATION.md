@@ -144,7 +144,9 @@ This is a settings file that tells Circle roles how to behave differently for a 
 Create `~/.claude/circle/projects/<project-name>/config.yaml`:
 
 ```yaml
-# What kind of project this is (software or general)
+# What kind of project this is (software, business, personal, or general)
+# Detection: software (Package.swift, package.json, etc.), business (business-plan.md,
+# market-analysis.md, strategy.md), personal (goals.md, journal.md, habits/)
 domain: software
 
 # Which optional steps to include in the full workflow
